@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import Frame from "../resource/icons/Frame.png";
+import React, { useState } from "react";
+import frame from "../resource/icons/frame.png";
 import home from "../resource/icons/home.png";
 import Profile from "../resource/icons/Profile.png";
 import search from "../resource/icons/search.png";
@@ -8,15 +8,14 @@ import redHome from "../resource/icons/redHome.png";
 import redProfile from "../resource/icons/redProfile.png";
 import redSearch from "../resource/icons/redSearch.png";
 
-
 function FooterNavbar() {
-    const [clickHome, setClickHome] = useState(true);
-    const [clickSearch, setClickSearch] = useState(true);
-    const [clickFrame, setClickFrame] = useState(true);
-    const [clickProfile, setClickProfile] = useState(true);
+  const [clickHome, setClickHome] = useState(true);
+  const [clickSearch, setClickSearch] = useState(true);
+  const [clickFrame, setClickFrame] = useState(true);
+  const [clickProfile, setClickProfile] = useState(true);
   return (
     <div>
-        <footer className="footer">
+      <footer className="footer">
         <button
           className="home-footer"
           onClick={() => setClickHome(!clickHome)}
@@ -42,7 +41,7 @@ function FooterNavbar() {
           onClick={() => setClickFrame(!clickFrame)}
         >
           {clickFrame ? (
-            <img src={Frame} alt="frame" className="frame-icon" />
+            <img src={frame} alt="frame" className="frame-icon" />
           ) : (
             <img src={redFrame} alt="frame" className="frame-icon" />
           )}
@@ -59,7 +58,7 @@ function FooterNavbar() {
         </button>
       </footer>
     </div>
-  )
+  );
 }
 
-export default FooterNavbar
+export default FooterNavbar;
