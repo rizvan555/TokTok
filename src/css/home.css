@@ -79,7 +79,7 @@
   align-items: center;
   gap: 2vw;
 }
-.footer {
+.footer-navbar {
   display: flex;
   justify-content: center;
   border-top: 1px solid gray;
@@ -95,10 +95,7 @@
   background-color: transparent;
   width: 40vw;
 }
-.search-icon,
-.home-icon,
-.frame-icon,
-.profile-icon {
+nav-icon {
   width: 85px;
   height: 40px;
 }
