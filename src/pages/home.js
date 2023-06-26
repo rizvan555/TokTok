@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/home.css";
 import toktokLogo from "../resource/logos/toktokLogo.png";
 import Heart from "../resource/images/Heart.png";
+import redHeart from "../resource/images/redHeart.png";
 import annyPhoto from "../resource/images/annyPhoto.png";
 import albertPhoto from "../resource/images/albertPhoto.png";
 import himePhoto from "../resource/images/himePhoto.png";
 import image1 from "../resource/images/image1.png";
 import image2 from "../resource/images/image2.png";
 import image3 from "../resource/images/image3.png";
-import Frame from "../resource/icons/Frame.png";
-import home from "../resource/icons/home.png";
-import Profile from "../resource/icons/Profile.png";
-import Search from "../resource/icons/Search.png";
+import FooterNavbar from "../components/FooterNavbar";
 
 function Home() {
+  const [click, setClick] = useState(true);
+  const [click1, setClick1] = useState(true);
+  const [click2, setClick2] = useState(true);
+
   return (
     <div>
       <header className="header">
@@ -41,10 +43,14 @@ function Home() {
           <img src={image1} alt="image1" />
         </section>
         <section className="footer-section">
-          <div className="like-section">
-            <img src={Heart} alt="heart" />
+          <button className="like-section" onClick={() => setClick(!click)}>
+            {click ? (
+              <img src={Heart} alt="heart" />
+            ) : (
+              <img src={redHeart} alt="redHeart" />
+            )}
             <p>44.389</p>
-          </div>
+          </button>
           <div className="comment-section">
             <button className="settings-button">...</button>
             <p>26.376</p>
@@ -67,10 +73,14 @@ function Home() {
           <img src={image2} alt="image1" />
         </section>
         <section className="footer-section">
-          <div className="like-section">
-            <img src={Heart} alt="heart" />
-            <p>25.389</p>
-          </div>
+          <button className="like-section" onClick={() => setClick1(!click1)}>
+            {click1 ? (
+              <img src={Heart} alt="heart" />
+            ) : (
+              <img src={redHeart} alt="redHeart" />
+            )}
+            <p>44.389</p>
+          </button>
           <div className="comment-section">
             <button className="settings-button">...</button>
             <p>19.377</p>
@@ -93,34 +103,21 @@ function Home() {
           <img src={image3} alt="image3" />
         </section>
         <section className="footer-section">
-          <div className="like-section">
-            <img src={Heart} alt="heart" />
-            <p>32.278</p>
-          </div>
+          <button className="like-section" onClick={() => setClick2(!click2)}>
+            {click2 ? (
+              <img src={Heart} alt="heart" />
+            ) : (
+              <img src={redHeart} alt="redHeart" />
+            )}
+            <p>44.389</p>
+          </button>
           <div className="comment-section">
             <button className="settings-button">...</button>
             <p>26.382</p>
           </div>
         </section>
       </main>
-      <footer className="footer">
-        <div className="home-footer">
-          <img src={home} alt="homeimg" className="homeImg" />
-          <h5 className="footer-title">Home</h5>
-        </div>
-        <div className="search-footer">
-          <img src={Search} alt="searchimg" className="searchImg" />
-          <h5 className="footer-title">Search</h5>
-        </div>
-        <div className="frame-footer">
-          <img src={Frame} alt="frameimg" className="frameImg" />
-          <h5 className="footer-title">Upload</h5>
-        </div>
-        <div className="profile-footer">
-          <img src={Profile} alt="profileimg" className="profilefImg" />
-          <h5 className="footer-title">Profile</h5>
-        </div>
-      </footer>
+      <FooterNavbar />
     </div>
   );
 }
