@@ -15,7 +15,7 @@ const ProfileFacts = () => {
                 <h1>John Doe</h1>
                 <h3>UI/UX Designer</h3>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus sunt ipsa minima ipsum dolores animi delectus magni odit reiciendis voluptatum?</p>
-
+                <p>www.youtdomain.com</p>
             </article>
         </div>
     );
