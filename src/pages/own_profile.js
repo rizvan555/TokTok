@@ -11,6 +11,8 @@ function own_Profile() {
     return (
         <div>
             <ProfileMainBar />
+            <ProfileFacts />
+
         </div>
     )
 }
