@@ -10,11 +10,44 @@ import image1 from "../resource/images/image1.png";
 import image2 from "../resource/images/image2.png";
 import image3 from "../resource/images/image3.png";
 import FooterNavbar from "../components/FooterNavbar";
+import LikeButton from "../components/LikeButton";
 
 function Home() {
-  const [click, setClick] = useState(true);
-  const [click1, setClick1] = useState(true);
-  const [click2, setClick2] = useState(true);
+  const [persons, setPersons] = useState([
+    {
+      profilImg: annyPhoto,
+      name: "anny-wilson",
+      position: "Marketing Coordinator",
+      mainImg: image1,
+      heartImg: Heart,
+      redHeartImg: redHeart,
+      likeCount: 44389,
+      commentCount: 26376,
+      isLiked: false,
+    },
+    {
+      profilImg: himePhoto,
+      name: "hime-tonuki",
+      position: "Marketing Coordinator",
+      mainImg: image2,
+      heartImg: Heart,
+      redHeartImg: redHeart,
+      likeCount: 41381,
+      commentCount: 19387,
+      isLiked: false,
+    },
+    {
+      profilImg: albertPhoto,
+      name: "anny-wilson",
+      position: "President of Sales",
+      mainImg: image3,
+      heartImg: Heart,
+      redHeartImg: redHeart,
+      likeCount: 55799,
+      commentCount: 11336,
+      isLiked: false,
+    },
+  ]);
 
   return (
     <div>
@@ -29,93 +62,39 @@ function Home() {
       </header>
 
       <main>
-        <section className="header-section">
-          <div className="person-left-side">
-            <img src={annyPhoto} alt="photo1" className="person-photo" />
-            <div className="name-box">
-              <h3 className="name">anny-wilson</h3>
-              <h5 className="position">Marketing Coordinator</h5>
-            </div>
+        {persons.map((person, index) => (
+          <div key={index}>
+            <section className="header-section">
+              <div className="person-left-side">
+                <img
+                  src={person.profilImg}
+                  alt="photo1"
+                  className="person-photo"
+                />
+                <div className="name-box">
+                  <h3 className="name">{person.name}</h3>
+                  <h5 className="position">{person.position}</h5>
+                </div>
+              </div>
+              <button className="settings-button">...</button>
+            </section>
+            <section className="main-section">
+              <img src={person.mainImg} alt="image1" />
+            </section>
+            <section className="footer-section">
+              <LikeButton
+                person={person}
+                persons={persons}
+                setPersons={setPersons}
+                index={index}
+              />
+              <div className="comment-section">
+                <button className="settings-button">...</button>
+                <p>{person.commentCount}</p>
+              </div>
+            </section>
           </div>
-          <button className="settings-button">...</button>
-        </section>
-        <section className="main-section">
-          <img src={image1} alt="image1" />
-        </section>
-        <section className="footer-section">
-          <button className="like-section" onClick={() => setClick(!click)}>
-            {click ? (
-              <img src={Heart} alt="heart" />
-            ) : (
-              <img src={redHeart} alt="redHeart" />
-            )}
-            <p>44.389</p>
-          </button>
-          <div className="comment-section">
-            <button className="settings-button">...</button>
-            <p>26.376</p>
-          </div>
-        </section>
-      </main>
-
-      <main>
-        <section className="header-section">
-          <div className="person-left-side">
-            <img src={himePhoto} alt="photo1" className="person-photo" />
-            <div className="name-box">
-              <h3 className="name">hime-tonuki</h3>
-              <h5 className="position">Marketing Coordinator</h5>
-            </div>
-          </div>
-          <button className="settings-button">...</button>
-        </section>
-        <section className="main-section">
-          <img src={image2} alt="image1" />
-        </section>
-        <section className="footer-section">
-          <button className="like-section" onClick={() => setClick1(!click1)}>
-            {click1 ? (
-              <img src={Heart} alt="heart" />
-            ) : (
-              <img src={redHeart} alt="redHeart" />
-            )}
-            <p>44.389</p>
-          </button>
-          <div className="comment-section">
-            <button className="settings-button">...</button>
-            <p>19.377</p>
-          </div>
-        </section>
-      </main>
-
-      <main>
-        <section className="header-section">
-          <div className="person-left-side">
-            <img src={albertPhoto} alt="photo1" className="person-photo" />
-            <div className="name-box">
-              <h3 className="name">albert_hawkins</h3>
-              <h5 className="position">President of Sales</h5>
-            </div>
-          </div>
-          <button className="settings-button">...</button>
-        </section>
-        <section className="main-section">
-          <img src={image3} alt="image3" />
-        </section>
-        <section className="footer-section">
-          <button className="like-section" onClick={() => setClick2(!click2)}>
-            {click2 ? (
-              <img src={Heart} alt="heart" />
-            ) : (
-              <img src={redHeart} alt="redHeart" />
-            )}
-            <p>44.389</p>
-          </button>
-          <div className="comment-section">
-            <button className="settings-button">...</button>
-            <p>26.382</p>
-          </div>
-        </section>
+        ))}
       </main>
       <FooterNavbar />
     </div>
