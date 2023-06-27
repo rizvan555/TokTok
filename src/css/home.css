@@ -75,8 +75,9 @@
   margin-bottom: 1vh;
 }
 
-.footer-section {
+.main-footer-section {
   display: flex;
+  align-items: center;
   gap: 5vw;
   margin-bottom: 2vh;
 }
@@ -94,7 +95,6 @@
   align-items: center;
   gap: 2vw;
 }
-
 
 .footer-navbar {
   display: flex;
@@ -114,8 +114,7 @@
   width: 40vw;
 }
 
-
-nav-icon {
+.nav-icon {
   width: 85px;
   height: 40px;
 }
