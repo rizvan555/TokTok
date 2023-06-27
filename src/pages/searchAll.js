@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { BiSearch } from "react-icons/bi";
 import "../css/searchAll.css";
+import { Link } from "react-router-dom";
+import { BiSearch } from "react-icons/bi";
 import UserIcon from "../resource/icons/UserIcon.png";
 import Profile from "../resource/icons/Profile.png";
-import { Link } from "react-router-dom";
 import Frame from "../resource/icons/Frame.png";
 import home from "../resource/icons/home.png";
 import Search from "../resource/icons/Search.png";
@@ -76,11 +76,6 @@ function SearchAll() {
       isFollowing: false,
     },
   ]);
-  //   const [filteredUsers, setFilteredUsers] = useState(users);
-
-  const handleNavClick = (navId) => {
-    setActiveNav(navId);
-  };
 
   const navbar = [
     { id: 1, color1: home, color2: redHome, path: "/" },
@@ -110,11 +105,56 @@ function SearchAll() {
     );
   };
 
+  const handleNavClick = (navId) => {
+    setActiveNav(navId);
+  };
+
   const findMembers = (memberName) => {
-    const filtered = users.filter((user) =>
-      user.name.toLowerCase().includes(memberName.toLowerCase())
-    );
-    setUsers(filtered);
+    if (memberName === "") {
+      setUsers([
+        {
+          profilImg: annyPhoto,
+          name: "anny-wilson",
+          position: "Marketing Coordinator",
+          isFollowing: false,
+        },
+        {
+          profilImg: sarahPhoto,
+          name: "sarah_brisson",
+          position: "Nursing Assistant",
+          isFollowing: false,
+        },
+        {
+          profilImg: jonnyPhoto,
+          name: "andrew_nguyen",
+          position: "Dog Trainer",
+          isFollowing: false,
+        },
+        {
+          profilImg: annyPhoto,
+          name: "anny-wilson",
+          position: "Marketing Coordinator",
+          isFollowing: false,
+        },
+        {
+          profilImg: sarahPhoto,
+          name: "sarah_brisson",
+          position: "Nursing Assistant",
+          isFollowing: false,
+        },
+        {
+          profilImg: jonnyPhoto,
+          name: "andrew_nguyen",
+          position: "Dog Trainer",
+          isFollowing: false,
+        },
+      ]);
+    } else {
+      const filtered = users.filter((user) =>
+        user.name.toLowerCase().includes(memberName.toLowerCase())
+      );
+      setUsers(filtered);
+    }
   };
 
   return (
