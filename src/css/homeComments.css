@@ -1,0 +1,13 @@
+.commentButtonLink {
+  text-decoration: none;
+}
+.comment-section {
+  display: flex;
+  align-items: start;
+}
+.footer-section {
+  display: flex;
+  align-items: center;
+  gap: 5vw;
+  margin-bottom: 2vh;
+}
