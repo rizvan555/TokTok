@@ -89,7 +89,7 @@ function Home() {
                 setPersons={setPersons}
                 index={index}
               />
-                <CommentButton person={person} />
+              <CommentButton person={person} />
             </section>
           </div>
         ))}
