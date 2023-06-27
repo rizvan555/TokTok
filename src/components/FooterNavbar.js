@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import frame from "../resource/icons/frame.png";
+import Frame from "../resource/icons/Frame.png";
 import home from "../resource/icons/home.png";
 import profile from "../resource/icons/profile.png";
 import search from "../resource/icons/search.png";
@@ -19,7 +19,7 @@ function FooterNavbar() {
   const navbar = [
     { id: 1, color1: home, color2: redHome, path: "/" },
     { id: 2, color1: search, color2: redSearch, path: "/search" },
-    { id: 3, color1: frame, color2: redFrame, path: "/upload" },
+    { id: 3, color1: Frame, color2: redFrame, path: "/upload" },
     { id: 4, color1: profile, color2: redProfile, path: "/profile" },
   ];
 
