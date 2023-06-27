@@ -9,11 +9,11 @@ dotenv.config({ path: new URL("../.env", import.meta.url).pathname });
 const PORT = process.env.BE_PORT || 3000;
 const app = express();
 
-const ReactAppDistPath = new URL("../dist/", import.meta.url);
-const ReactAppIndex = new URL("../dist/index.html", import.meta.url);
+// const ReactAppDistPath = new URL("../dist/", import.meta.url);
+// const ReactAppIndex = new URL("../dist/index.html", import.meta.url);
 
 app.use(express.json());
-app.use(express.static(ReactAppDistPath.pathname));
+// app.use(express.static(ReactAppDistPath.pathname));
 
 
 app.get("/api/status", (req, res) => {
@@ -93,9 +93,9 @@ app.post("/api/newcomment", async (req, res) => {
 
 
 
-app.get("/*", (req, res) => {
-    // res.sendFile(ReactAppIndex.pathname);
-});
+// app.get("/*", (req, res) => {
+//     // res.sendFile(ReactAppIndex.pathname);
+// });
 
 app.listen(PORT, () => {
     console.log("Server läuft auf Port: ", PORT);
