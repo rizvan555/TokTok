@@ -4,46 +4,56 @@
   justify-content: space-between;
   padding: 2vw;
 }
+
 .left-box {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
+
 .logo,
 .heart-img {
   width: 30px;
   height: 30px;
 }
+
 .title {
   font-weight: 300;
 }
+
 .heart-button {
   border: none;
   background-color: transparent;
 }
+
 .header-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1vh 2vw;
 }
+
 .person-left-side {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
+
 .name-box {
   line-height: 2px;
   text-align: start;
 }
+
 .name {
   font-size: 16px;
   font-weight: bold;
 }
+
 .position {
   font-size: 12px;
   font-weight: 300;
 }
+
 .settings-button {
   display: flex;
   align-items: center;
@@ -53,20 +63,24 @@
   border-radius: 50%;
   padding-bottom: 1vh;
 }
+
 .person-photo {
   width: 40px;
   height: 40px;
 }
+
 .main-section {
   display: flex;
   justify-content: center;
   margin-bottom: 1vh;
 }
+
 .footer-section {
   display: flex;
   gap: 5vw;
   margin-bottom: 2vh;
 }
+
 .like-section {
   display: flex;
   align-items: center;
@@ -74,11 +88,14 @@
   border: none;
   background-color: transparent;
 }
+
 .comment-section {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
+
+
 .footer-navbar {
   display: flex;
   justify-content: center;
@@ -86,6 +103,7 @@
   padding: 2vh;
   margin-top: 10vh;
 }
+
 .home-footer,
 .search-footer,
 .frame-footer,
@@ -95,7 +113,9 @@
   background-color: transparent;
   width: 40vw;
 }
-.nav-icon {
+
+
+nav-icon {
   width: 85px;
   height: 40px;
 }
