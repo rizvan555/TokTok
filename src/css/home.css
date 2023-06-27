@@ -85,6 +85,8 @@
   display: flex;
   align-items: center;
   gap: 2vw;
+  border: none;
+  background-color: transparent;
 }
 
 .comment-section {
@@ -93,12 +95,12 @@
   gap: 2vw;
 }
 
-.footer {
+
+.footer-navbar {
   display: flex;
   justify-content: center;
-  gap: 12vw;
   border-top: 1px solid gray;
-  padding: 2vh 0;
+  padding: 2vh;
   margin-top: 10vh;
 }
 
@@ -107,18 +109,13 @@
 .frame-footer,
 .profile-footer {
   display: flex;
-  flex-direction: column;
-  line-height: 1px;
+  border: none;
+  background-color: transparent;
+  width: 40vw;
 }
 
-footer-title {
-  font-weight: normal;
 }
-
-.homeImg,
-.searchImg,
-.frameImg,
-.profilefImg {
-  width: 25px;
-  height: 25px;
+nav-icon {
+  width: 85px;
+  height: 40px;
 }
