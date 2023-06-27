@@ -14,7 +14,7 @@ const ProfileFacts = () => {
                 <h1>John Doe</h1>
                 <h3>UI/UX Designer</h3>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus sunt ipsa minima ipsum dolores animi delectus magni odit reiciendis voluptatum?</p>
-                <p>www.youtdomain.com</p>
+                <p>www.yourdomain.com</p>
             </article>
             <section className='follower_section'>
                 <div className='posts'>
@@ -29,7 +29,6 @@ const ProfileFacts = () => {
                     <h5>318</h5>
                     <p>Following</p>
                 </div>
-
             </section>
         </div>
     );
