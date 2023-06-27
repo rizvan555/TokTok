@@ -91,6 +91,7 @@ const Home = () => {
                                     key={picture.value}
                                     className="dropdown-option"
                                 >
+
                                     <img
                                         src={picture.image}
                                         alt={picture.label}

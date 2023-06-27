@@ -1,13 +1,15 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/home";
-import Upload from "./pages/upload"
+import CommentsPage from "./pages/commentsPage";
 
 function App() {
   return (
     <div className="App">
-      {/* <Home /> */}
-      <Upload />
-
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/commentsPage" element={<CommentsPage />} />
+      </Routes>
     </div>
   );
 }
