@@ -1,0 +1,30 @@
+.new_post_title {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+
+.new_post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile_pic {
+    width: 15%;
+}
+
+#post_text {
+    border: none;
+    background-color: #FAFAFA;
+    padding: 3vh 15vw 3vh 5vw;
+}
+
+.post_pic {
+    width: 15%;
+}
+
+.location {
+    display: flex;
+    gap: 2%;
+}

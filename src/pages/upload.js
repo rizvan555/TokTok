@@ -1,5 +1,6 @@
 import "../css/upload.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import CloseSquare from "../resource/icons/Close_Square.svg";
 import Exclude from "../resource/icons/Exclude.svg";
@@ -51,7 +52,7 @@ const pictures = [
 
 
 
-const Home = () => {
+const Upload = () => {
 
     const [showGallery, setShowGallery] = useState(false);
 
@@ -62,7 +63,7 @@ const Home = () => {
         <div>
             <header>
                 <section className="new_post_title">
-                    <img src={CloseSquare} alt="" />
+                    <img src={CloseSquare} alt="closeSquare" />
                     <h2>New Post</h2>
                 </section>
                 <section className="background_photo">
@@ -91,12 +92,13 @@ const Home = () => {
                                     key={picture.value}
                                     className="dropdown-option"
                                 >
-
-                                    <img
-                                        src={picture.image}
-                                        alt={picture.label}
-                                        className="dropdown-option-image"
-                                    />
+                                    <Link to={"/post"}>
+                                        <img
+                                            src={picture.image}
+                                            alt={picture.label}
+                                            className="dropdown-option-image"
+                                        />
+                                    </Link>
                                 </div>
                             ))}
                         </div>
@@ -107,4 +109,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default Upload;
