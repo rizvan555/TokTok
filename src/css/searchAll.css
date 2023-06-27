@@ -1,0 +1,44 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3vh;
+}
+
+.search-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.search-icon {
+  position: absolute;
+  left: 8%;
+  top: 30%;
+}
+.search-person-container {
+    margin-bottom: -10vh;
+}
+.search-person-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  padding: 0 2vw;
+  margin-bottom: 1vh;
+}
+.followButton {
+  background-color: transparent;
+  border: none;
+}
+.input-box {
+  width: 70%;
+  padding: 3vh 10vw;
+  border-radius: 10px;
+  border: none;
+  background-color: #f5f5f5;
+}
+
+.center-icon {
+  border-bottom: 3px solid red;
+  padding-bottom: 2vh;
+}
