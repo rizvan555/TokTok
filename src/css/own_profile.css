@@ -1,3 +1,31 @@
-.profile_main_bar {
-    display: flex;
+/* Import Style Variablen -------------------------------- */
+
+@import '../index.css';
+
+/* ------------------------------------------------------ */
+
+
+.ownprofilepage {
+    font-family: var(--font-family);
+    color: var(--primary-color);
 }
+
+/* Top - Profile - Bar ---------------------------------- */
+
+.profile_main_bar {
+    padding: 4% 1rem 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile_main_bar img {
+    padding: 0 0.5rem;
+}
+
+.profile_main_bar section h2 {
+    display: inline-block;
+    font-size: calc(var(--font-size-rem) * 2.4);
+}
+
+/* Profile - Facts ------------------------------------- */

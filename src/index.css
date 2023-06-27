@@ -1,2 +1,10 @@
+@font-face {
+    font-family: 'UrbanistVar';
+    src: url('./resource/fonts/Urbanist-VariableFont_wght.ttf') format('truetype');
+}
 
-
+:root {
+    --primary-color: #212121;
+    --font-family: 'UrbanistVar', sans-serif;
+    --font-size-rem: 10px;
+}
