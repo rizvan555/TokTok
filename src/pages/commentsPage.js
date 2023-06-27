@@ -4,11 +4,12 @@ import redHeart from "../resource/images/redHeart.png";
 import LikeButton from "../components/LikeButton";
 import annyPhoto from "../resource/images/annyPhoto.png";
 import sarahPhoto from "../resource/images/sarahPhoto.png";
-import albertPhoto from "../resource/images/himePhoto.png";
+import jonnyPhoto from "../resource/images/jonnyPhoto.png";
 import CommentButton from "../components/CommentButton";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsSend } from "react-icons/bs";
 import "../css/homeComments.css";
+import { Link } from "react-router-dom";
 
 function CommentsPage() {
   const [persons, setPersons] = useState([
@@ -31,7 +32,7 @@ function CommentsPage() {
           likeCount: 576,
         },
         {
-          img: albertPhoto,
+          img: jonnyPhoto,
           name: "andrew_nguyen",
           position: "Dog Trainer",
           feedback:
@@ -71,7 +72,9 @@ function CommentsPage() {
     <div>
       <header className="commentPage-header">
         <div className="commentsHeader-left">
-          <BsArrowLeft />
+          <Link to="/">
+            <BsArrowLeft size={20}/>
+          </Link>
           <h2>Comments</h2>
         </div>
         <button className="send-button">
@@ -118,14 +121,19 @@ function CommentsPage() {
               {person.feedbacks.map((feedback, feedbackIndex) => (
                 <div key={feedbackIndex} className="feedback-section">
                   <div className="person-box">
-                    <img
-                      src={feedback.img}
-                      alt="img"
-                      className="person-photo"
-                    />
-                    <div className="name-box">
-                      <p className="feedback-name">{feedback.name}</p>
-                      <p className="feedback-position">{feedback.position}</p>
+                    <div className="person-box-left">
+                      <img
+                        src={feedback.img}
+                        alt="img"
+                        className="person-photo"
+                      />
+                      <div className="name-box">
+                        <p className="feedback-name">{feedback.name}</p>
+                        <p className="feedback-position">{feedback.position}</p>
+                      </div>
+                    </div>
+                    <div className="comment-button-section">
+                      <button className="settings-button">...</button>
                     </div>
                   </div>
                   <p className="feedback-box">{feedback.feedback}</p>
@@ -142,14 +150,16 @@ function CommentsPage() {
                       )}
                       <p>{feedback.likeCount}</p>
                     </button>
-                    <button className="reply-button">Reply</button>
+                    <Link to="/feedbackPage">
+                      <button className="reply-button">Reply</button>
+                    </Link>
                   </div>
                 </div>
               ))}
             </section>
             <section className="comment-write-section">
               <img
-                src={albertPhoto}
+                src={jonnyPhoto}
                 alt="photoalbert"
                 className="person-photo"
               />
