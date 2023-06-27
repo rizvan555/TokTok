@@ -88,10 +88,10 @@ function Home() {
                 setPersons={setPersons}
                 index={index}
               />
-              <div className="comment-section">
+              <button className="comment-section">
                 <button className="settings-button">...</button>
                 <p>{person.commentCount}</p>
-              </div>
+              </button>
             </section>
           </div>
         ))}
