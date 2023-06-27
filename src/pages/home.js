@@ -82,15 +82,14 @@ function Home() {
             <section className="main-section">
               <img src={person.mainImg} alt="image1" />
             </section>
-            <section className="footer-section">
+            <section className="main-footer-section">
               <LikeButton
                 person={person}
                 persons={persons}
                 setPersons={setPersons}
                 index={index}
               />
-
-              <CommentButton person={person} />
+                <CommentButton person={person} />
             </section>
           </div>
         ))}

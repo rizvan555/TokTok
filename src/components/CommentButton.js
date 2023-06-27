@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/homeComments.css";
+import "../css/commentButton.css";
 
 function CommentButton({ person }) {
   return (
     <div>
-      <div className="comment-section">
+      <div className="comment-button-section">
         <Link to="/commentsPage" className="commentButtonLink">
           <button className="settings-button">...</button>
         </Link>

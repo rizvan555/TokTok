@@ -8,6 +8,7 @@ import redHome from "../resource/icons/redHome.png";
 import redProfile from "../resource/icons/redProfile.png";
 import redSearch from "../resource/icons/redSearch.png";
 import { Link } from "react-router-dom";
+import "../css/home.css";
 
 function FooterNavbar() {
   const [activeNav, setActiveNav] = useState(null);

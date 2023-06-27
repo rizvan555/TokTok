@@ -1,6 +1,6 @@
 import React from "react";
 
-function LikeButton({ person, index, persons, setPersons }) {
+function LikeButton({ person, index, setPersons }) {
   const toggleLike = (index) => {
     setPersons((persons) =>
       persons.map((person, personIndex) =>
