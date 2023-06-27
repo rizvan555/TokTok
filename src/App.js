@@ -1,10 +1,13 @@
 import "./App.css";
 import Home from "./pages/home";
+import Upload from "./pages/upload"
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      {/* <Home /> */}
+      <Upload />
+
     </div>
   );
 }
