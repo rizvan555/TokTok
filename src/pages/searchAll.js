@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/searchAll.css";
 import { Link } from "react-router-dom";
-import { BiSearch } from "react-icons/bi";
+import { CiSearch } from "react-icons/ci";
 import UserIcon from "../resource/icons/UserIcon.png";
 import Profile from "../resource/icons/Profile.png";
 import Frame from "../resource/icons/Frame.png";
@@ -17,7 +17,7 @@ import jonnyPhoto from "../resource/images/jonnyPhoto.png";
 import followButton from "../resource/images/followButton.png";
 import followingButton from "../resource/images/followingButton.png";
 
-function SearchAll() {
+function SearchAll({ darkLight, setDarkLight }) {
   const [activeNav, setActiveNav] = useState(null);
   const [value, setValue] = useState(null);
   const [users, setUsers] = useState([
@@ -161,7 +161,7 @@ function SearchAll() {
     <div className="search-container">
       <div className="search-header">
         <div className="search-icon">
-          <BiSearch size={25} />
+          <CiSearch size={25} />
         </div>
         <input
           type="text"
@@ -171,6 +171,7 @@ function SearchAll() {
             setValue(e.target.value);
             findMembers(e.target.value);
           }}
+          style={{ color: !darkLight ? "white" : "blsack" }}
         />
       </div>
       <Link to="/" className="center-icon">
@@ -178,33 +179,35 @@ function SearchAll() {
       </Link>
 
       <main className="search-person-container">
-        {users.map((person, index) => (
-          <div key={index}>
-            <section className="search-person-section">
-              <div className="person-left-side">
-                <img
-                  src={person.profilImg}
-                  alt="photo1"
-                  className="person-photo"
-                />
-                <div className="name-box">
-                  <h3 className="name">{person.name}</h3>
-                  <h5 className="position">{person.position}</h5>
+        <div className="scrollable">
+          {users.map((person, index) => (
+            <div key={index}>
+              <section className="search-person-section">
+                <div className="person-left-side">
+                  <img
+                    src={person.profilImg}
+                    alt="photo1"
+                    className="person-photo"
+                  />
+                  <div className="name-box">
+                    <h3 className="name">{person.name}</h3>
+                    <h5 className="position">{person.position}</h5>
+                  </div>
                 </div>
-              </div>
-              <button
-                onClick={() => handleFollowClick(index)}
-                className="followButton"
-              >
-                {person.isFollowing ? (
-                  <img src={followingButton} alt="followingButton" />
-                ) : (
-                  <img src={followButton} alt="followButton" />
-                )}
-              </button>
-            </section>
-          </div>
-        ))}
+                <button
+                  onClick={() => handleFollowClick(index)}
+                  className="followButton"
+                >
+                  {person.isFollowing ? (
+                    <img src={followingButton} alt="followingButton" />
+                  ) : (
+                    <img src={followButton} alt="followButton" />
+                  )}
+                </button>
+              </section>
+            </div>
+          ))}
+        </div>
       </main>
 
       <footer className="footer-navbar">

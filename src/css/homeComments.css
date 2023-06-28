@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1vh 2vw;
+  padding: 1vh 3vw;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .commentButtonLink {
@@ -26,8 +26,8 @@
 .comment-section {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 0 auto;
+  width: 96%;
+  padding: 0 2vw;
 }
 .comment-box {
   text-align: start;
@@ -42,9 +42,10 @@
   align-items: center;
   gap: 5vw;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 2vw;
 }
 .feedbacks-section {
-  padding: 5vh 2vw;
+  padding: 5vh 3vw;
   padding-bottom: 2vh;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -83,21 +84,21 @@
 }
 .reply-button {
   border: none;
-  background-color: transparent;
+  font-size: 15px;
 }
 .comment-write-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5vw;
+  gap: 4vw;
   padding: 3vh 1vw 5vh 1vh;
 }
 .comment-input {
   padding: 12px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #fafafa;
-  width: 50vw;
+  width: 58vw;
 }
 .post-button {
   background-color: transparent;
