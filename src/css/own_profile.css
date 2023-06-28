@@ -1,3 +1,107 @@
+/* Import Style Variablen -------------------------------- */
+
+@import '../index.css';
+
+/* ------------------------------------------------------ */
+
+.ownprofilepage {
+    font-family: var(--font-family-bold);
+    color: var(--primary-color);
+    width: 97%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Top - Profile - Bar ---------------------------------- */
+
 .profile_main_bar {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile_main_bar img {
+    padding: 0 0.5rem;
+}
+
+.profile_main_bar section h2 {
+    display: inline-block;
+    font-size: calc(var(--font-size-rem) * 2.4);
+}
+
+/* Profile - Image ------------------------------------- */
+
+.image-container {
+    position: relative;
+}
+
+.profile_article .profile_img {
+    width: 16%;
+    max-width: 100%;
+    height: auto;
+}
+
+.edit_icon {
+    position: absolute;
+    top: 72%;
+    left: 53.5%;
+}
+
+/* Profile - Facts ------------------------------------- */
+
+.profile_article h1 {
+    font-size: calc(var(--font-size-rem) * 2.4);
+    font-weight: 300;
+    line-height: 3rem;
+}
+
+.profile_article h3 {
+    font-size: calc(var(--font-size-rem) * 1.6);
+    font-weight: 600;
+}
+
+.profile_article p:nth-of-type(1) {
+    font-family: var(--font-family-thin);
+    font-size: calc(var(--font-size-rem) * 1.4);
+    color: var(--secondary-color);
+    font-weight: 400;
+    line-height: 1.4rem;
+}
+
+.profile_article p:nth-of-type(2) {
+    font-size: calc(var(--font-size-rem) * 1.4);
+    font-weight: 400;
+    color: var(--domain-color);
+}
+
+/* Profile - Facts - Follower - Section --------------- */
+
+.follower_section {
+    display: flex;
+    padding-top: 1rem;
+}
+
+.follower_section div {
+    width: 33%;
+}
+
+.follower_section .followers {
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.follower_section h5 {
+    font-size: calc(var(--font-size-rem) * 2.4);
+    font-weight: 600;
+    margin: 0;
+}
+
+.follower_section p {
+    font-size: calc(var(--font-size-rem) * 1.4);
+    font-family: var(--font-family-thin);
+    color: var(--secondary-color);
+    font-weight: 400;
+    border-bottom: 1px solid var(--border-color);
+    margin: 0;
+    padding: 4%;
 }

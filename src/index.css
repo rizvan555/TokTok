@@ -1,2 +1,19 @@
+@font-face {
+    font-family: 'UrbanistVar';
+    src: url('./resource/fonts/Urbanist-VariableFont_wght.ttf') format('truetype');
+}
 
+@font-face {
+    font-family: 'UrbanistLight';
+    src: url('./resource/fonts/Urbanist-ExtraLight.ttf') format('truetype');
+}
 
+:root {
+    --primary-color: #212121;
+    --secondary-color: #424242;
+    --border-color: #EEEEEE;
+    --domain-color: #246BFD;
+    --font-family-bold: 'UrbanistVar', sans-serif;
+    --font-family-thin: 'UrbanistLight';
+    --font-size-rem: 10px;
+}

@@ -9,11 +9,13 @@ const ProfileFacts = () => {
     return (
         <div>
             <article className='profile_article'>
-                <img src={profile_image} alt="profile_image_user" />
-                <img src={profile_edit_icon} alt="edit_icon" />
+                <div className='image-container'>
+                    <img src={profile_image} className='profile_img' alt="profile_image_user" />
+                    <img src={profile_edit_icon} className='edit_icon' alt="edit_icon" />
+                </div>
                 <h1>John Doe</h1>
                 <h3>UI/UX Designer</h3>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus sunt ipsa minima ipsum dolores animi delectus magni odit reiciendis voluptatum?</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio magni totam, harum exercitationem accusamus facere praesentium expedita.</p>
                 <p>www.yourdomain.com</p>
             </article>
             <section className='follower_section'>
