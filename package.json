@@ -4,6 +4,12 @@
   "private": true,
   "proxy": "http://localhost:4000",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.3",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.6",
+    "@mui/styled-engine-sc": "^5.12.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -16,6 +22,7 @@
     "react-router-dom": "^6.14.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.3",
+    "styled-components": "^6.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

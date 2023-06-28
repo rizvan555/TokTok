@@ -1,42 +1,24 @@
 .home-container {
-  padding: 1vh 3vw;
+  padding: 1vh 4vw;
 }
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.dark-light {
-  display: flex;
-  gap: 3vw;
-  width: 50px;
-  height: 50px;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 1) 50%,
-    rgba(255, 255, 255, 1) 50%
-  );
-}
-.dark-light:active {
-  transform: scale(0.7);
-}
 .left-box {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
-
 .logo,
 .heart-img {
   width: 30px;
   height: 30px;
 }
-
 .title {
   font-weight: 300;
 }
-
 .heart-button {
   border: none;
   width: 40px;
@@ -49,35 +31,29 @@
   width: 25px;
   height: 25px;
 }
-
 .header-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1vh 2vw;
 }
-
 .person-left-side {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
-
 .name-box {
   line-height: 2px;
   text-align: start;
 }
-
 .name {
   font-size: 16px;
   font-weight: bold;
 }
-
 .position {
   font-size: 12px;
   font-weight: 300;
 }
-
 .settings-button {
   display: flex;
   align-items: center;
@@ -88,18 +64,15 @@
   padding-bottom: 1vh;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
-
 .person-photo {
   width: 40px;
   height: 40px;
 }
-
 .main-section {
   display: flex;
   justify-content: center;
   margin-bottom: 1vh;
 }
-
 .main-footer-section {
   display: flex;
   align-items: center;
@@ -107,20 +80,17 @@
   margin-bottom: 2vh;
   padding-left: 3vw;
 }
-
 .comment-section {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
-
 .footer-navbar {
   display: flex;
   justify-content: center;
   border-top: 1px solid gray;
   padding: 3vh 2vw;
 }
-
 .home-footer,
 .search-footer,
 .frame-footer,
