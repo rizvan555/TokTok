@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import frame from "../resource/icons/frame.png";
+import frame from "../resource/icons/Frame.png";
 import home from "../resource/icons/home.png";
-import profile from "../resource/icons/profile.png";
-import search from "../resource/icons/search.png";
+import profile from "../resource/icons/Profile.png";
+import search from "../resource/icons/Search.png";
 import redFrame from "../resource/icons/redFrame.png";
 import redHome from "../resource/icons/redHome.png";
 import redProfile from "../resource/icons/redProfile.png";
