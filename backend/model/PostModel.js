@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 
-const commentSchema = new mongoose.Schema({ comment: String });
 
 const postSchema = new mongoose.Schema({
-    content: String,
     user: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
-    image: {},
-    comment: [commentSchema],
+    content: { type: String },
+    comments: { type: mongoose.SchemaTypes.ObjectId, ref: "Comment" },
+    location: { type: String },
 });
 
 export const Post = mongoose.model("Post", postSchema);
