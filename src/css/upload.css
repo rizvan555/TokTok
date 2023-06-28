@@ -1,3 +1,9 @@
+.master {
+    margin: 1vh 2vw;
+    font-family: var(--font-family-bold);
+    color: var(--primary-color);
+}
+
 .new_post_title {
     display: flex;
     gap: 5%;
