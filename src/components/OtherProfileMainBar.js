@@ -8,7 +8,7 @@ import settingIcon from '../resource/icons/GroupsettingIcon.png';
 
 const OtherProfileMainBar = () => {
     return (
-        <nav className='otherprofile_mainbar'>
+        <nav className='profile_mainbar'>
             <section>
                 <img src={logo} alt="logo toktok klein" />
                 <h2>julia_adaline</h2>

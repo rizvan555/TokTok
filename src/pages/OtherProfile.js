@@ -1,19 +1,19 @@
 
 // Import - Components -------------------------------
 
-import OtherProfileGallery from "../components/OTHERProfileGallery";
+import OtherProfileGallery from "../components/OtherProfileGallery";
 import OtherProfileFacts from "../components/OtherProfileFacts";
 import OtherProfileMainBar from "../components/OtherProfileMainBar";
 
 // --- Style --------------------------
 
-import '../css/own_profile.css';
+import '../css/otherProfile.css';
 
 // ------------------------------------
 
 const OtherProfile = () => {
     return (
-        <div className="otherprofilepage">
+        <div className="otherprofile_page">
             <OtherProfileMainBar />
             <OtherProfileFacts />
             <OtherProfileGallery />

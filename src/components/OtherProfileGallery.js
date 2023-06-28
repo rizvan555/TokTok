@@ -10,8 +10,8 @@ import gallery_image3 from '../resource/images/Imagegallery-image3.png';
 
 const OtherProfileGallery = () => {
     return (
-        <section className='profile_gallery'>
-            <div className='profile_gallery_header'>
+        <section className='otherprofile_gallery'>
+            <div className='otherprofile_gallery_header'>
                 <img src={profile_feed_icon} alt="profile_feed_icon" />
                 <h5>Feeds</h5>
             </div>

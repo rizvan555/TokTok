@@ -8,7 +8,7 @@ import otherprofile_image from '../resource/images/Ellipseprofile_image_julia.pn
 const OtherProfileFacts = () => {
     return (
         <div>
-            <article className='otherprofile_article'>
+            <article className='profile_article'>
                 <div className='image-container'>
                     <img src={otherprofile_image} className='profile_img' alt="profile_image_user" />
                 </div>

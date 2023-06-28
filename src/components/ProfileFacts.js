@@ -4,11 +4,7 @@
 import profile_image from '../resource/images/Ellipseprofile_image_small.png';
 import profile_edit_icon from '../resource/icons/Edit Squareprofile_image_edit_icon.png';
 
-// --- style --------------------------
-
-import '../css/own_profile.css';
-
-// ------------------------------------
+// ---------------------------------------------------
 
 const ProfileFacts = () => {
     return (

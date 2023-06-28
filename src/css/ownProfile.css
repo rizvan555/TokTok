@@ -4,7 +4,7 @@
 
 /* ------------------------------------------------------ */
 
-.ownprofilepage {
+.ownprofile_page {
     font-family: var(--font-family-bold);
     color: var(--primary-color);
     width: 95%;
@@ -12,7 +12,7 @@
     padding: 0;
 }
 
-.ownprofilepage p {
+.ownprofile_page p {
     letter-spacing: var(--letter-spacing);
 }
 

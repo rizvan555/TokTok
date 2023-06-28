@@ -7,13 +7,13 @@ import ProfileGallery from '../components/ProfileGallery';
 
 // --- style --------------------------
 
-import '../css/own_profile.css';
+import '../css/ownProfile.css';
 
 // ------------------------------------
 
 function OwnProfile() {
     return (
-        <div className='ownprofilepage'>
+        <div className='ownprofile_page'>
             <ProfileMainBar />
             <ProfileFacts />
             <ProfileGallery />
