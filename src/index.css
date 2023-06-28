@@ -15,6 +15,7 @@
     --domain-color: #246BFD;
     --feed-color: #FF4D67;
     --font-family-bold: 'UrbanistVar', sans-serif;
-    --font-family-thin: 'UrbanistLight';
+    --font-family-thin: 'UrbanistLight', sans-serif;
     --font-size-rem: 10px;
+    --letter-spacing: 0.2px;
 }
