@@ -5,11 +5,13 @@ import "./css/homeComments.css";
 import "./css/searchAll.css";
 import Home from "./pages/home";
 import OwnProfile from "./pages/OwnProfile";
+import OtherProfile from "./pages/OtherProfile";
 import CommentsPage from "./pages/commentsPage";
 import UploadPage from "./pages/upload";
 import NewPost from "./pages/post";
 import SearchAll from "./pages/searchAll";
 import { useState } from "react";
+
 
 function App() {
   const [darkLight, setDarkLight] = useState(false);
@@ -41,6 +43,7 @@ function App() {
         />
         <Route path="/upload" element={<UploadPage />} />
         <Route path="/post" element={<NewPost />} />
+        <Route path="/otherprofile" element={<OtherProfile />} />
       </Routes>
     </div>
   );

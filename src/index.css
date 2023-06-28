@@ -15,11 +15,14 @@ body {
 }
 
 :root {
-  --primary-color: #212121;
-  --secondary-color: #424242;
-  --border-color: #eeeeee;
-  --domain-color: #246bfd;
-  --font-family-bold: "UrbanistVar", sans-serif;
-  --font-family-thin: "UrbanistLight";
-  --font-size-rem: 10px;
+    --primary-color: #212121;
+    --secondary-color: #424242;
+    --border-color: #EEEEEE;
+    --domain-color: #246BFD;
+    --feed-color: #FF4D67;
+    --font-family-bold: 'UrbanistVar', sans-serif;
+    --font-family-thin: 'UrbanistLight', sans-serif;
+    --font-size-rem: 10px;
+    --letter-spacing: 0.2px;
 }
+
