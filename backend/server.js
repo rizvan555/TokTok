@@ -52,9 +52,7 @@ app.post("/api/signup", async (req, res) => {
 });
 
 
-
 // ========== SIGN IN ==========
-
 
 app.post("/api/signin", async (req, res) => {
     const { email, password } = req.body;
@@ -85,7 +83,6 @@ app.post("/api/signin", async (req, res) => {
     }
 });
 
-
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
     let token = authHeader && authHeader.split(" ")[1]; // Extrahiere den Token aus dem Authorization Header
@@ -108,15 +105,21 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
+// ========== VERIFY ==========
+
 app.get("/api/secure", authenticateToken, (req, res) => {
     res.json(req.user);
 });
 
 
+// ========== LOGOUT ==========
+app.get("/api/logout", async (req, res) => {
+    res.clearCookie("auth");
+    res.send("Ok");
+});
 
 
-// ========== GET USER PROFIL ==========
-
+// ========== GET LOGED IN USER  ==========
 
 app.get("/api/user", authenticateToken, async (req, res) => {
     try {
@@ -135,12 +138,11 @@ app.get("/api/user", authenticateToken, async (req, res) => {
 
 
 
-
-// ========== UPDATE USER PROFIL ==========
+// ========== UPDATE USER ==========
 
 app.put("/api/user", authenticateToken, async (req, res) => {
 
-    const { name, username, email, birthday, tel, sex, website, aboutMe } = req.body;
+    const { name, username, email, birthday, gender, tel, sex, website, aboutMe } = req.body;
 
     try {
         const user = await User.findOne({ email: req.user.email });
@@ -153,6 +155,7 @@ app.put("/api/user", authenticateToken, async (req, res) => {
         user.username = username;
         user.email = email
         user.birthday = birthday;
+        user.gender = gender;
         user.tel = tel;
         user.sex = sex;
         user.website = website;
@@ -168,13 +171,26 @@ app.put("/api/user", authenticateToken, async (req, res) => {
 });
 
 
+// ========== GET ALL POSTS FROM ONE USER ==========
 
-// ========== GET ALL POSTS ==========
+// app.get("/api/:user/posts", async (req, res) => {
+//     const { userid } = req.params;
 
-app.get("/api/feed", async (req, res) => {
+//     try {
+//         const posts = await Post.find({ user: userid });
+//         res.status(200).json(posts);
+//     } catch (error) {
+//         res.status(400).json({ error: error.message });
+//     }
+// });
+
+
+// ========== GET ALL POSTS FROM ALL USERS ==========
+
+app.get("/api/posts", async (req, res) => {
     try {
         const posts = await Post.find();
-        res.send(posts)
+        res.send(posts).json(posts)
 
     } catch (error) {
         console.error(error);
@@ -183,6 +199,21 @@ app.get("/api/feed", async (req, res) => {
     }
 
 })
+
+
+// ========== GET ONE POST with Post _id ==========
+app.get("/api/posts/:id", async (req, res) => {
+    try {
+        const post = await Post.findOne({ _id: req.params.id });
+        if (!post) {
+            return res.status(404).json({ error: "Post not found." });
+        }
+        res.json(post);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch post." });
+    }
+});
 
 
 // ========== FIND ALL USERS ==========
@@ -198,25 +229,32 @@ app.get("/api/users", async (req, res) => {
 });
 
 
-// // ========== POST NEW POST ==========
-// app.post("/api/newpost", async (req, res) => {
-//     try {
-//         const { content, user, hashtags } = req.body;
+// ========== POST NEW POST from user _id ==========
+app.post("/api/:user/newpost", async (req, res) => {
+    try {
+        const { content, location } = req.body;
+        const userId = req.params.user;
 
-//         const newPost = new Post({
-//             content,
-//             user,
-//             hashtags,
-//         });
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: "User not found." });
+        }
 
-//         const savedPost = await newPost.save();
+        const newPost = new Post({
+            content,
+            location,
+            user: user._id,
+        });
 
-//         res.status(201).json(savedPost);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: "Failed to create post." });
-//     }
-// });
+        const savedPost = await newPost.save();
+
+        res.status(201).json(savedPost);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to create post." });
+    }
+});
+
 
 
 

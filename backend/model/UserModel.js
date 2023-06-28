@@ -13,8 +13,11 @@ const userSchema = new mongoose.Schema({
     name: { type: String },
     username: { type: String },
     activity: { type: String },
-    birthday: { type: String },
-    sex: { type: String },
+    birthday:  Date ,
+    gender: {
+        type: String,
+        enum: ["Female", "Male"]
+    },
     tel: { type: String },
     website: { type: String },
     aboutMe: { type: String },
