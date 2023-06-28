@@ -1,10 +1,26 @@
+.home-container {
+  padding: 1vh 3vw;
+}
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2vw;
 }
-
+.dark-light {
+  display: flex;
+  gap: 3vw;
+  width: 50px;
+  height: 50px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(255, 255, 255, 1) 50%
+  );
+}
+.dark-light:active {
+  transform: scale(0.7);
+}
 .left-box {
   display: flex;
   align-items: center;
@@ -23,7 +39,15 @@
 
 .heart-button {
   border: none;
-  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 5px;
+}
+.heart {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
 }
 
 .header-section {
@@ -81,14 +105,7 @@
   align-items: center;
   gap: 5vw;
   margin-bottom: 2vh;
-}
-
-.like-section {
-  display: flex;
-  align-items: center;
-  gap: 2vw;
-  border: none;
-  background-color: transparent;
+  padding-left: 3vw;
 }
 
 .comment-section {
@@ -101,8 +118,7 @@
   display: flex;
   justify-content: center;
   border-top: 1px solid gray;
-  padding: 2vh;
-  margin-top: 10vh;
+  padding: 3vh 2vw;
 }
 
 .home-footer,
@@ -112,5 +128,5 @@
   display: flex;
   border: none;
   background-color: transparent;
-  width: 40vw;
+  width: 50vw;
 }

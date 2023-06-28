@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { GoHeart } from "react-icons/go";
 
 function LikeButton({ person, index, setPersons }) {
   const toggleLike = (index) => {
@@ -14,16 +15,17 @@ function LikeButton({ person, index, setPersons }) {
       )
     );
   };
+
   return (
     <div>
-      <button className="like-section" onClick={() => toggleLike(index)}>
+      <div className="like-section" onClick={() => toggleLike(index)}>
         {person.isLiked ? (
           <img src={person.redHeartImg} alt="redHeart" />
         ) : (
-          <img src={person.heartImg} alt="heart" />
+          <GoHeart size={27} />
         )}
         <p>{person.likeCount}</p>
-      </button>
+      </div>
     </div>
   );
 }

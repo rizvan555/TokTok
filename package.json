@@ -2,17 +2,17 @@
   "name": "toktok",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:4000",
   "dependencies": {
-    "@clerk/clerk-react": "^4.20.5",
-    "@clerk/nextjs": "^4.21.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "concurrently": "^8.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
+    "react-loading": "^2.0.3",
     "react-router-dom": "^6.14.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.3",
@@ -22,7 +22,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev:server": "npm run dev --prefix backend",
+    "dev:react": "npm run start",
+    "dev": "concurrently \"npm:dev:*\""
   },
   "eslintConfig": {
     "extends": [
