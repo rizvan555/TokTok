@@ -1,3 +1,9 @@
+.master {
+    margin: 1vh 2vw;
+    font-family: var(--font-family-bold);
+    color: var(--primary-color);
+}
+
 .new_post_title {
     display: flex;
     align-items: center;
@@ -8,6 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 3vh;
 }
 
 .profile_pic {
@@ -17,7 +24,10 @@
 #post_text {
     border: none;
     background-color: #FAFAFA;
-    padding: 3vh 15vw 3vh 5vw;
+    width: 60%;
+    padding-top: 3vh;
+    padding-left: 3vw;
+    font-family: var(--font-family-bold);
 }
 
 .post_pic {
@@ -29,49 +39,57 @@
     gap: 2%;
 }
 
-.toggle {
-    /* display: flex; */
+hr {
+    border-color: #EEEEEE;
+    margin: 1.5vh 0;
+}
+
+.post_to {
+    text-align: left;
 }
 
 .toggle label {
     position: relative;
-    display: inline-block;
-    width: 10em;
-    height: 3.5em;
+    display: flex;
+    align-items: center;
+    width: 10rem;
+    height: 3rem;
 }
 
 .toggle input {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .toggle .slider {
-    /* Grundfläche */
     position: absolute;
-    cursor: pointer;
-    top: 1.5em;
-    left: 3em;
-    width: 4em;
-    height: 2em;
-    background-color: #c32e04;
-    border-radius: 1em;
-    transition: all .3s ease-in-out;
+    height: 1.9rem;
+    top: 1;
+    left: 18.5rem;
+    right: -12rem;
+    bottom: 2;
+    background-color: #EEEEEE;
+    border-radius: 1rem;
+    transition: 0.3s;
 }
 
 .toggle .slider::before {
-    /* verschiebbarer Button */
     position: absolute;
     content: "";
-    height: 1.6em;
-    width: 1.6em;
-    left: .2em;
-    bottom: .2em;
+    height: 1.5rem;
+    width: 1.5rem;
+    left: 0.2rem;
+    bottom: .2rem;
     background-color: white;
     border-radius: 50%;
-    transition: all .3s ease-in-out;
+    transition: 0.3s;
+}
+
+.toggle input:checked+.slider {
+    background-color: #FF4D67;
+}
+
+input:checked+.slider:before {
+    transform: translateX(25px);
 }

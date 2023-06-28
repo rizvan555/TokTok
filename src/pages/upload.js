@@ -50,17 +50,51 @@ const pictures = [
     }
 ]
 
-
-
 const Upload = () => {
 
     const [showGallery, setShowGallery] = useState(false);
+    // const [pictures, setPictures] = useState = [{
+    //     image: Anny,
+    //     alt: "Anny"
+    // },
+    // {
+    //     image: Albert,
+    //     alt: "Albert"
+    // },
+    // {
+    //     image: Hime,
+    //     alt: "Hime"
+    // },
+    // {
+    //     image: Anny,
+    //     alt: "Anny"
+    // },
+    // {
+    //     image: Albert,
+    //     alt: "Albert"
+    // },
+    // {
+    //     image: Hime,
+    //     alt: "Hime"
+    // },
+    // {
+    //     image: Anny,
+    //     alt: "Anny"
+    // },
+    // {
+    //     image: Albert,
+    //     alt: "Albert"
+    // },
+    // {
+    //     image: Hime,
+    //     alt: "Hime"
+    // }]
 
     const handleUploadClick = () => {
         setShowGallery(!showGallery);
     };
     return (
-        <div>
+        <div className="master">
             <header>
                 <section className="new_post_title">
                     <img src={CloseSquare} alt="closeSquare" />
@@ -95,7 +129,7 @@ const Upload = () => {
                                     <Link to={"/post"}>
                                         <img
                                             src={picture.image}
-                                            alt={picture.label}
+                                            alt={picture.alt}
                                             className="dropdown-option-image"
                                         />
                                     </Link>
