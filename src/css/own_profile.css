@@ -7,7 +7,7 @@
 .ownprofilepage {
     font-family: var(--font-family-bold);
     color: var(--primary-color);
-    width: 97%;
+    width: 95%;
     margin: 0 auto;
     padding: 0;
 }
@@ -16,7 +16,7 @@
     letter-spacing: var(--letter-spacing);
 }
 
-/* Top - Profile - Bar ---------------------------------- */
+/* Profile - Bar - Top ---------------------------------- */
 
 .profile_main_bar {
     display: flex;
@@ -108,12 +108,20 @@
     font-family: var(--font-family-thin);
     color: var(--secondary-color);
     font-weight: 400;
-    border-bottom: 1px solid var(--border-color);
     /* margin: 0; */
     padding: 4%;
 }
 
-/* Profile - Gallery - Section --------------- */
+.follower_section_line {
+    background-color: var(--border-color);
+    padding-top: 1px;
+    margin: 20px auto;
+    width: 95%;
+}
+
+/* PROFILE - GALLERY ------------------------- */
+
+/* Profile - Gallery - Header --------------- */
 
 .profile_gallery_header {
     display: flex;
@@ -122,7 +130,7 @@
     width: 33%;
 }
 
-.profile_gallery h5 {
+.profile_gallery_header h5 {
     color: var(--feed-color);
     font-size: calc(var(--font-size-rem) * 1.6);
     font-weight: 500;
@@ -132,8 +140,10 @@
 
 .profile_gallery .line {
     background-color: var(--feed-color);
-    width: 33%;
+    width: 31%;
     padding-top: 4px;
-    margin: 12px 0;
+    margin: 12px 10px;
     border-radius: 4px;
 }
+
+/* Profile - Gallery - Section --------------- */

@@ -33,6 +33,7 @@ const ProfileFacts = () => {
                     <p>Following</p>
                 </div>
             </section>
+            <div className='follower_section_line'></div>
         </div>
     );
 }
