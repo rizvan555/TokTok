@@ -10,7 +10,7 @@ import settingIcon from '../resource/icons/GroupsettingIcon.png';
 
 const ProfileMainBar = () => {
     return (
-        <nav className='profile_main_bar'>
+        <nav className='profile_mainbar'>
             <section>
                 <img src={logo} alt="logo toktok klein" />
                 <h2>john_doe</h2>
