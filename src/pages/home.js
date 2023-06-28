@@ -14,6 +14,7 @@ import FooterNavbar from "../components/FooterNavbar";
 import LikeButton from "../components/LikeButton";
 import CommentButton from "../components/CommentButton";
 import { GoHeart } from "react-icons/go";
+import CustomizedSwitches from "../components/CustomizedSwitches";
 
 function Home({ darkLight, setDarkLight }) {
   const [persons, setPersons] = useState([
@@ -72,10 +73,8 @@ function Home({ darkLight, setDarkLight }) {
           <img src={toktokLogo} alt="logo" className="logo" />
           <h1 className="title">TokTok</h1>
         </div>
-        <button className="dark-light" onClick={() => setDarkLight(!darkLight)}>
-          <p style={{ color: "white", fontSize: 15, fontWeight: "bold" }}>D</p>
-          <p style={{ color: "black", fontSize: 15, fontWeight: "bold" }}>L</p>
-        </button>
+        <CustomizedSwitches darkLight={darkLight} setDarkLight={setDarkLight} />
+
         <div>
           <GoHeart size={30} onClick={() => toggleLike()} />
         </div>
@@ -83,7 +82,7 @@ function Home({ darkLight, setDarkLight }) {
 
       <main>
         {persons.map((person, index) => (
-          <div key={index}>
+          <div key={index} className="person-main-container">
             <section className="header-section">
               <div className="person-left-side">
                 <img

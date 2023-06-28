@@ -17,7 +17,7 @@ import SignIn from "./pages/SignIn";
 import { useState } from "react";
 
 function App() {
-  const [darkLight, setDarkLight] = useState(false);
+  const [darkLight, setDarkLight] = useState(true);
   return (
     <div
       className="App"
