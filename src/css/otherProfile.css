@@ -1,0 +1,152 @@
+/* Import Style Variablen -------------------------------- */
+
+@import '../index.css';
+
+/* ------------------------------------------------------ */
+
+.otherprofile_page {
+    font-family: var(--font-family-bold);
+    color: var(--primary-color);
+    width: 95%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.otherprofile_page p {
+    letter-spacing: var(--letter-spacing);
+}
+
+/* Profile - Bar - Top ---------------------------------- */
+
+.profile_mainbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile_mainbar img {
+    padding: 0 0.5rem;
+}
+
+.profile_mainbar section h2 {
+    display: inline-block;
+    font-size: calc(var(--font-size-rem) * 2.4);
+    font-weight: 500;
+    padding-left: 0.5rem;
+}
+
+/* Profile - Image ------------------------------------- */
+
+.image-container {
+    padding-top: 10px;
+}
+
+.profile_article .profile_img {
+    width: 33%;
+}
+
+/* Profile - Facts ------------------------------------- */
+
+.profile_article h1 {
+    font-size: calc(var(--font-size-rem) * 2.4);
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.profile_article h3 {
+    font-size: calc(var(--font-size-rem) * 1.4);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
+    margin: 0;
+}
+
+.profile_article p:nth-of-type(1) {
+    font-family: var(--font-family-thin);
+    font-size: calc(var(--font-size-rem) * 1.4);
+    color: var(--secondary-color);
+    font-weight: 400;
+    line-height: 1.3rem;
+    margin-top: 10px;
+}
+
+.profile_article p:nth-of-type(2) {
+    font-size: calc(var(--font-size-rem) * 1.4);
+    font-weight: 500;
+    color: var(--domain-color);
+}
+
+/* Profile - Facts - Follower - Section --------------- */
+
+.follower_section {
+    display: flex;
+    padding-top: 1rem;
+}
+
+.follower_section div {
+    width: 33%;
+}
+
+.follower_section .followers {
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.follower_section h5 {
+    font-size: calc(var(--font-size-rem) * 2.4);
+    font-weight: 600;
+    margin: 0;
+}
+
+.follower_section p {
+    font-size: calc(var(--font-size-rem) * 1.2);
+    font-family: var(--font-family-thin);
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin: 0;
+    padding: 4%;
+}
+
+.follower_section_line {
+    background-color: var(--border-color);
+    padding-top: 1px;
+    margin: 20px auto;
+    width: 95%;
+}
+
+/* PROFILE - GALLERY ------------------------- */
+
+/* Profile - Gallery - Header --------------- */
+
+.otherprofile_gallery_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+}
+
+.otherprofile_gallery_header h5 {
+    color: var(--feed-color);
+    font-size: calc(var(--font-size-rem) * 1.6);
+    font-weight: 500;
+    letter-spacing: var(--letter-spacing);
+    margin: 10px;
+}
+
+.otherprofile_gallery .line {
+    background-color: var(--feed-color);
+    width: 31%;
+    padding-top: 4px;
+    margin: 12px 10px;
+    border-radius: 4px;
+}
+
+/* Profile - Gallery - Section --------------- */
+
+.otherprofile_gallery_images {
+    padding-bottom: 30px;
+}
+
+.otherprofile_gallery_images img {
+    width: 30%;
+    padding: 2px;
+}

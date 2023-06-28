@@ -10,8 +10,9 @@ import { BsArrowLeft } from "react-icons/bs";
 import { BsSend } from "react-icons/bs";
 import "../css/homeComments.css";
 import { Link } from "react-router-dom";
+import { AiOutlineHeart } from "react-icons/ai";
 
-function CommentsPage() {
+function CommentsPage({ darkLight, setDarkLight }) {
   const [persons, setPersons] = useState([
     {
       profilImg: annyPhoto,
@@ -51,18 +52,18 @@ function CommentsPage() {
       persons.map((person, index) =>
         index === personIndex
           ? {
-            ...person,
-            feedbacks: person.feedbacks.map((feedback, i) =>
-              i === feedbackIndex
-                ? {
-                  ...feedback,
-                  likeCount:
-                    feedback.likeCount + (feedback.isLiked ? -1 : 1),
-                  isLiked: !feedback.isLiked,
-                }
-                : feedback
-            ),
-          }
+              ...person,
+              feedbacks: person.feedbacks.map((feedback, i) =>
+                i === feedbackIndex
+                  ? {
+                      ...feedback,
+                      likeCount:
+                        feedback.likeCount + (feedback.isLiked ? -1 : 1),
+                      isLiked: !feedback.isLiked,
+                    }
+                  : feedback
+              ),
+            }
           : person
       )
     );
@@ -73,12 +74,15 @@ function CommentsPage() {
       <header className="commentPage-header">
         <div className="commentsHeader-left">
           <Link to="/">
-            <BsArrowLeft size={20} />
+            <BsArrowLeft
+              size={20}
+              style={{ color: !darkLight ? "white" : "black" }}
+            />
           </Link>
           <h2>Comments</h2>
         </div>
         <button className="send-button">
-          <BsSend size={20} />
+          <BsSend size={20} style={{ color: !darkLight ? "white" : "black" }} />
         </button>
       </header>
       {persons.map((person, personIndex) => (
@@ -139,18 +143,23 @@ function CommentsPage() {
                   <p className="feedback-box">{feedback.feedback}</p>
 
                   <div className="feedback-footer">
-                    <button
+                    <div
                       className="like-section"
                       onClick={() => toggleLike(personIndex, feedbackIndex)}
                     >
                       {feedback.isLiked ? (
                         <img src={person.redHeartImg} alt="redHeart" />
                       ) : (
-                        <img src={person.heartImg} alt="heart" />
+                        <AiOutlineHeart size={30} />
                       )}
-                      <p>{feedback.likeCount}</p>
-                    </button>
-                      <button className="reply-button">Reply</button>
+                      <p>{person.likeCount}</p>
+                    </div>
+                    <div
+                      className="reply-button"
+                      style={{ color: !darkLight ? "white" : "black" }}
+                    >
+                      Reply
+                    </div>
                   </div>
                 </div>
               ))}
@@ -166,7 +175,12 @@ function CommentsPage() {
                 placeholder="Your comment"
                 className="comment-input"
               />
-              <button className="post-button">Post</button>
+              <button
+                className="post-button"
+                style={{ color: darkLight ? "red" : "white" }}
+              >
+                Post
+              </button>
             </section>
           </main>
         </div>

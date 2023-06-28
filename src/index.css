@@ -1,17 +1,17 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-@font-face {
-    font-family: 'UrbanistVar';
-    src: url('./resource/fonts/Urbanist-VariableFont_wght.ttf') format('truetype');
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: 'UrbanistLight';
-    src: url('./resource/fonts/Urbanist-ExtraLight.ttf') format('truetype');
+  font-family: "UrbanistVar";
+  src: url("./resource/fonts/Urbanist-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "UrbanistLight";
+  src: url("./resource/fonts/Urbanist-ExtraLight.ttf") format("truetype");
 }
 
 :root {
@@ -19,7 +19,10 @@
     --secondary-color: #424242;
     --border-color: #EEEEEE;
     --domain-color: #246BFD;
+    --feed-color: #FF4D67;
     --font-family-bold: 'UrbanistVar', sans-serif;
-    --font-family-thin: 'UrbanistLight';
+    --font-family-thin: 'UrbanistLight', sans-serif;
     --font-size-rem: 10px;
+    --letter-spacing: 0.2px;
 }
+
