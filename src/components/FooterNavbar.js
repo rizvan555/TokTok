@@ -10,7 +10,7 @@ import redSearch from "../resource/icons/redSearch.png";
 import { Link } from "react-router-dom";
 import "../css/home.css";
 
-function FooterNavbar() {
+function FooterNavbar({ darkLight, setDarkLight }) {
   const [activeNav, setActiveNav] = useState(null);
 
   const handleNavClick = (navId) => {
@@ -36,13 +36,13 @@ function FooterNavbar() {
     <div>
       <footer className="footer-navbar">
         {navbar.map((nav) => (
-          <button
+          <div
             key={nav.id}
             className="home-footer"
             onClick={() => handleNavClick(nav.id)}
           >
             <Link to={nav.path}>{getNavIcon(nav)}</Link>
-          </button>
+          </div>
         ))}
       </footer>
     </div>

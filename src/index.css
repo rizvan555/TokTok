@@ -1,11 +1,17 @@
-@font-face {
-    font-family: 'UrbanistVar';
-    src: url('./resource/fonts/Urbanist-VariableFont_wght.ttf') format('truetype');
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: 'UrbanistLight';
-    src: url('./resource/fonts/Urbanist-ExtraLight.ttf') format('truetype');
+  font-family: "UrbanistVar";
+  src: url("./resource/fonts/Urbanist-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "UrbanistLight";
+  src: url("./resource/fonts/Urbanist-ExtraLight.ttf") format("truetype");
 }
 
 :root {
@@ -19,3 +25,4 @@
     --font-size-rem: 10px;
     --letter-spacing: 0.2px;
 }
+
