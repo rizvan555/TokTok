@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/home.css";
+import "../css/likeButton.css";
 import toktokLogo from "../resource/logos/toktokLogo.png";
 import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
@@ -12,8 +13,9 @@ import image3 from "../resource/images/image3.png";
 import FooterNavbar from "../components/FooterNavbar";
 import LikeButton from "../components/LikeButton";
 import CommentButton from "../components/CommentButton";
+import { GoHeart } from "react-icons/go";
 
-function Home() {
+function Home({ darkLight, setDarkLight }) {
   const [persons, setPersons] = useState([
     {
       profilImg: annyPhoto,
@@ -49,17 +51,34 @@ function Home() {
       isLiked: false,
     },
   ]);
+  const toggleLike = (index) => {
+    setPersons((persons) =>
+      persons.map((person, personIndex) =>
+        personIndex === index
+          ? {
+              ...person,
+              likeCount: person.likeCount + (person.isLiked ? -1 : 1),
+              isLiked: !person.isLiked,
+            }
+          : person
+      )
+    );
+  };
 
   return (
-    <div>
+    <div className="home-container">
       <header className="header">
         <div className="left-box">
           <img src={toktokLogo} alt="logo" className="logo" />
           <h1 className="title">TokTok</h1>
         </div>
-        <button className="heart-button">
-          <img src={Heart} alt="heart" className="heart-img" />
+        <button className="dark-light" onClick={() => setDarkLight(!darkLight)}>
+          <p style={{ color: "white", fontSize: 15, fontWeight: "bold" }}>D</p>
+          <p style={{ color: "black", fontSize: 15, fontWeight: "bold" }}>L</p>
         </button>
+        <div>
+          <GoHeart size={30} onClick={() => toggleLike()} />
+        </div>
       </header>
 
       <main>
@@ -85,7 +104,6 @@ function Home() {
             <section className="main-footer-section">
               <LikeButton
                 person={person}
-                persons={persons}
                 setPersons={setPersons}
                 index={index}
               />
