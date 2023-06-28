@@ -7,11 +7,19 @@ dotenv.config();
 process.env.TOKEN_SECRET;
 
 const userSchema = new mongoose.Schema({
-    name: { type: String, required: true },
     email: { type: String, required: true, unique: true, lowercase: true },
     salt: { type: String, required: true, select: false },
     hash: { type: String, required: true, select: false },
-    posts: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Post" }, { type: mongoose.SchemaTypes.ObjectId, ref: "Comment" }],
+    name: { type: String },
+    username: { type: String },
+    activity: { type: String },
+    birthday: { type: String },
+    sex: { type: String },
+    tel: { type: String },
+    website: { type: String },
+    aboutMe: { type: String },
+    following: { type: String },
+    followedBy: { type: String },
 });
 
 
@@ -24,6 +32,7 @@ userSchema.methods.setPassword = function (password) {
 };
 
 userSchema.methods.verifyPassword = function (password) {
+    console.log(this.salt);
     const hash = crypto
         .pbkdf2Sync(password, this.salt, 1000, 64, "sha512")
         .toString("hex");
@@ -32,7 +41,7 @@ userSchema.methods.verifyPassword = function (password) {
 };
 
 userSchema.methods.generateAuthToken = function () {
-    const payload = { name: this.name, email: this.email };
+    const payload = { email: this.email };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
     return token;
 };
