@@ -150,9 +150,7 @@ function CommentsPage() {
                       )}
                       <p>{feedback.likeCount}</p>
                     </button>
-                    <Link to="/feedbackPage">
                       <button className="reply-button">Reply</button>
-                    </Link>
                   </div>
                 </div>
               ))}

@@ -62,6 +62,7 @@
   height: 25px;
   border-radius: 50%;
   padding-bottom: 1vh;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .person-photo {
@@ -112,9 +113,4 @@
   border: none;
   background-color: transparent;
   width: 40vw;
-}
-
-.nav-icon {
-  width: 85px;
-  height: 40px;
 }
