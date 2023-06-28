@@ -6,11 +6,15 @@ import CommentsPage from "./pages/commentsPage";
 import UploadPage from "./pages/upload";
 import NewPost from "./pages/post";
 import SearchAll from "./pages/searchAll";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn"
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<OwnProfile />} />
         <Route path="/commentsPage" element={<CommentsPage />} />
