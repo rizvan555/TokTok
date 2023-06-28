@@ -39,6 +39,7 @@
 
 .image-container {
     position: relative;
+    padding-top: 10px;
 }
 
 .profile_article .profile_img {
@@ -57,14 +58,15 @@
 
 .profile_article h1 {
     font-size: calc(var(--font-size-rem) * 2.4);
-    font-weight: 500;
+    font-weight: 600;
+    margin-top: 10px;
 }
 
 .profile_article h3 {
     font-size: calc(var(--font-size-rem) * 1.4);
     font-weight: 500;
     letter-spacing: var(--letter-spacing);
-
+    margin: 0;
 }
 
 .profile_article p:nth-of-type(1) {
@@ -72,12 +74,13 @@
     font-size: calc(var(--font-size-rem) * 1.4);
     color: var(--secondary-color);
     font-weight: 400;
-    line-height: 1.4rem;
+    line-height: 1.3rem;
+    margin-top: 10px;
 }
 
 .profile_article p:nth-of-type(2) {
     font-size: calc(var(--font-size-rem) * 1.4);
-    font-weight: 400;
+    font-weight: 500;
     color: var(--domain-color);
 }
 
@@ -107,8 +110,8 @@
     font-size: calc(var(--font-size-rem) * 1.2);
     font-family: var(--font-family-thin);
     color: var(--secondary-color);
-    font-weight: 400;
-    /* margin: 0; */
+    font-weight: 600;
+    margin: 0;
     padding: 4%;
 }
 
@@ -147,3 +150,12 @@
 }
 
 /* Profile - Gallery - Section --------------- */
+
+.profile_gallery_images {
+    padding-bottom: 30px;
+}
+
+.profile_gallery_images img {
+    width: 30%;
+    padding: 2px;
+}

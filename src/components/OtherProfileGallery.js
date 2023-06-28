@@ -8,7 +8,7 @@ import gallery_image3 from '../resource/images/Imagegallery-image3.png';
 
 // ---------------------------------------------------
 
-const ProfileGallery = () => {
+const OtherProfileGallery = () => {
     return (
         <section className='profile_gallery'>
             <div className='profile_gallery_header'>
@@ -16,7 +16,7 @@ const ProfileGallery = () => {
                 <h5>Feeds</h5>
             </div>
             <div className='line'></div>
-            <div className='profile_gallery_images'>
+            <div className='otherprofile_gallery_images'>
                 <img src={gallery_image1} alt="gallery_image1" />
                 <img src={gallery_image2} alt="gallery_image2" />
                 <img src={gallery_image3} alt="gallery_image3" />
@@ -25,4 +25,4 @@ const ProfileGallery = () => {
     );
 }
 
-export default ProfileGallery;
+export default OtherProfileGallery;
