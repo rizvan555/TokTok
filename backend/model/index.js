@@ -8,5 +8,4 @@ export { Comment } from "./CommentModel.js";
 
 dotenv.config({ path: new URL("../.env", import.meta.url).pathname });
 
-
 mongoose.connect(process.env.DB);
