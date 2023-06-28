@@ -11,6 +11,7 @@ import image2 from "../resource/images/image2.png";
 import image3 from "../resource/images/image3.png";
 import FooterNavbar from "../components/FooterNavbar";
 import LikeButton from "../components/LikeButton";
+import CommentButton from "../components/CommentButton";
 
 function Home() {
   const [persons, setPersons] = useState([
@@ -81,17 +82,14 @@ function Home() {
             <section className="main-section">
               <img src={person.mainImg} alt="image1" />
             </section>
-            <section className="footer-section">
+            <section className="main-footer-section">
               <LikeButton
                 person={person}
                 persons={persons}
                 setPersons={setPersons}
                 index={index}
               />
-              <button className="comment-section">
-                <button className="settings-button">...</button>
-                <p>{person.commentCount}</p>
-              </button>
+              <CommentButton person={person} />
             </section>
           </div>
         ))}

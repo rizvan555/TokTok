@@ -1,0 +1,106 @@
+.commentPage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3vw;
+}
+.commentsHeader-left {
+  display: flex;
+  align-items: center;
+  gap: 4vw;
+}
+.send-button {
+  border: none;
+  background-color: transparent;
+}
+.person-main-header-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1vh 2vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.commentButtonLink {
+  text-decoration: none;
+}
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 auto;
+}
+.comment-box {
+  text-align: start;
+  margin-bottom: -2vh;
+}
+.tag-box {
+  color: blue;
+  text-align: start;
+}
+.footer-section {
+  display: flex;
+  align-items: center;
+  gap: 5vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.feedbacks-section {
+  padding: 5vh 2vw;
+  padding-bottom: 2vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.feedback-section {
+  margin-bottom: 3vh;
+}
+.person-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2vw;
+}
+.person-box-left {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+}
+.feedback-name {
+  font-weight: bold;
+}
+.feedback-position {
+  font-size: 12px;
+}
+.comment-button-section {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+.feedback-box {
+  text-align: start;
+}
+.feedback-footer {
+  display: flex;
+  align-items: center;
+  gap: 6vw;
+}
+.reply-button {
+  border: none;
+  background-color: transparent;
+}
+.comment-write-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5vw;
+  padding: 3vh 1vw 5vh 1vh;
+}
+.comment-input {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fafafa;
+  width: 50vw;
+}
+.post-button {
+  background-color: transparent;
+  border: none;
+  color: red;
+}
