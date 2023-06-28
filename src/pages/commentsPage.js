@@ -51,18 +51,18 @@ function CommentsPage() {
       persons.map((person, index) =>
         index === personIndex
           ? {
-              ...person,
-              feedbacks: person.feedbacks.map((feedback, i) =>
-                i === feedbackIndex
-                  ? {
-                      ...feedback,
-                      likeCount:
-                        feedback.likeCount + (feedback.isLiked ? -1 : 1),
-                      isLiked: !feedback.isLiked,
-                    }
-                  : feedback
-              ),
-            }
+            ...person,
+            feedbacks: person.feedbacks.map((feedback, i) =>
+              i === feedbackIndex
+                ? {
+                  ...feedback,
+                  likeCount:
+                    feedback.likeCount + (feedback.isLiked ? -1 : 1),
+                  isLiked: !feedback.isLiked,
+                }
+                : feedback
+            ),
+          }
           : person
       )
     );
@@ -73,7 +73,7 @@ function CommentsPage() {
       <header className="commentPage-header">
         <div className="commentsHeader-left">
           <Link to="/">
-            <BsArrowLeft size={20}/>
+            <BsArrowLeft size={20} />
           </Link>
           <h2>Comments</h2>
         </div>
@@ -150,9 +150,7 @@ function CommentsPage() {
                       )}
                       <p>{feedback.likeCount}</p>
                     </button>
-                    <Link to="/feedbackPage">
                       <button className="reply-button">Reply</button>
-                    </Link>
                   </div>
                 </div>
               ))}
