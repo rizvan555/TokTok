@@ -60,7 +60,7 @@ export default function CustomizedSwitches({ darkLight, setDarkLight }) {
           <MaterialUISwitch
             sx={{
               width: { xs: 70, sm: 75, md: 75, lg: 80, xl: 80 },
-              ml: { xs: 10, sm: 57, md: 77, lg: 150, xl: 187, xxl: 290 },
+              ml: { xs: 14, sm: 57, md: 77, lg: 150, xl: 187, xxl: 290 },
             }}
             defaultChecked
           />
