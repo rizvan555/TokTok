@@ -27,14 +27,27 @@ const NewPost = () => {
                     <div>
                         <p>Also post to</p>
                     </div>
-                    <div>
-                        <p>Facebook</p>
+                    <div className="toggle">
+                        <label>
+                            Facebook
+                            <input type="checkbox" />
+                            <span className="slider"></span>
+                        </label>
                     </div>
-                    <div>
-                        <p>Twitter</p>
+                    <div className="toggle">
+                        <label>
+                            Twitter
+                            <input type="checkbox" />
+                            <span className="slider"></span>
+                        </label>
                     </div>
-                    <div>
-                        <p>Tumblr</p>
+                    <div className="toggle">
+                        <label>
+                            Tumblr
+                            <input type="checkbox" />
+                            <span className="slider"></span>
+                        </label>
+
                     </div>
                 </section>
             </main>

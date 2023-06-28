@@ -28,3 +28,50 @@
     display: flex;
     gap: 2%;
 }
+
+.toggle {
+    /* display: flex; */
+}
+
+.toggle label {
+    position: relative;
+    display: inline-block;
+    width: 10em;
+    height: 3.5em;
+}
+
+.toggle input {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.toggle .slider {
+    /* Grundfläche */
+    position: absolute;
+    cursor: pointer;
+    top: 1.5em;
+    left: 3em;
+    width: 4em;
+    height: 2em;
+    background-color: #c32e04;
+    border-radius: 1em;
+    transition: all .3s ease-in-out;
+}
+
+.toggle .slider::before {
+    /* verschiebbarer Button */
+    position: absolute;
+    content: "";
+    height: 1.6em;
+    width: 1.6em;
+    left: .2em;
+    bottom: .2em;
+    background-color: white;
+    border-radius: 50%;
+    transition: all .3s ease-in-out;
+}
