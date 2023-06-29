@@ -20,6 +20,7 @@ cloudinary.config({
 async function handleUpload(file) {
     const res = await cloudinary.uploader.upload(file, {
         resource_type: "auto",
+        transformation: [{ width: 350, height: 350, crop: "limit" }]
     });
     return res;
 }
@@ -28,9 +29,6 @@ const storage = new Multer.memoryStorage();
 const upload = Multer({
     storage,
 });
-
-
-
 
 
 const PORT = process.env.BE_PORT || 4000;
@@ -254,10 +252,10 @@ app.get("/api/users", async (req, res) => {
 
 
 
-// ========== UPLOAD NEW FILE ==========
+// ========== UPLOAD NEW IMAGE FILE ==========
 
 app.post(
-    "/api/:user/upload/image",
+    "/api/upload/image",
     authenticateToken,
     upload.single("image"),
     async (req, res) => {
@@ -267,7 +265,6 @@ app.post(
 
             const cldRes = await handleUpload(dataURI);
             res.json(cldRes);
-
         } catch (error) {
             console.log(error);
             res.status(500).send({
@@ -278,31 +275,27 @@ app.post(
 );
 
 // ========== POST NEW POST with/from user _id ==========
-app.post("/api/:user/newpost", async (req, res) => {
-    try {
-        const { content, location } = req.body;
-        const userId = req.params.user;
+app.post("/api/newpost", authenticateToken,
+    async (req, res) => {
+        try {
+            const { content, location, image } = req.body;
 
-        const user = await User.findById(userId);
-        if (!user) {
-            return res.status(404).json({ error: "User not found." });
+            const newPost = new Post({
+                content,
+                location,
+                user: req.user._id,
+                image
+
+            });
+
+            const savedPost = await newPost.save();
+
+            res.status(201).json(savedPost);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Failed to create post." });
         }
-
-        const newPost = new Post({
-            content,
-            location,
-            user: user._id,
-            image: image._id
-        });
-
-        const savedPost = await newPost.save();
-
-        res.status(201).json(savedPost);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Failed to create post." });
-    }
-});
+    });
 
 
 
@@ -311,33 +304,33 @@ app.post("/api/:user/newpost", async (req, res) => {
 
 // ========== POST/EDIT NEW PROFILE IMAGE ==========
 
-app.post(
-    "/api/upload/avatar",
-    authenticateToken,
-    upload.single("avatar"),
-    async (req, res) => {
-        try {
-            const b64 = Buffer.from(req.file.buffer).toString("base64");
-            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
-            const user = await User.findOne({ email: req.user.email });
-            if (!user) {
-                return res.status(404).json({ error: "User not found." });
-            }
+// app.post(
+//     "/api/upload/avatar",
+//     authenticateToken,
+//     upload.single("avatar"),
+//     async (req, res) => {
+//         try {
+//             const b64 = Buffer.from(req.file.buffer).toString("base64");
+//             let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+//             const user = await User.findOne({ email: req.user.email });
+//             if (!user) {
+//                 return res.status(404).json({ error: "User not found." });
+//             }
 
-            user.avatar = cldRes.secure_url; // Aktualisiere das Avatar-Feld mit der URL des hochgeladenen Bildes
-            await user.save();
-            res.json(cldRes);
+//             user.avatar = cldRes.secure_url; // Aktualisiere das Avatar-Feld mit der URL des hochgeladenen Bildes
+//             await user.save();
+//             res.json(cldRes);
 
-            // const cldRes = await handleUpload(dataURI);
-            // res.json(cldRes);
-        } catch (error) {
-            console.log(error);
-            res.status(500).send({
-                message: error.message,
-            });
-        }
-    }
-);
+//             // const cldRes = await handleUpload(dataURI);
+//             // res.json(cldRes);
+//         } catch (error) {
+//             console.log(error);
+//             res.status(500).send({
+//                 message: error.message,
+//             });
+//         }
+//     }
+// );
 
 
 
