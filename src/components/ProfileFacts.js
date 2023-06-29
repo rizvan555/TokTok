@@ -1,4 +1,6 @@
 
+import { Link } from 'react-router-dom';
+
 // Import - Images -----------------------------------
 
 import profile_image from '../resource/images/Ellipseprofile_image_small.png';
@@ -12,7 +14,8 @@ const ProfileFacts = () => {
             <article className='profile_article'>
                 <div className='image-container'>
                     <img src={profile_image} className='profile_img' alt="profile_image_user" />
-                    <img src={profile_edit_icon} className='edit_icon' alt="edit_icon" />
+                    <Link to="/editprofile"><img src={profile_edit_icon} className='edit_icon' alt="edit_icon" /></Link>
+
                 </div>
                 <h1>John Doe</h1>
                 <h3>UI/UX Designer</h3>
