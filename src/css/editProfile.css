@@ -1,0 +1,55 @@
+/* Import Style Variablen -------------------------------- */
+
+@import '../index.css';
+
+/* ------------------------------------------------------ */
+
+.editprofile_page {
+    font-family: var(--font-family-bold);
+    color: var(--primary-color);
+    width: 95%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    padding: 2vh 3vw;
+}
+
+
+
+/* Edit - Profile - Image ------------------------------------- */
+
+.image-container {
+
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+.editprofile_page .profile_image {
+    position: relative;
+    width: 33%;
+}
+
+.editprofile_page .edit_icon {
+    position: absolute;
+    top: 71%;
+    left: 57%;
+}
+
+/* Edit - Profile - Form -------------------------*/
+.text_form {
+    margin: 0 auto;
+}
+
+.text_form input {
+    display: inline-block;
+    margin-top: 12px;
+    background-color: var(--input-color);
+    border-radius: 10px;
+    width: 90%;
+    padding: 10px;
+    border-style: none;
+}
+
+.text_form input placeholder {
+    font-family: var(--font-family-bold);
+}
