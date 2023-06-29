@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
+
 const postSchema = new mongoose.Schema({
-    content: String,
     user: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
-    hashtags: [String],
+    content: { type: String },
+    comments: { type: mongoose.SchemaTypes.ObjectId, ref: "Comment" },
+    location: { type: String },
 });
 
 export const Post = mongoose.model("Post", postSchema);

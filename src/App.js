@@ -3,6 +3,8 @@ import "./App.css";
 import "./css/likeButton.css";
 import "./css/homeComments.css";
 import "./css/searchAll.css";
+import "./css/upload.css";
+import "./css/post.css";
 import Home from "./pages/home";
 import OwnProfile from "./pages/OwnProfile";
 import OtherProfile from "./pages/OtherProfile";
@@ -11,12 +13,12 @@ import CommentsPage from "./pages/commentsPage";
 import UploadPage from "./pages/upload";
 import NewPost from "./pages/post";
 import SearchAll from "./pages/searchAll";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 import { useState } from "react";
 
-
-
 function App() {
-  const [darkLight, setDarkLight] = useState(false);
+  const [darkLight, setDarkLight] = useState(true);
   return (
     <div
       className="App"
@@ -26,6 +28,8 @@ function App() {
       }}
     >
       <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route
           path="/"
           element={<Home darkLight={darkLight} setDarkLight={setDarkLight} />}
@@ -43,8 +47,18 @@ function App() {
             <SearchAll darkLight={darkLight} setDarkLight={setDarkLight} />
           }
         />
-        <Route path="/upload" element={<UploadPage />} />
-        <Route path="/post" element={<NewPost />} />
+        <Route
+          path="/upload"
+          element={
+            <UploadPage darkLight={darkLight} setDarkLight={setDarkLight} />
+          }
+        />
+        <Route
+          path="/post"
+          element={
+            <NewPost darkLight={darkLight} setDarkLight={setDarkLight} />
+          }
+        />
         <Route path="/otherprofile" element={<OtherProfile />} />
         <Route path="/editprofile" element={<EditProfile />} />
       </Routes>
