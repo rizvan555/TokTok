@@ -8,23 +8,23 @@ import { useState } from "react";
 
 // ---------------------------------------------------
 
-const ProfileMainBar = ({click,setClick}) => {
+const ProfileMainBar = ({ click, setClick }) => {
 
-  return (
-    <nav className="profile_mainbar">
-      <section>
-        <img src={logo} alt="logo toktok klein" />
-        <h2>john_doe</h2>
-      </section>
-      <nav>
-        <img src={postIcon} alt="icon_post_small" />
-        <img src={editIcon} alt="icon_edit_small" />
-        <button className="settingsButton" onClick={() => setClick(!click)}>
-          <img src={settingIcon} alt="icon_settings_small" />
-        </button>
-      </nav>
-    </nav>
-  );
+    return (
+        <nav className="profile_mainbar">
+            <section>
+                <img src={logo} alt="logo toktok klein" />
+                <h2>john_doe</h2>
+            </section>
+            <nav>
+                <img src={postIcon} alt="icon_post_small" />
+                <img src={editIcon} alt="icon_edit_small" />
+                <button className="settingsButton" onClick={() => setClick(!click)}>
+                    <img src={settingIcon} alt="icon_settings_small" />
+                </button>
+            </nav>
+        </nav>
+    );
 };
 
 export default ProfileMainBar;
