@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function FileUpload() {
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [res, setRes] = useState({});
+    const navigate = useNavigate();
 
     const handleSelectFile = (e) => setFile(e.target.files[0]);
     const handleUpload = async () => {
@@ -12,8 +14,13 @@ export default function FileUpload() {
             setLoading(true);
             const data = new FormData();
             data.append("image", file);
-            const res = await axios.post("/api/:user/upload/image", data);
+            const res = await axios.post("/api/upload/image", data, { withCredentials: true });
             setRes(res.data);
+
+            const imageURL = res.data.secure_url;
+            navigate("/post", { state: { imageURL } })
+
+            // setUploadedURL(imageURL);
         } catch (error) {
             alert(error.message);
         } finally {

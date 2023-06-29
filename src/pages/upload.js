@@ -78,6 +78,10 @@ const Upload = ({ darkLight, setDarkLight }) => {
                         />
                     </Link>
                     <h2 style={{ color: !darkLight ? "white" : "black" }}>New Post</h2>
+                    <Link to={"/post"}>weiter</Link>
+
+                    <FileUpload />
+
                 </section>
                 <section className="background_photo">
                     <div className="add_photo">
@@ -120,7 +124,7 @@ const Upload = ({ darkLight, setDarkLight }) => {
                         </div>
                         <div className="dropdown-options">
 
-                            <FileUpload />
+                            {/* <FileUpload /> */}
 
 
                             {/* <button>
