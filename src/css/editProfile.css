@@ -36,20 +36,46 @@
 }
 
 /* Edit - Profile - Form -------------------------*/
+
+
 .text_form {
     margin: 0 auto;
 }
 
-.text_form input {
+.text_form input,
+.text_form select {
     display: inline-block;
     margin-top: 12px;
     background-color: var(--input-color);
     border-radius: 10px;
     width: 90%;
-    padding: 10px;
+    padding: 15px;
     border-style: none;
 }
 
-.text_form input placeholder {
-    font-family: var(--font-family-bold);
+.text_form select {
+    width: 98%;
+    padding-right: 10px;
+    appearance: none;
+    background-image: url('../resource/icons/ArrowDown_dropdown_editProfile.png');
+    background-position: 97%;
+    background-repeat: no-repeat;
+    padding-right: 10px;
+}
+
+.text_form input:nth-of-type(4) {
+    background-image: url('../resource/icons/Groupcalendar_icon.svg');
+    background-repeat: no-repeat;
+    background-position: 97%;
+}
+
+.text_form input:nth-of-type(5) {
+    background-image: url('../resource/icons/Groupmail_icon.svg');
+    background-repeat: no-repeat;
+    background-position: 97%;
+}
+
+.text_form input:focus,
+.text_form select:focus {
+    outline: none;
 }
