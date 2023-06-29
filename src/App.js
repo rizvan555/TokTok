@@ -8,6 +8,7 @@ import "./css/post.css";
 import Home from "./pages/home";
 import OwnProfile from "./pages/OwnProfile";
 import OtherProfile from "./pages/OtherProfile";
+import EditProfile from "./pages/EditProfile";
 import CommentsPage from "./pages/commentsPage";
 import UploadPage from "./pages/upload";
 import NewPost from "./pages/post";
@@ -59,6 +60,7 @@ function App() {
           }
         />
         <Route path="/otherprofile" element={<OtherProfile />} />
+        <Route path="/editprofile" element={<EditProfile />} />
       </Routes>
     </div>
   );
