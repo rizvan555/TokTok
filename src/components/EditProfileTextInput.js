@@ -8,7 +8,7 @@ const EditProfileTextInput = () => {
             <input type="email" name="email" id="email" placeholder="email" />
             <input type="number" name="phone" id="phone" placeholder="phone" />
             <select name="sex" id="sex" placeholder="sex">
-                <option value=" " >sex</option>
+                <option value="">gender</option>
                 <option value="male">male</option>
                 <option value="female">female</option>
                 <option value="other">other</option>
