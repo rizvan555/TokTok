@@ -17,6 +17,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import { useState } from "react";
 import SettingsPage from "./pages/settingsPage";
+import EditProfile from "../src/pages/EditProfile";
 
 function App() {
   const [darkLight, setDarkLight] = useState(true);
