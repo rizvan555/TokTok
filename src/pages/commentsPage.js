@@ -102,7 +102,9 @@ function CommentsPage({ darkLight, setDarkLight }) {
                       <h5 className="position">{person.position}</h5>
                     </div>
                   </div>
-                  <button className="settings-button">...</button>
+                  <Link to="/settingsPage" className="comment-button-section">
+                    <button className="settings-button">...</button>
+                  </Link>
                 </section>
 
                 <section className="comment-section">
@@ -136,9 +138,9 @@ function CommentsPage({ darkLight, setDarkLight }) {
                         <p className="feedback-position">{feedback.position}</p>
                       </div>
                     </div>
-                    <div className="comment-button-section">
+                    <Link to="/settingsPage" className="comment-button-section">
                       <button className="settings-button">...</button>
-                    </div>
+                    </Link>
                   </div>
                   <p className="feedback-box">{feedback.feedback}</p>
 
@@ -190,5 +192,3 @@ function CommentsPage({ darkLight, setDarkLight }) {
 }
 
 export default CommentsPage;
-
-
