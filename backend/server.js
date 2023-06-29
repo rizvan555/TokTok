@@ -153,11 +153,11 @@ app.put("/api/user", authenticateToken, async (req, res) => {
 
         user.name = name;
         user.username = username;
-        user.email = email
+        user.email = email;
+        user.activity = activity;
         user.birthday = birthday;
         user.gender = gender;
         user.tel = tel;
-        user.sex = sex;
         user.website = website;
         user.aboutMe = aboutMe;
 
