@@ -1,26 +1,35 @@
 // Import - Images -----------------------------------
-
 import logo from "../resource/logos/toktokLogo.png";
 import postIcon from "../resource/icons/Plusframe_rounded.png";
 import editIcon from "../resource/icons/EditeditIcon.png";
 import settingIcon from "../resource/icons/GroupsettingIcon.png";
-import { useState } from "react";
+import { PiDotsThreeCircle } from "react-icons/pi";
+import { LuEdit3 } from "react-icons/lu";
+import { AiOutlinePlusSquare } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 // ---------------------------------------------------
 
-const ProfileMainBar = ({click,setClick}) => {
-
+const ProfileMainBar = ({ click, setClick, darkLight }) => {
   return (
     <nav className="profile_mainbar">
       <section>
-        <img src={logo} alt="logo toktok klein" />
-        <h2>john_doe</h2>
+        <Link to="/">
+          <img src={logo} alt="logo toktok klein" />
+        </Link>
+        <h2 style={{ color: !darkLight ? "white" : "black" }}> john_doe</h2>
       </section>
-      <nav>
-        <img src={postIcon} alt="icon_post_small" />
-        <img src={editIcon} alt="icon_edit_small" />
+      <nav className="head-navigation"> 
+        <AiOutlinePlusSquare
+          size={29}
+          style={{ color: !darkLight ? "white" : "black" }}
+        />
+        <LuEdit3 size={28} style={{ color: !darkLight ? "white" : "black" }} />
         <button className="settingsButton" onClick={() => setClick(!click)}>
-          <img src={settingIcon} alt="icon_settings_small" />
+          <PiDotsThreeCircle
+            size={30}
+            style={{ color: !darkLight ? "white" : "black",marginLeft:"-8px" }}
+          />
         </button>
       </nav>
     </nav>

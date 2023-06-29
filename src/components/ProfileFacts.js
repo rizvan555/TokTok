@@ -1,5 +1,5 @@
-
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import "../css/ownProfile.css";
 
 // Import - Images -----------------------------------
 
@@ -8,9 +8,9 @@ import profile_edit_icon from "../resource/icons/Edit Squareprofile_image_edit_i
 
 // ---------------------------------------------------
 
-const ProfileFacts = ({ click, setClick }) => {
+const ProfileFacts = ({ click, darkLight }) => {
   return (
-    <div>
+    <div style={{ color: !darkLight ? "white" : "black" }}>
       <article className="profile_article">
         <div className="image-container">
           <img
@@ -18,12 +18,18 @@ const ProfileFacts = ({ click, setClick }) => {
             className="profile_img"
             alt="profile_image_user"
           />
-         <Link to="/editprofile"><img src={profile_edit_icon} className='edit_icon' alt="edit_icon" /></Link>
+          <Link to="/editprofile">
+            <img
+              src={profile_edit_icon}
+              className="edit_icon"
+              alt="edit_icon"
+            />
+          </Link>
         </div>
         <h1>John Doe</h1>
         {!click ? <h3>UI/UX Designer</h3> : ""}
         {!click ? (
-          <p>
+          <p style={{ color: !darkLight ? "white" : "black" }}>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio magni
             totam, harum exercitationem accusamus facere praesentium expedita.
           </p>
@@ -36,15 +42,15 @@ const ProfileFacts = ({ click, setClick }) => {
         <section className="follower_section">
           <div className="posts">
             <h5>356</h5>
-            <p>Posts</p>
+            <p style={{ color: !darkLight ? "white" : "black" }}>Posts</p>
           </div>
           <div className="followers">
             <h5>46,379</h5>
-            <p>Followers</p>
+            <p style={{ color: !darkLight ? "white" : "black" }}>Followers</p>
           </div>
           <div className="following">
             <h5>318</h5>
-            <p>Following</p>
+            <p style={{ color: !darkLight ? "white" : "black" }}>Following</p>
           </div>
         </section>
       ) : (

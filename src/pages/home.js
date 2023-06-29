@@ -79,39 +79,42 @@ function Home({ darkLight, setDarkLight }) {
         </button>
       </header>
 
-      <main>
-        {persons.map((person, index) => (
-          <div key={index} className="person-main-container">
-            <section className="header-section">
-              <div className="person-left-side">
-                <img
-                  src={person.profilImg}
-                  alt="photo1"
-                  className="person-photo"
-                />
-                <div className="name-box">
-                  <h3 className="name">{person.name}</h3>
-                  <h5 className="position">{person.position}</h5>
+      <main className="home-main">
+        <div className="scrollable">
+          {persons.map((person, index) => (
+            <div key={index} className="person-main-container">
+              <section className="header-section">
+                <div className="person-left-side">
+                  <img
+                    src={person.profilImg}
+                    alt="photo1"
+                    className="person-photo"
+                  />
+                  <div className="name-box">
+                    <h3 className="name">{person.name}</h3>
+                    <h5 className="position">{person.position}</h5>
+                  </div>
                 </div>
-              </div>
-              <Link to="/settingsPage" className="settings-container">
-                <button className="settings-button">...</button>
-              </Link>
-            </section>
-            <section className="main-section">
-              <img src={person.mainImg} alt="image1" />
-            </section>
-            <section className="main-footer-section">
-              <LikeButton
-                person={person}
-                setPersons={setPersons}
-                index={index}
-              />
-              <CommentButton person={person} />
-            </section>
-          </div>
-        ))}
+                <Link to="/settingsPage" className="settings-container">
+                  <button className="settings-button">...</button>
+                </Link>
+              </section>
+              <section className="main-section">
+                <img src={person.mainImg} alt="image1" />
+              </section>
+              <section className="main-footer-section">
+                <LikeButton
+                  person={person}
+                  setPersons={setPersons}
+                  index={index}
+                />
+                <CommentButton person={person} />
+              </section>
+            </div>
+          ))}
+        </div>
       </main>
+
       <FooterNavbar />
     </div>
   );
