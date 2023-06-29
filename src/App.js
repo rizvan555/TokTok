@@ -9,7 +9,6 @@ import "./css/settingsPage.css";
 import Home from "./pages/home";
 import OwnProfile from "./pages/OwnProfile";
 import OtherProfile from "./pages/OtherProfile";
-import EditProfile from "./pages/EditProfile";
 import CommentsPage from "./pages/commentsPage";
 import UploadPage from "./pages/upload";
 import NewPost from "./pages/post";
