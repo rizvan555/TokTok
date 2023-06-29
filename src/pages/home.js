@@ -15,6 +15,7 @@ import LikeButton from "../components/LikeButton";
 import CommentButton from "../components/CommentButton";
 import { GoHeart } from "react-icons/go";
 import CustomizedSwitches from "../components/CustomizedSwitches";
+import { Link } from "react-router-dom";
 
 function Home({ darkLight, setDarkLight }) {
   const [persons, setPersons] = useState([
@@ -52,19 +53,7 @@ function Home({ darkLight, setDarkLight }) {
       isLiked: false,
     },
   ]);
-  const toggleLike = (index) => {
-    setPersons((persons) =>
-      persons.map((person, personIndex) =>
-        personIndex === index
-          ? {
-              ...person,
-              likeCount: person.likeCount + (person.isLiked ? -1 : 1),
-              isLiked: !person.isLiked,
-            }
-          : person
-      )
-    );
-  };
+  const [clickHeart, setClickHeart] = useState(true);
 
   return (
     <div className="home-container">
@@ -75,9 +64,19 @@ function Home({ darkLight, setDarkLight }) {
         </div>
         <CustomizedSwitches darkLight={darkLight} setDarkLight={setDarkLight} />
 
-        <div>
-          <GoHeart size={30} onClick={() => toggleLike()} />
-        </div>
+        <button
+          className="main-heart-button"
+          onClick={() => setClickHeart(!clickHeart)}
+        >
+          {clickHeart ? (
+            <GoHeart
+              size={27}
+              style={{ color: !darkLight ? "white" : "black" }}
+            />
+          ) : (
+            <img src={redHeart} alt="redHeart" />
+          )}
+        </button>
       </header>
 
       <main>
@@ -95,7 +94,9 @@ function Home({ darkLight, setDarkLight }) {
                   <h5 className="position">{person.position}</h5>
                 </div>
               </div>
-              <button className="settings-button">...</button>
+              <Link to="/settingsPage" className="settings-container">
+                <button className="settings-button">...</button>
+              </Link>
             </section>
             <section className="main-section">
               <img src={person.mainImg} alt="image1" />
