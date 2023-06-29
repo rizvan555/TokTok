@@ -34,6 +34,7 @@ const ProfileMainBar = ({ click, setClick, darkLight }) => {
       </nav>
     </nav>
   );
+
 };
 
 export default ProfileMainBar;

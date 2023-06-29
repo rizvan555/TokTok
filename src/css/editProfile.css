@@ -56,10 +56,12 @@
 }
 
 .text_form input,
-.text_form select {
+.text_form select,
+.text_form textarea {
     display: inline-block;
     margin-top: 12px;
     font-family: var(--font-family-bold);
+    color: var(--secondary-color);
     background-color: var(--input-color-1);
     font-weight: 500;
     border-radius: 10px;
@@ -88,8 +90,6 @@ input[type="date"]::placeholder {
     display: none;
 }
 
-
-
 .text_form input:nth-of-type(5) {
     background-image: url('../resource/icons/Groupmail_icon.svg');
     background-repeat: no-repeat;
@@ -97,12 +97,14 @@ input[type="date"]::placeholder {
 }
 
 .text_form input:hover,
-.text_form select:hover {
+.text_form select:hover,
+.text_form textarea:hover {
     background-color: var(--input-color-2);
 }
 
 .text_form input:focus,
-.text_form select:focus {
+.text_form select:focus,
+.text_form textarea:focus {
     outline: none;
 }
 
