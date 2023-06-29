@@ -1,7 +1,9 @@
 
+import { Link } from 'react-router-dom';
+
 // Import - Images -----------------------------------
 
-import logo from '../resource/logos/toktokLogo.png';
+import leftArrowImage from '../resource/icons/Groupleft_arrow_back.svg';
 import settingIcon from '../resource/icons/GroupsettingIcon.png';
 
 // ---------------------------------------------------
@@ -10,7 +12,7 @@ const OtherProfileMainBar = () => {
     return (
         <nav className='profile_mainbar'>
             <section>
-                <img src={logo} alt="logo toktok klein" />
+                <Link to='/profile'><img src={leftArrowImage} alt="left_arrow_icon" /></Link>
                 <h2>julia_adaline</h2>
             </section>
             <nav>

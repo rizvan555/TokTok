@@ -24,28 +24,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.profile_mainbar img {
-    padding: 0 0.5rem;
+    gap: 15px;
+    padding: 0 7px;
 }
 
 .profile_mainbar section {
     display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .profile_mainbar section h2 {
     display: inline-block;
     font-size: calc(var(--font-size-rem) * 2.4);
     font-weight: 500;
-    padding-left: 0.5rem;
     margin: 0;
+    padding-bottom: 5px;
 }
 
 /* Profile - Image ------------------------------------- */
 
 .image-container {
     padding-top: 10px;
+    margin: 0 auto;
 }
 
 .profile_article .profile_img {
@@ -57,7 +58,7 @@
 .profile_article h1 {
     font-size: calc(var(--font-size-rem) * 2.4);
     font-weight: 600;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .profile_article h3 {

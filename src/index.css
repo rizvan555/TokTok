@@ -20,7 +20,8 @@ body {
   --border-color: #EEEEEE;
   --domain-color: #246BFD;
   --feed-color: #FF4D67;
-  --input-color: #FAFAFA;
+  --input-color-1: #FAFAFA;
+  --input-color-2: #ececec;
   --pure-white: #FFFFFF;
   --font-family-bold: 'UrbanistVar', sans-serif;
   --font-family-thin: 'UrbanistLight', sans-serif;

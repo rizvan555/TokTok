@@ -30,11 +30,12 @@
     padding-bottom: 5px;
 }
 
+
 /* Edit - Profile - Image ------------------------------------- */
 
 .image-container {
     padding: 10px 0;
-    margin: 10px auto 0 auto;
+    margin: 0 auto;
 }
 
 .editprofile_page .profile_image {
@@ -59,7 +60,7 @@
     display: inline-block;
     margin-top: 12px;
     font-family: var(--font-family-bold);
-    background-color: var(--input-color);
+    background-color: var(--input-color-1);
     font-weight: 500;
     border-radius: 10px;
     width: 90%;
@@ -72,20 +73,32 @@
     width: 98%;
     appearance: none;
     background-image: url('../resource/icons/ArrowDown_dropdown_editProfile.png');
-    background-position: 97%;
+    background-position: 98%;
     background-repeat: no-repeat;
 }
 
-.text_form input:nth-of-type(4) {
+input[type="date"]::-webkit-calendar-picker-indicator {
     background-image: url('../resource/icons/Groupcalendar_icon.svg');
     background-repeat: no-repeat;
-    background-position: 97%;
+    text-align: right;
+    background-size: 110%;
 }
+
+input[type="date"]::placeholder {
+    display: none;
+}
+
+
 
 .text_form input:nth-of-type(5) {
     background-image: url('../resource/icons/Groupmail_icon.svg');
     background-repeat: no-repeat;
-    background-position: 97%;
+    background-position: 96.5%;
+}
+
+.text_form input:hover,
+.text_form select:hover {
+    background-color: var(--input-color-2);
 }
 
 .text_form input:focus,
