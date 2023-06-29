@@ -88,6 +88,7 @@ const Upload = ({ darkLight, setDarkLight }) => {
   //     alt: "Hime"
   // }]
 
+    
   const handleUploadClick = () => {
     setShowGallery(!showGallery);
   };
