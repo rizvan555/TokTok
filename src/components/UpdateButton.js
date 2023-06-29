@@ -1,6 +1,8 @@
 const UpdateButton = () => {
     return (
-        <div></div>
+        <div>
+            <button className="submit_button">Update</button>
+        </div>
     );
 }
 
