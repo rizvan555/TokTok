@@ -1,14 +1,21 @@
 import "../css/upload.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import FileUpload from "../components/FileUpload"
+
+
 import Exclude from "../resource/icons/Exclude.svg";
 import Anny from "../resource/images/image1.png";
 import Albert from "../resource/images/image2.png";
 import Hime from "../resource/images/image3.png";
+import Layout from "../resource/images/Auto Layout Vertical.svg";
+
 import { BiCategory, BiSolidCategory } from "react-icons/bi";
 import { AiFillCamera, AiOutlineCamera } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { CgCloseR } from "react-icons/cg";
+
+
 
 const pictures = [
     {
@@ -51,47 +58,15 @@ const pictures = [
 
 const Upload = ({ darkLight, setDarkLight }) => {
     const [showGallery, setShowGallery] = useState(false);
-    // const [pictures, setPictures] = useState = [{
-    //     image: Anny,
-    //     alt: "Anny"
-    // },
-    // {
-    //     image: Albert,
-    //     alt: "Albert"
-    // },
-    // {
-    //     image: Hime,
-    //     alt: "Hime"
-    // },
-    // {
-    //     image: Anny,
-    //     alt: "Anny"
-    // },
-    // {
-    //     image: Albert,
-    //     alt: "Albert"
-    // },
-    // {
-    //     image: Hime,
-    //     alt: "Hime"
-    // },
-    // {
-    //     image: Anny,
-    //     alt: "Anny"
-    // },
-    // {
-    //     image: Albert,
-    //     alt: "Albert"
-    // },
-    // {
-    //     image: Hime,
-    //     alt: "Hime"
-    // }]
-
 
     const handleUploadClick = () => {
         setShowGallery(!showGallery);
     };
+
+    // const handleImageClick = () => {
+    //     document.getElementById('file-input').click();
+    // };
+
     return (
         <div className="master">
             <header>
@@ -144,7 +119,23 @@ const Upload = ({ darkLight, setDarkLight }) => {
                             </div>
                         </div>
                         <div className="dropdown-options">
-                            {pictures.map((picture) => (
+
+                            <FileUpload />
+
+
+                            {/* <button>
+                                <input type="file" id="file-input" />
+                                <img
+                                    src={Layout}
+                                    alt='layout'
+                                    className="dropdown-option-image"
+                                    onclick={handleImageClick}
+                                />
+                            </button> */}
+
+
+
+                            {/* {pictures.map((picture) => (
                                 <div key={picture.value} className="dropdown-option">
                                     <Link to={"/post"}>
                                         <img
@@ -154,12 +145,12 @@ const Upload = ({ darkLight, setDarkLight }) => {
                                         />
                                     </Link>
                                 </div>
-                            ))}
+                            ))} */}
                         </div>
-                    </div>
+                    </div >
                 )}
-            </main>
-        </div>
+            </main >
+        </div >
     );
 };
 
