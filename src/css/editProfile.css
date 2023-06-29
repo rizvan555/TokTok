@@ -14,12 +14,26 @@
     padding: 2vh 3vw;
 }
 
+/* Edit - Profile - Topbar ------------------------------------- */
+
+.editprofile_topbar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 7px;
+}
+
+.editprofile_topbar h5 {
+    font-size: calc(var(--font-size-rem)*2.2);
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+}
 
 
 /* Edit - Profile - Image ------------------------------------- */
 
 .image-container {
-
     padding: 10px 0;
     margin: 0 auto;
 }
@@ -37,7 +51,6 @@
 
 /* Edit - Profile - Form -------------------------*/
 
-
 .text_form {
     margin: 0 auto;
 }
@@ -46,36 +59,61 @@
 .text_form select {
     display: inline-block;
     margin-top: 12px;
-    background-color: var(--input-color);
+    font-family: var(--font-family-bold);
+    background-color: var(--input-color-1);
+    font-weight: 500;
     border-radius: 10px;
     width: 90%;
     padding: 15px;
     border-style: none;
+    appearance: none;
 }
 
 .text_form select {
     width: 98%;
-    padding-right: 10px;
     appearance: none;
     background-image: url('../resource/icons/ArrowDown_dropdown_editProfile.png');
-    background-position: 97%;
+    background-position: 98%;
     background-repeat: no-repeat;
-    padding-right: 10px;
 }
 
-.text_form input:nth-of-type(4) {
+input[type="date"]::-webkit-calendar-picker-indicator {
     background-image: url('../resource/icons/Groupcalendar_icon.svg');
     background-repeat: no-repeat;
-    background-position: 97%;
+    text-align: right;
+    background-size: 110%;
 }
+
+input[type="date"]::placeholder {
+    display: none;
+}
+
+
 
 .text_form input:nth-of-type(5) {
     background-image: url('../resource/icons/Groupmail_icon.svg');
     background-repeat: no-repeat;
-    background-position: 97%;
+    background-position: 96.5%;
+}
+
+.text_form input:hover,
+.text_form select:hover {
+    background-color: var(--input-color-2);
 }
 
 .text_form input:focus,
 .text_form select:focus {
     outline: none;
+}
+
+/* Submit - Button -------------------------------------------- */
+
+.submit_button {
+    color: var(--pure-white);
+    background-color: var(--feed-color);
+    width: 98%;
+    border-style: none;
+    border-radius: 30px;
+    padding: 15px 0;
+    margin: 20px 0 30px 0;
 }

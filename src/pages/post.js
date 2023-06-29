@@ -1,5 +1,5 @@
 import "../css/post.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Anny from "../resource/images/image1.png";
@@ -12,18 +12,24 @@ const NewPost = ({ darkLight, setDarkLight }) => {
   const [isCheckedFacebook, setIsCheckedFacebook] = useState(false);
   const [isCheckedTwitter, setIsCheckedTwitter] = useState(false);
   const [isCheckedTumblr, setIsCheckedTumblr] = useState(false);
+  const [uploadedURL, setUploadedURL] = useState("");
+
+  const location = useLocation();
+  // console.log(location.state);
 
   const [post, setPost] = useState(
     {
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab quasi ullam eaque quos laudantium dicta blanditiis consectetur, praesentium itaque.",
+      image: location.state.imageURL,
+      location: "Lorem",
     },
   );
-  console.log(post.content);
+  // console.log(post.image);
 
   useEffect(() => {
     axios
-      .post("/api/newpost", post)
+      .post("/api/newpost", post, { withCredentials: true })
       .then((res) => {
         console.log(res);
       })
@@ -51,6 +57,11 @@ const NewPost = ({ darkLight, setDarkLight }) => {
     setPost({ ...post, content: e.target.value });
     adjustTextareaHeight();
   };
+
+  // const handleInputImage = async (e) => {
+  //   e.preventDefault();
+  //   setPost({ ...post, image: uploadedURL });
+  // }
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
@@ -80,7 +91,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
             value={post.content}
             onChange={handleInputChange}
           />
-          <img src={Anny} alt="anny" className="post_pic" />
+          <img src={Anny} alt="uploaded" className="post_pic" />
         </section>
       </header>
       <main>

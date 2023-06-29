@@ -84,6 +84,10 @@
   position: relative;
   padding-top: 10px;
   margin: 0 auto;
+
+
+/* Profile - Image ------------------------------------- */
+
 }
 .profile_article .profile_img {
   width: 33%;
@@ -94,6 +98,7 @@
   position: absolute;
   top: 77%;
   left: 58.5%;
+
 }
 
 /* Profile - Facts ------------------------------------- */

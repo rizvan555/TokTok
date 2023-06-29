@@ -17,12 +17,15 @@ body {
 :root {
   --primary-color: #212121;
   --secondary-color: #424242;
-  --border-color: #eeeeee;
-  --domain-color: #246bfd;
-  --feed-color: #ff4d67;
-  --input-color: #fafafa;
-  --font-family-bold: "UrbanistVar", sans-serif;
-  --font-family-thin: "UrbanistLight", sans-serif;
+
+  --border-color: #EEEEEE;
+  --domain-color: #246BFD;
+  --feed-color: #FF4D67;
+  --input-color-1: #FAFAFA;
+  --input-color-2: #ececec;
+  --pure-white: #FFFFFF;
+  --font-family-bold: 'UrbanistVar', sans-serif;
+  --font-family-thin: 'UrbanistLight', sans-serif;
   --font-size-rem: 10px;
   --letter-spacing: 0.2px;
 }
