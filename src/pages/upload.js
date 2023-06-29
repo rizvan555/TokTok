@@ -97,7 +97,9 @@ const Upload = () => {
         <div className="master">
             <header>
                 <section className="new_post_title">
-                    <img src={CloseSquare} alt="closeSquare" />
+                    <Link to="/">
+                        <img src={CloseSquare} alt="closeSquare" />
+                    </Link>
                     <h2>New Post</h2>
                 </section>
                 <section className="background_photo">
