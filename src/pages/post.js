@@ -13,12 +13,12 @@ const NewPost = ({ darkLight, setDarkLight }) => {
   const [isCheckedTwitter, setIsCheckedTwitter] = useState(false);
   const [isCheckedTumblr, setIsCheckedTumblr] = useState(false);
 
-  const [post, setPost] = useState([
+  const [post, setPost] = useState(
     {
       content:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab quasi ullam eaque quos laudantium dicta blanditiis consectetur, praesentium itaque.",
     },
-  ]);
+  );
   console.log(post.content);
 
   useEffect(() => {
