@@ -4,7 +4,6 @@
   justify-content: center;
   padding-top: 2vh;
   gap: 3vh;
-  height: 100vh;
 }
 .search-header {
   position: relative;
@@ -18,7 +17,7 @@
 }
 .search-person-container {
   overflow-y: auto;
-  max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 250px);
 }
 
 .search-person-section {

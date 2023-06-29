@@ -171,7 +171,7 @@ function SearchAll({ darkLight, setDarkLight }) {
             setValue(e.target.value);
             findMembers(e.target.value);
           }}
-          style={{ color: !darkLight ? "white" : "blsack" }}
+          style={{ color: !darkLight ? "white" : "black" }}
         />
       </div>
       <Link to="/" className="center-icon">
