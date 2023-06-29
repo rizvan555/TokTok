@@ -3,10 +3,34 @@ import dotenv from "dotenv";
 import { Post, User } from "./model/index.js"
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
+import Multer from "multer";
+import { v2 as cloudinary } from "cloudinary";
 
 
 
 dotenv.config({ path: new URL("../.env", import.meta.url).pathname });
+
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+async function handleUpload(file) {
+    const res = await cloudinary.uploader.upload(file, {
+        resource_type: "auto",
+    });
+    return res;
+}
+
+const storage = new Multer.memoryStorage();
+const upload = Multer({
+    storage,
+});
+
+
+
 
 
 const PORT = process.env.BE_PORT || 4000;
@@ -229,7 +253,31 @@ app.get("/api/users", async (req, res) => {
 });
 
 
-// ========== POST NEW POST from user _id ==========
+
+// ========== UPLOAD NEW FILE ==========
+
+app.post(
+    "/api/:user/upload/image",
+    authenticateToken,
+    upload.single("image"),
+    async (req, res) => {
+        try {
+            const b64 = Buffer.from(req.file.buffer).toString("base64");
+            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+
+            const cldRes = await handleUpload(dataURI);
+            res.json(cldRes);
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({
+                message: error.message,
+            });
+        }
+    }
+);
+
+// ========== POST NEW POST with/from user _id ==========
 app.post("/api/:user/newpost", async (req, res) => {
     try {
         const { content, location } = req.body;
@@ -244,6 +292,7 @@ app.post("/api/:user/newpost", async (req, res) => {
             content,
             location,
             user: user._id,
+            image: image._id
         });
 
         const savedPost = await newPost.save();
@@ -255,6 +304,40 @@ app.post("/api/:user/newpost", async (req, res) => {
     }
 });
 
+
+
+
+
+
+// ========== POST/EDIT NEW PROFILE IMAGE ==========
+
+app.post(
+    "/api/upload/avatar",
+    authenticateToken,
+    upload.single("avatar"),
+    async (req, res) => {
+        try {
+            const b64 = Buffer.from(req.file.buffer).toString("base64");
+            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+            const user = await User.findOne({ email: req.user.email });
+            if (!user) {
+                return res.status(404).json({ error: "User not found." });
+            }
+
+            user.avatar = cldRes.secure_url; // Aktualisiere das Avatar-Feld mit der URL des hochgeladenen Bildes
+            await user.save();
+            res.json(cldRes);
+
+            // const cldRes = await handleUpload(dataURI);
+            // res.json(cldRes);
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({
+                message: error.message,
+            });
+        }
+    }
+);
 
 
 
