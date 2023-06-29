@@ -1,0 +1,72 @@
+.settingsPage-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  padding: 2vh 0;
+  height: 100vh;
+}
+.left-button {
+  padding-left: 3vw;
+}
+.settings-header {
+  display: flex;
+  justify-content: center;
+  gap: 4vw;
+  width: 95vw;
+  margin: 0 auto;
+}
+.settings-header div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid gray;
+  width: 20vw;
+  border-radius: 10px;
+  padding-top: 2vh;
+}
+.settings-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  width: 90vw;
+  border-radius: 10px;
+  margin: 3vh auto 0 auto;
+}
+.settings-main-container div {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 93%;
+  gap: 2vw;
+  padding: 1vh 0 1vh 4vw;
+}
+.settings-main-container div:first-of-type {
+  border-bottom: 1px solid gray;
+}
+.settings-footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  width: 90vw;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+.settings-footer-container div {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 93%;
+  gap: 2vw;
+  padding: 1vh 0 1vh 4vw;
+  border-bottom: 1px solid gray;
+}
+.settings-footer-container div:nth-last-child() {
+  border: none;
+}

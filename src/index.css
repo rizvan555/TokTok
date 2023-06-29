@@ -15,14 +15,14 @@ body {
 }
 
 :root {
-    --primary-color: #212121;
-    --secondary-color: #424242;
-    --border-color: #EEEEEE;
-    --domain-color: #246BFD;
-    --feed-color: #FF4D67;
-    --font-family-bold: 'UrbanistVar', sans-serif;
-    --font-family-thin: 'UrbanistLight', sans-serif;
-    --font-size-rem: 10px;
-    --letter-spacing: 0.2px;
+  --primary-color: #212121;
+  --secondary-color: #424242;
+  --border-color: #EEEEEE;
+  --domain-color: #246BFD;
+  --feed-color: #FF4D67;
+  --input-color: #FAFAFA;
+  --font-family-bold: 'UrbanistVar', sans-serif;
+  --font-family-thin: 'UrbanistLight', sans-serif;
+  --font-size-rem: 10px;
+  --letter-spacing: 0.2px;
 }
-

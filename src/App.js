@@ -5,10 +5,10 @@ import "./css/homeComments.css";
 import "./css/searchAll.css";
 import "./css/upload.css";
 import "./css/post.css";
+import "./css/settingsPage.css";
 import Home from "./pages/home";
 import OwnProfile from "./pages/OwnProfile";
 import OtherProfile from "./pages/OtherProfile";
-import EditProfile from "./pages/EditProfile";
 import CommentsPage from "./pages/commentsPage";
 import UploadPage from "./pages/upload";
 import NewPost from "./pages/post";
@@ -16,6 +16,8 @@ import SearchAll from "./pages/searchAll";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import { useState } from "react";
+import SettingsPage from "./pages/settingsPage";
+import EditProfile from "../src/pages/EditProfile";
 
 function App() {
   const [darkLight, setDarkLight] = useState(true);
@@ -61,6 +63,12 @@ function App() {
         />
         <Route path="/otherprofile" element={<OtherProfile />} />
         <Route path="/editprofile" element={<EditProfile />} />
+        <Route
+          path="/settingsPage"
+          element={
+            <SettingsPage darkLight={darkLight} setDarkLight={setDarkLight} />
+          }
+        />
       </Routes>
     </div>
   );

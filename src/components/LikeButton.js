@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { GoHeart } from "react-icons/go";
 
 function LikeButton({ person, index, setPersons }) {
