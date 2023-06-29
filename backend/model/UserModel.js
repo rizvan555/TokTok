@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     name: { type: String },
     username: { type: String },
     activity: { type: String },
-    birthday:  Date ,
+    birthday: Date,
     gender: {
         type: String,
         enum: ["Female", "Male"]
@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
     aboutMe: { type: String },
     following: { type: String },
     followedBy: { type: String },
+    avatar: { type: String, default: "" }
 });
 
 
