@@ -1,8 +1,8 @@
 .master {
-    margin: 1vh 2vw;
-    font-family: var(--font-family-bold);
-    color: var(--primary-color);
-    height: 100vh;
+  margin: 1vh 2vw;
+  font-family: var(--font-family-bold);
+  color: var(--primary-color);
+  height: 130vh;
 }
 
 .new_post_title {
