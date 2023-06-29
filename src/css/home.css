@@ -19,23 +19,15 @@
 .title {
   font-weight: 300;
 }
-.heart-button {
+.main-heart-button {
+  background-color: transparent;
   border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  padding: 5px;
-}
-.heart {
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
 }
 .header-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1vh 2vw;
+  padding: 1vh 1vw;
 }
 .person-left-side {
   display: flex;
@@ -53,6 +45,9 @@
 .position {
   font-size: 12px;
   font-weight: 300;
+}
+.settings-container {
+  text-decoration: none;
 }
 .settings-button {
   display: flex;
@@ -76,9 +71,9 @@
 .main-footer-section {
   display: flex;
   align-items: center;
-  gap: 5vw;
+  gap: 8vw;
   margin-bottom: 2vh;
-  padding-left: 3vw;
+  padding-left: 1vw;
 }
 .comment-section {
   display: flex;
