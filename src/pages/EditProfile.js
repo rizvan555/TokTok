@@ -15,6 +15,12 @@ import '../css/editProfile.css';
 
 
 const EditProfile = () => {
+
+
+
+
+
+
     return (
         <div className="editprofile_page">
             <section className="editprofile_topbar">

@@ -83,7 +83,7 @@ const Upload = ({ darkLight, setDarkLight }) => {
                             src={Layout}
                             alt='layout'
                             className="dropdown-option-image"
-                            onclick={handleImageClick}
+                        // onclick={handleImageClick}
                         />
                     </div>)}
             </main >
