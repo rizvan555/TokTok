@@ -1,8 +1,5 @@
 // Import - Images -----------------------------------
 import logo from "../resource/logos/toktokLogo.png";
-import postIcon from "../resource/icons/Plusframe_rounded.png";
-import editIcon from "../resource/icons/EditeditIcon.png";
-import settingIcon from "../resource/icons/GroupsettingIcon.png";
 import { PiDotsThreeCircle } from "react-icons/pi";
 import { LuEdit3 } from "react-icons/lu";
 import { AiOutlinePlusSquare } from "react-icons/ai";
