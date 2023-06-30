@@ -73,34 +73,19 @@ const Upload = ({ darkLight, setDarkLight }) => {
                             )}
                         </div>
                     </div>
-                    {showGallery && (
-                        <div className="dropdown-options">
-                            <FileUpload />
-                            {/* <FileUpload /> */}
-                            {/* <button>
-                                <input type="file" id="file-input" />
-                                <img
-                                    src={Layout}
-                                    alt='layout'
-                                    className="dropdown-option-image"
-                                    onclick={handleImageClick}
-                                />
-                            </button> */}
-                        </div>)}
                 </div >
             </header>
             <main>
                 {showGallery && (
                     <div className="dropdown-options">
-                        <input type="file" id="file-input" />
+                        <FileUpload />
                         <img
                             src={Layout}
                             alt='layout'
                             className="dropdown-option-image"
                             onclick={handleImageClick}
                         />
-                    </div>
-                )}
+                    </div>)}
             </main >
         </div >
     );
