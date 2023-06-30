@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../css/homeComments.css";
+import CommentButton from "../components/CommentButton";
 import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
 import LikeButton from "../components/LikeButton";
 import annyPhoto from "../resource/images/annyPhoto.png";
 import sarahPhoto from "../resource/images/sarahPhoto.png";
 import jonnyPhoto from "../resource/images/jonnyPhoto.png";
-import CommentButton from "../components/CommentButton";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsSend } from "react-icons/bs";
-import "../css/homeComments.css";
-import { Link } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 
 function CommentsPage({ darkLight, setDarkLight }) {
