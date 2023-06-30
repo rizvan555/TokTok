@@ -69,6 +69,7 @@
     padding: 15px;
     border-style: none;
     appearance: none;
+    resize: none;
 }
 
 .text_form select {
@@ -86,9 +87,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-size: 110%;
 }
 
-input[type="date"]::placeholder {
+/* input[type="date"]::placeholder {
     display: none;
-}
+} */
 
 .text_form input:nth-of-type(5) {
     background-image: url('../resource/icons/Groupmail_icon.svg');

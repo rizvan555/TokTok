@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // Import - Images -----------------------------------
 import logo from "../resource/logos/toktokLogo.png";
 import postIcon from "../resource/icons/Plusframe_rounded.png";
@@ -20,11 +22,11 @@ const ProfileMainBar = ({ click, setClick, darkLight }) => {
         <h2 style={{ color: !darkLight ? "white" : "black" }}> john_doe</h2>
       </section>
       <nav className="head-navigation"> 
-        <AiOutlinePlusSquare
+        <Link to='/upload'> <AiOutlinePlusSquare
           size={29}
           style={{ color: !darkLight ? "white" : "black" }}
-        />
-        <LuEdit3 size={28} style={{ color: !darkLight ? "white" : "black" }} />
+        /></Link>
+         <Link to='/editprofile'><LuEdit3 size={28} style={{ color: !darkLight ? "white" : "black" }} /></Link>
         <button className="settingsButton" onClick={() => setClick(!click)}>
           <PiDotsThreeCircle
             size={30}

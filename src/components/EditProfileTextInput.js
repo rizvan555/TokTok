@@ -4,7 +4,7 @@ const EditProfileTextInput = () => {
             <input type="text" name="name" id="name" placeholder="name" />
             <input type="text" name="username" id="username" placeholder="username" />
             <input type="text" name="activity" id="activity" placeholder="activity" />
-            <input type="date" name="date" id="date" value="birth" />
+            <input type="date" name="date" id="date" placeholder="birth" onfocus="this.type='date'" onblur="this.type='text'" />
             <input type="email" name="email" id="email" placeholder="email" />
             <input type="tel" name="phone" id="phone" placeholder="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
             <select name="gender" id="gender">
