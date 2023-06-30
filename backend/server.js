@@ -49,7 +49,6 @@ app.get("/api/status", (req, res) => {
 
 
 // ========== SIGN UP ==========
-
 app.post("/api/signup", async (req, res) => {
     const { email, password } = req.body;
 
@@ -75,7 +74,6 @@ app.post("/api/signup", async (req, res) => {
 
 
 // ========== SIGN IN ==========
-
 app.post("/api/signin", async (req, res) => {
     const { email, password } = req.body;
 
@@ -127,8 +125,8 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-// ========== VERIFY ==========
 
+// ========== VERIFY ==========
 app.get("/api/secure", authenticateToken, (req, res) => {
     res.json(req.user);
 });
@@ -142,7 +140,6 @@ app.get("/api/logout", async (req, res) => {
 
 
 // ========== GET LOGED IN USER  ==========
-
 app.get("/api/user", authenticateToken, async (req, res) => {
     try {
         const user = await User.findOne({ email: req.user.email });
@@ -159,12 +156,40 @@ app.get("/api/user", authenticateToken, async (req, res) => {
 });
 
 
+// ========== POST/EDIT NEW PROFILE IMAGE ==========
+app.post(
+    "/api/upload/avatar",
+    authenticateToken,
+    upload.single("avatar"),
+    async (req, res) => {
+        try {
+            const b64 = Buffer.from(req.file.buffer).toString("base64");
+            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+            const user = await User.findOne({ email: req.user.email });
+            if (!user) {
+                return res.status(404).json({ error: "User not found." });
+            }
+
+            user.avatar = cldRes.secure_url; // Aktualisiere das Avatar-Feld mit der URL des hochgeladenen Bildes
+            await user.save();
+            res.json(cldRes);
+
+            // const cldRes = await handleUpload(dataURI);
+            // res.json(cldRes);
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({
+                message: error.message,
+            });
+        }
+    }
+);
+
 
 // ========== UPDATE USER ==========
-
 app.put("/api/user", authenticateToken, async (req, res) => {
 
-    const { name, username, email, birthday, gender, tel, sex, website, aboutMe } = req.body;
+    const { name, username, activity, email, birthday, gender, tel, website, aboutMe } = req.body;
 
     try {
         const user = await User.findOne({ email: req.user.email });
@@ -208,7 +233,6 @@ app.put("/api/user", authenticateToken, async (req, res) => {
 
 
 // ========== GET ALL POSTS FROM ALL USERS ==========
-
 app.get("/api/posts", async (req, res) => {
     try {
         const posts = await Post.find();
@@ -239,7 +263,6 @@ app.get("/api/posts/:id", async (req, res) => {
 
 
 // ========== FIND ALL USERS ==========
-
 app.get("/api/users", async (req, res) => {
     try {
         const allUsers = await User.find();
@@ -251,9 +274,7 @@ app.get("/api/users", async (req, res) => {
 });
 
 
-
 // ========== UPLOAD NEW IMAGE FILE ==========
-
 app.post(
     "/api/upload/image",
     authenticateToken,
@@ -285,7 +306,6 @@ app.post("/api/newpost", authenticateToken,
                 location,
                 user: req.user._id,
                 image
-
             });
 
             const savedPost = await newPost.save();
@@ -298,61 +318,25 @@ app.post("/api/newpost", authenticateToken,
     });
 
 
+// ========== POST NEW COMMENT ==========
 
+app.post("/api/newcomment", async (req, res) => {
+    try {
+        const { user, comment } = req.body;
 
+        const newComment = new Comment({
+            user,
+            comment,
+        });
 
+        const savedComment = await newComment.save();
 
-// ========== POST/EDIT NEW PROFILE IMAGE ==========
-
-// app.post(
-//     "/api/upload/avatar",
-//     authenticateToken,
-//     upload.single("avatar"),
-//     async (req, res) => {
-//         try {
-//             const b64 = Buffer.from(req.file.buffer).toString("base64");
-//             let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
-//             const user = await User.findOne({ email: req.user.email });
-//             if (!user) {
-//                 return res.status(404).json({ error: "User not found." });
-//             }
-
-//             user.avatar = cldRes.secure_url; // Aktualisiere das Avatar-Feld mit der URL des hochgeladenen Bildes
-//             await user.save();
-//             res.json(cldRes);
-
-//             // const cldRes = await handleUpload(dataURI);
-//             // res.json(cldRes);
-//         } catch (error) {
-//             console.log(error);
-//             res.status(500).send({
-//                 message: error.message,
-//             });
-//         }
-//     }
-// );
-
-
-
-// // ========== POST NEW COMMENT ==========
-
-// app.post("/api/newcomment", async (req, res) => {
-//     try {
-//         const { user, comment } = req.body;
-
-//         const newComment = new Comment({
-//             user,
-//             comment,
-//         });
-
-//         const savedComment = await newComment.save();
-
-//         res.status(201).json(savedPost);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ error: "Failed to create comment." });
-//     }
-// });
+        res.status(201).json(savedPost);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to create comment." });
+    }
+});
 
 
 

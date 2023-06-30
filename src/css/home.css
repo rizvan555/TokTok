@@ -1,10 +1,12 @@
 .home-container {
-  padding: 1vh 4vw;
+  padding: 1vh 0vw;
 }
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 3vw;
+
 }
 .left-box {
   display: flex;
@@ -22,6 +24,12 @@
 .main-heart-button {
   background-color: transparent;
   border: none;
+}
+.home-main {
+  overflow-y: auto;
+  max-height: calc(100vh - 170px);
+  padding: 0 2vw;
+
 }
 .header-section {
   display: flex;
@@ -85,6 +93,7 @@
   justify-content: center;
   border-top: 1px solid gray;
   padding: 3vh 2vw;
+  width: 100vw;
 }
 .home-footer,
 .search-footer,

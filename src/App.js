@@ -6,6 +6,7 @@ import "./css/searchAll.css";
 import "./css/upload.css";
 import "./css/post.css";
 import "./css/settingsPage.css";
+import "./css/ownProfile.css";
 import Home from "./pages/home";
 import OwnProfile from "./pages/OwnProfile";
 import OtherProfile from "./pages/OtherProfile";
@@ -36,7 +37,12 @@ function App() {
           path="/"
           element={<Home darkLight={darkLight} setDarkLight={setDarkLight} />}
         />
-        <Route path="/profile" element={<OwnProfile />} />
+        <Route
+          path="/profile"
+          element={
+            <OwnProfile darkLight={darkLight} setDarkLight={setDarkLight} />
+          }
+        />
         <Route
           path="/commentsPage"
           element={
