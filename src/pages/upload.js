@@ -17,44 +17,6 @@ import { CgCloseR } from "react-icons/cg";
 
 
 
-const pictures = [
-    {
-        image: Anny,
-        label: "Anny",
-    },
-    {
-        image: Albert,
-        label: "Albert",
-    },
-    {
-        image: Hime,
-        label: "Hime",
-    },
-    {
-        image: Anny,
-        label: "Anny",
-    },
-    {
-        image: Albert,
-        label: "Albert",
-    },
-    {
-        image: Hime,
-        label: "Hime",
-    },
-    {
-        image: Anny,
-        label: "Anny",
-    },
-    {
-        image: Albert,
-        label: "Albert",
-    },
-    {
-        image: Hime,
-        label: "Hime",
-    },
-];
 
 const Upload = ({ darkLight, setDarkLight }) => {
     const [showGallery, setShowGallery] = useState(false);
@@ -62,10 +24,6 @@ const Upload = ({ darkLight, setDarkLight }) => {
     const handleUploadClick = () => {
         setShowGallery(!showGallery);
     };
-
-    // const handleImageClick = () => {
-    //     document.getElementById('file-input').click();
-    // };
 
     return (
         <div className="master">
@@ -78,10 +36,6 @@ const Upload = ({ darkLight, setDarkLight }) => {
                         />
                     </Link>
                     <h2 style={{ color: !darkLight ? "white" : "black" }}>New Post</h2>
-                    <Link to={"/post"}>weiter</Link>
-
-                    <FileUpload />
-
                 </section>
                 <section className="background_photo">
                     <div className="add_photo">
@@ -91,68 +45,47 @@ const Upload = ({ darkLight, setDarkLight }) => {
                         </button>
                     </div>
                 </section>
+                <div className="whole_gallery">
+                    <div className="gallery">
+                        <div className="gallery_left">
+                            <button className="gallery_button"><p style={{ color: !darkLight ? "white" : "black" }} onClick={handleUploadClick}>Gallery</p>
+                                <MdOutlineKeyboardArrowDown
+                                    size={25}
+                                    style={{ color: darkLight ? "black" : "white" }}
+                                /></button>
+                        </div>
+                        <div className="gallery_right">
+                            {!darkLight ? (
+                                <BiCategory
+                                    size={35}
+                                    style={{ color: !darkLight ? "white" : "black" }}
+                                />
+                            ) : (
+                                <BiSolidCategory size={35} />
+                            )}
+                            {!darkLight ? (
+                                <AiFillCamera
+                                    size={35}
+                                    style={{ color: !darkLight ? "white" : "black" }}
+                                />
+                            ) : (
+                                <AiOutlineCamera size={35} />
+                            )}
+                        </div>
+                    </div>
+                </div >
             </header>
             <main>
                 {showGallery && (
-                    <div className="whole_gallery">
-                        <div className="gallery">
-                            <div className="gallery_left">
-                                <p style={{ color: !darkLight ? "white" : "black" }}>Gallery</p>
-                                <MdOutlineKeyboardArrowDown
-                                    size={30}
-                                    style={{ color: darkLight ? "black" : "white" }}
-                                />
-                            </div>
-                            <div className="gallery_right">
-                                {!darkLight ? (
-                                    <BiCategory
-                                        size={40}
-                                        style={{ color: !darkLight ? "white" : "black" }}
-                                    />
-                                ) : (
-                                    <BiSolidCategory size={40} />
-                                )}
-                                {!darkLight ? (
-                                    <AiFillCamera
-                                        size={40}
-                                        style={{ color: !darkLight ? "white" : "black" }}
-                                    />
-                                ) : (
-                                    <AiOutlineCamera size={40} />
-                                )}
-                            </div>
-                        </div>
-                        <div className="dropdown-options">
-
-                            {/* <FileUpload /> */}
-
-
-                            {/* <button>
-                                <input type="file" id="file-input" />
-                                <img
-                                    src={Layout}
-                                    alt='layout'
-                                    className="dropdown-option-image"
-                                    onclick={handleImageClick}
-                                />
-                            </button> */}
-
-
-
-                            {/* {pictures.map((picture) => (
-                                <div key={picture.value} className="dropdown-option">
-                                    <Link to={"/post"}>
-                                        <img
-                                            src={picture.image}
-                                            alt={picture.alt}
-                                            className="dropdown-option-image"
-                                        />
-                                    </Link>
-                                </div>
-                            ))} */}
-                        </div>
-                    </div >
-                )}
+                    <div className="dropdown-options">
+                        <FileUpload />
+                        <img
+                            src={Layout}
+                            alt='layout'
+                            className="dropdown-option-image"
+                            onclick={handleImageClick}
+                        />
+                    </div>)}
             </main >
         </div >
     );
