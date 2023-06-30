@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import "../css/fileButton.css"
+
 export default function FileUpload() {
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -30,7 +32,7 @@ export default function FileUpload() {
 
     return (
         <div className="file-upload">
-            <label htmlFor="file" className="btn-grey">
+            <label htmlFor="file" className="file_label">
                 {" "}
             </label>
             {file && <center> {file.name}</center>}
@@ -39,6 +41,8 @@ export default function FileUpload() {
                 type="file"
                 onChange={handleSelectFile}
                 multiple={false}
+                className="file_button"
+                style={{ border: "none" }}
             />
             <code>
                 {Object.keys(res).length > 0
