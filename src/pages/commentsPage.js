@@ -100,8 +100,9 @@ function CommentsPage({ darkLight }) {
         <div className="commentsHeader-left">
           <Link to="/">
             <BsArrowLeft
-              size={20}
+              size={25}
               style={{ color: !darkLight ? "white" : "black" }}
+              className="left-button-icon"
             />
           </Link>
           <h2>Comments</h2>

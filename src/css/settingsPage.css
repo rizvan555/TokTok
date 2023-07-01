@@ -8,12 +8,20 @@
 .left-button {
   padding-left: 3vw;
 }
+.left-button-icon:active {
+  transform: scale(0.90);
+  transition: all;
+}
 .settings-header {
   display: flex;
   justify-content: center;
   gap: 4vw;
   width: 95vw;
   margin: 0 auto;
+}
+.settings-header-category:hover {
+  transform: scale(0.95);
+  transition: all;
 }
 .settings-header div {
   display: flex;
@@ -36,6 +44,10 @@
   border-radius: 10px;
   margin: 3vh auto 0 auto;
 }
+.settings-main-category:hover {
+  transform: scale(1.05);
+  transition: all;
+}
 .settings-main-container div {
   display: flex;
   align-items: center;
@@ -57,6 +69,10 @@
   width: 90vw;
   border-radius: 10px;
   margin: 0 auto;
+}
+.setting-footer-category:hover {
+  transform: scale(1.05);
+  transition: all;
 }
 .settings-footer-container div {
   display: flex;
