@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 3vw;
-
 }
 .left-box {
   display: flex;
@@ -29,7 +28,6 @@
   overflow-y: auto;
   max-height: calc(100vh - 170px);
   padding: 0 2vw;
-
 }
 .header-section {
   display: flex;
@@ -83,11 +81,14 @@
   margin-bottom: 2vh;
   padding-left: 1vw;
 }
+/* --- CommentPage ----- */
 .comment-section {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
+/* --- FooterNavbar ----- */
+
 .footer-navbar {
   display: flex;
   justify-content: center;

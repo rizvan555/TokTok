@@ -86,14 +86,14 @@
   border: none;
   font-size: 15px;
 }
-.comment-write-section {
+.feedback-write-section {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4vw;
   padding: 3vh 1vw 5vh 1vh;
 }
-.comment-input {
+.feedback-input {
   padding: 12px;
   border: none;
   border-radius: 10px;

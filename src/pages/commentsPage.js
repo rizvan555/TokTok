@@ -12,7 +12,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { BsSend } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 
-function CommentsPage({ darkLight, setDarkLight }) {
+function CommentsPage({ darkLight }) {
   const [persons, setPersons] = useState([
     {
       profilImg: annyPhoto,
@@ -32,20 +32,13 @@ function CommentsPage({ darkLight, setDarkLight }) {
             "lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur",
           likeCount: 576,
         },
-        {
-          img: jonnyPhoto,
-          name: "andrew_nguyen",
-          position: "Dog Trainer",
-          feedback:
-            "lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur",
-          likeCount: 492,
-        },
       ],
       likeCount: 44389,
       commentCount: 26376,
       isLiked: false,
     },
   ]);
+  const [inputValue, setInputValue] = useState(null);
 
   const toggleLike = (personIndex, feedbackIndex) => {
     setPersons((persons) =>
@@ -67,6 +60,38 @@ function CommentsPage({ darkLight, setDarkLight }) {
           : person
       )
     );
+  };
+
+  const addFeedback = (personIndex) => {
+    if (inputValue) {
+      setPersons((persons) =>
+        persons.map((person, index) =>
+          index === personIndex
+            ? {
+                ...person,
+                feedbacks: person.feedbacks ? [...person.feedbacks] : [],
+                feedbacks: [
+                  ...person.feedbacks,
+                  {
+                    img: jonnyPhoto,
+                    name: "andrew_nguyen",
+                    position: "Dog Trainer",
+                    feedback: inputValue,
+                    likeCount: 0,
+                    isLiked: false,
+                  },
+                ],
+                commentCount: person.commentCount + 1,
+              }
+            : person
+        )
+      );
+    }
+  };
+
+  const clickPostButton = (personIndex) => {
+    setInputValue("");
+    addFeedback(personIndex);
   };
 
   return (
@@ -154,7 +179,7 @@ function CommentsPage({ darkLight, setDarkLight }) {
                       ) : (
                         <AiOutlineHeart size={30} />
                       )}
-                      <p>{person.likeCount}</p>
+                      <p>{feedback.likeCount}</p>
                     </div>
                     <div
                       className="reply-button"
@@ -166,7 +191,7 @@ function CommentsPage({ darkLight, setDarkLight }) {
                 </div>
               ))}
             </section>
-            <section className="comment-write-section">
+            <section className="feedback-write-section">
               <img
                 src={jonnyPhoto}
                 alt="photoalbert"
@@ -175,9 +200,12 @@ function CommentsPage({ darkLight, setDarkLight }) {
               <input
                 type="text"
                 placeholder="Your comment"
-                className="comment-input"
+                className="feedback-input"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
               />
               <button
+                onClick={() => clickPostButton(personIndex)}
                 className="post-button"
                 style={{ color: darkLight ? "red" : "white" }}
               >
