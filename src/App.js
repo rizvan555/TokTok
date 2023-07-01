@@ -7,6 +7,7 @@ import "./css/upload.css";
 import "./css/post.css";
 import "./css/settingsPage.css";
 import "./css/ownProfile.css";
+import "./css/editProfile.css";
 import Home from "./pages/home";
 import OwnProfile from "./pages/OwnProfile";
 import OtherProfile from "./pages/OtherProfile";
@@ -68,7 +69,12 @@ function App() {
           }
         />
         <Route path="/otherprofile" element={<OtherProfile />} />
-        <Route path="/editprofile" element={<EditProfile />} />
+        <Route
+          path="/editprofile"
+          element={
+            <EditProfile darkLight={darkLight} setDarkLight={setDarkLight} />
+          }
+        />
         <Route
           path="/settingsPage"
           element={
