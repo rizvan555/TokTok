@@ -18,7 +18,6 @@ const ProfileMainBar = ({ click, setClick, darkLight }) => {
       </section>
       <nav className="head-navigation">
         <Link to="/upload">
-          {" "}
           <AiOutlinePlusSquare
             size={29}
             style={{ color: !darkLight ? "white" : "black" }}
