@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 3vw;
+  border-bottom: 1px solid lightgray;
 }
 .left-box {
   display: flex;
@@ -26,7 +27,7 @@
 }
 .home-main {
   overflow-y: auto;
-  max-height: calc(100vh - 170px);
+  max-height: calc(100vh - 155px);
   padding: 0 2vw;
 }
 .header-section {
@@ -92,7 +93,7 @@
 .footer-navbar {
   display: flex;
   justify-content: center;
-  border-top: 1px solid gray;
+  border-top: 1px solid lightgray;
   padding: 3vh 2vw;
   width: 100vw;
 }
