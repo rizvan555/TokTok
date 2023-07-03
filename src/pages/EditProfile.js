@@ -2,8 +2,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
-
-
 import leftArrowImage from "../resource/icons/Groupleft_arrow_back.svg"
 
 
@@ -21,6 +19,8 @@ import { BsArrowLeft } from "react-icons/bs";
 // ------------------------------------
 
 const EditProfile = ({ darkLight, setDarkLight }) => {
+
+
 
   const { state: navState } = useLocation();
   const nav = useNavigate();
@@ -56,6 +56,7 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
   }
 
 
+
   return (
     <div className="editprofile_page">
       <section className="editprofile_topbar">
@@ -77,4 +78,5 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
 }
 
 export default EditProfile;
+
 

@@ -54,7 +54,6 @@
 .settings-main-category:hover {
   transform: scale(1.1);
   transition: 0.2s;
-
 }
 
 .settings-main-container div {
@@ -85,7 +84,6 @@
 .setting-footer-category:hover {
   transform: scale(1.1);
   transition: 0.2s;
-
 }
 
 .settings-footer-container div {
