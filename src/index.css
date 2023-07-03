@@ -17,7 +17,6 @@ body {
 :root {
   --primary-color: #212121;
   --secondary-color: #424242;
-
   --border-color: #EEEEEE;
   --domain-color: #246BFD;
   --feed-color: #FF4D67;
@@ -34,6 +33,7 @@ body {
   from {
     transform: translateY(100%);
   }
+
   to {
     transform: translateY(0);
   }
@@ -43,6 +43,7 @@ body {
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(100%);
   }

@@ -17,9 +17,8 @@
 }
 .search-person-container {
   overflow-y: auto;
-  max-height: calc(100vh - 250px);
+  max-height: calc(100vh - 230px);
 }
-
 .search-person-section {
   display: flex;
   justify-content: space-between;

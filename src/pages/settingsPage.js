@@ -14,24 +14,25 @@ function SettingsPage({ darkLight, setDarkLight }) {
     <div className="settingsPage-container">
       <Link to="/" className="left-button">
         <BsArrowLeft
-          size={20}
+          size={30}
           style={{ color: !darkLight ? "white" : "black" }}
+          className="left-button-icon"
         />
       </Link>
       <header className="settings-header">
-        <div>
+        <div className="settings-header-category">
           <FiShare size={25} />
           <p>Share</p>
         </div>
-        <div>
+        <div className="settings-header-category">
           <FiLink size={25} />
           <p>Link</p>
         </div>
-        <div>
+        <div className="settings-header-category">
           <FiSave size={25} />
           <p>Save</p>
         </div>
-        <div>
+        <div className="settings-header-category">
           <BsQrCode size={25} />
           <p>QR code</p>
         </div>
@@ -40,29 +41,32 @@ function SettingsPage({ darkLight, setDarkLight }) {
       <main className="settings-main-container">
         <div>
           <BsStar size={25} />
-          <p>Add to favourites</p>
+          <p className="settings-main-category">Add to favourites</p>
         </div>
         <div>
           <RiUserUnfollowLine size={25} />
-          <p>Unfollow</p>
+          <p className="settings-main-category">Unfollow</p>
         </div>
       </main>
+
       <footer className="settings-footer-container">
         <div>
           <CgProfile size={25} />
-          <p>About this account</p>
+          <p className="setting-footer-category">About this account</p>
         </div>
         <div>
           <AiOutlineInfoCircle size={25} />
-          <p>Why you are seeing this post</p>
+          <p className="setting-footer-category">
+            Why you are seeing this post
+          </p>
         </div>
         <div>
           <BiHide size={25} />
-          <p>Hide</p>
+          <p className="setting-footer-category">Hide</p>
         </div>
         <div>
           <MdReportGmailerrorred size={25} />
-          <p>Report</p>
+          <p className="setting-footer-category">Report</p>
         </div>
       </footer>
     </div>

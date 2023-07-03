@@ -1,7 +1,12 @@
+import { Link } from "react-router-dom"
+
 const UpdateButton = () => {
+
     return (
         <div>
-            <button className="submit_button">Update</button>
+            {/* <Link to="/profile"> */}
+            <button type="submit" className="submit_button" >Update</button>
+            {/* </Link> */}
         </div>
     );
 }
