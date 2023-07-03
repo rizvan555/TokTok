@@ -17,7 +17,7 @@ import jonnyPhoto from "../resource/images/jonnyPhoto.png";
 import followButton from "../resource/images/followButton.png";
 import followingButton from "../resource/images/followingButton.png";
 
-function SearchAll({ darkLight, setDarkLight }) {
+function SearchAll({ darkLight }) {
   const [activeNav, setActiveNav] = useState(null);
   const [value, setValue] = useState(null);
   const [users, setUsers] = useState([
