@@ -56,7 +56,6 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
   }
 
 
-
   return (
     <div className="editprofile_page">
       <section className="editprofile_topbar">
