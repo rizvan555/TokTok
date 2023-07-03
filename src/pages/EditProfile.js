@@ -2,8 +2,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
-
-
 import leftArrowImage from "../resource/icons/Groupleft_arrow_back.svg"
 
 
@@ -23,6 +21,7 @@ import { BsArrowLeft } from "react-icons/bs";
 
 const EditProfile = ({ darkLight, setDarkLight }) => {
 
+
   const { state: navState } = useLocation();
   const nav = useNavigate();
   const [error, setError] = useState(navState?.redirectReason || "");
@@ -37,6 +36,7 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
     website: "",
     aboutMe: "",
   })
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -67,7 +67,6 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
           />
         </Link>
         <h5 style={{ color: !darkLight ? "white" : "black" }}>Edit Profile</h5>
-
       </section>
       <form onSubmit={handleSubmit} >
         <EditProfileImage />
@@ -79,3 +78,4 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
 }
 
 export default EditProfile;
+
