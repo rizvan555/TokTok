@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React, { useState } from "react";
@@ -5,6 +6,9 @@ import React, { useState } from "react";
 
 import leftArrowImage from "../resource/icons/Groupleft_arrow_back.svg"
 
+=======
+import { Link } from "react-router-dom";
+>>>>>>> ac9faf237ceaa40b11fcf003edf17f35e579a0d2
 // Import - components ----------------
 
 import EditProfileImage from "../components/EditProfileImage";
@@ -19,6 +23,7 @@ import { BsArrowLeft } from "react-icons/bs";
 // ------------------------------------
 
 const EditProfile = ({ darkLight, setDarkLight }) => {
+<<<<<<< HEAD
     const { state: navState } = useLocation();
     const nav = useNavigate();
     const [error, setError] = useState(navState?.redirectReason || "");
@@ -74,3 +79,26 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
 }
 
 export default EditProfile;
+=======
+  return (
+    <div className="editprofile_page">
+      <section className="editprofile_topbar">
+        <Link to="/profile">
+          <BsArrowLeft
+            size={25}
+            style={{ color: !darkLight ? "white" : "black" }}
+          />
+        </Link>
+        <h5 style={{ color: !darkLight ? "white" : "black" }}>Edit Profile</h5>
+      </section>
+      <form>
+        <EditProfileImage />
+        <EditProfileTextInput />
+        <UpdateButton />
+      </form>
+    </div>
+  );
+};
+
+export default EditProfile;
+>>>>>>> ac9faf237ceaa40b11fcf003edf17f35e579a0d2

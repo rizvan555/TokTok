@@ -5,13 +5,16 @@
   padding: 2vh 0;
   height: 100vh;
 }
+
 .left-button {
   padding-left: 3vw;
 }
+
 .left-button-icon:active {
   transform: scale(0.9);
   transition: all;
 }
+
 .settings-header {
   display: flex;
   justify-content: center;
@@ -19,10 +22,12 @@
   width: 95vw;
   margin: 0 auto;
 }
+
 .settings-header-category:hover {
   transform: scale(0.95);
   transition: all;
 }
+
 .settings-header div {
   display: flex;
   flex-direction: column;
@@ -33,6 +38,7 @@
   border-radius: 10px;
   padding-top: 2vh;
 }
+
 .settings-main-container {
   display: flex;
   flex-direction: column;
@@ -44,10 +50,13 @@
   border-radius: 10px;
   margin: 3vh auto 0 auto;
 }
+
 .settings-main-category:hover {
   transform: scale(1.1);
   transition: 0.2s;
+
 }
+
 .settings-main-container div {
   display: flex;
   align-items: center;
@@ -56,9 +65,11 @@
   gap: 2vw;
   padding: 1vh 0 1vh 4vw;
 }
+
 .settings-main-container div:first-of-type {
   border-bottom: 1px solid gray;
 }
+
 .settings-footer-container {
   display: flex;
   flex-direction: column;
@@ -70,10 +81,13 @@
   border-radius: 10px;
   margin: 0 auto;
 }
+
 .setting-footer-category:hover {
   transform: scale(1.1);
   transition: 0.2s;
+
 }
+
 .settings-footer-container div {
   display: flex;
   align-items: center;
@@ -83,6 +97,7 @@
   padding: 1vh 0 1vh 4vw;
   border-bottom: 1px solid gray;
 }
+
 .settings-footer-container div:nth-last-child() {
   border: none;
 }

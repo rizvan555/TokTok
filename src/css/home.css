@@ -1,6 +1,7 @@
 .home-container {
   padding: 1vh 0vw;
 }
+
 .header {
   display: flex;
   align-items: center;
@@ -8,54 +9,66 @@
   padding: 0 3vw;
   border-bottom: 1px solid lightgray;
 }
+
 .left-box {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
+
 .logo,
 .heart-img {
   width: 30px;
   height: 30px;
 }
+
 .title {
   font-weight: 300;
 }
+
 .main-heart-button {
   background-color: transparent;
   border: none;
 }
+
 .home-main {
   overflow-y: auto;
   max-height: calc(100vh - 155px);
   padding: 0 2vw;
 }
+
 .header-section {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1vh 1vw;
 }
+
 .person-left-side {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
+
 .name-box {
   line-height: 2px;
   text-align: start;
 }
+
 .name {
   font-size: 16px;
   font-weight: bold;
 }
+
 .position {
   font-size: 12px;
   font-weight: 300;
 }
+
 .settings-container {
   text-decoration: none;
 }
+
 .settings-button {
   display: flex;
   align-items: center;
@@ -66,15 +79,18 @@
   padding-bottom: 1vh;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
+
 .person-photo {
   width: 40px;
   height: 40px;
 }
+
 .main-section {
   display: flex;
   justify-content: center;
   margin-bottom: 1vh;
 }
+
 .main-footer-section {
   display: flex;
   align-items: center;
@@ -82,12 +98,14 @@
   margin-bottom: 2vh;
   padding-left: 1vw;
 }
+
 /* --- CommentPage ----- */
 .comment-section {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
+
 /* --- FooterNavbar ----- */
 
 .footer-navbar {
@@ -95,7 +113,9 @@
   justify-content: center;
   border-top: 1px solid lightgray;
   padding: 2vh 2vw;
+
 }
+
 .home-footer,
 .search-footer,
 .frame-footer,
