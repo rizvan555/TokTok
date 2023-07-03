@@ -33,6 +33,10 @@
 
 /* --- Form -------------------------------- */
 
+form {
+    position: relative;
+}
+
 form input {
     display: inline-block;
     margin-top: 1.2rem;
@@ -50,17 +54,22 @@ form input {
     padding-left: 40px;
 }
 
-form input[type="email"] {
-    background-image: url('../resource/icons/Messageemail_icon-filed.png');
-    background-repeat: no-repeat;
-    background-position: 3%;
+
+form input[type='email'] {
+    position: relative;
 }
 
-form input[type="password"] {
-    background-image: url('../resource/icons/Locksafe-icon.png'),
-        url('../resource/icons/Hidepassword_hidden.png');
-    background-position: 3%, 97%;
-    background-repeat: no-repeat, no-repeat;
+form .mailIcon {
+    position: absolute;
+    left: 2.7%;
+    top: 13.8%;
+    width: 6%;
+}
+
+form input:nth-of-type(2) {
+    background-image: url('../resource/icons/Locksafe-icon.png');
+    background-position: 3%;
+    background-repeat: no-repeat;
 }
 
 form input:hover {
@@ -69,6 +78,13 @@ form input:hover {
 
 form input:focus {
     outline: none;
+}
+
+.toggle_password img {
+    position: absolute;
+    right: 2%;
+    top: 45%;
+    width: 5%;
 }
 
 button {

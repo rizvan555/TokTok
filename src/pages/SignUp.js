@@ -6,6 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "../css/signup.css";
 import toktokLogo_big from '../resource/logos/toktokLogo-big.png';
+import mailIcon from '../resource/icons/Messageemail_icon-filed.png';
+import showIcon from '../resource/icons/view-eye-svgrepo-com.svg';
+import hideIcon from '../resource/icons/eye-off-svgrepo-com.svg';
 
 // --------------------------------------
 
@@ -27,6 +30,8 @@ const SignUp = () => {
   const [data, setData] = useState(defaultData)
   const navigate = useNavigate()
   const [error, setError] = useState(defaultErrorState);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSignIn = async (e) => {
     e.preventDefault()
@@ -73,9 +78,10 @@ const SignUp = () => {
           onChange={(e) => {
             setData({ ...data, email: e.target.value })
           }} />
+        <img className="mailIcon" src={mailIcon} alt="mail_icon" />
         <small>{error.email && error.email}</small>
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
           id="password"
           value={data.password}
@@ -83,6 +89,11 @@ const SignUp = () => {
             setData({ ...data, password: e.target.value })
           }} />
         <small>{error.password && error.password}</small>
+        <span
+          className="toggle_password"
+          onClick={() => setShowPassword(!showPassword)}>
+          {showPassword ? <img src={showIcon} /> : <img src={hideIcon} />}
+        </span>
         <button >Sign up</button>
       </form>
       <p className="link_to">Already have an account? <Link to={"/signin"}>Sign in</Link></p>
