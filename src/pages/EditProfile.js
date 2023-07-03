@@ -18,6 +18,7 @@ import { BsArrowLeft } from "react-icons/bs";
 
 // ------------------------------------
 
+
 const EditProfile = ({ darkLight, setDarkLight }) => {
 
 
@@ -37,6 +38,7 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
     aboutMe: "",
   })
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
@@ -54,7 +56,6 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
       }
     }
   }
-
 
   return (
     <div className="editprofile_page">
@@ -77,5 +78,4 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
 }
 
 export default EditProfile;
-
 
