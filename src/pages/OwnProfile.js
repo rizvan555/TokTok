@@ -14,6 +14,17 @@ import { useState } from "react";
 
 function OwnProfile({ darkLight }) {
   const [click, setClick] = useState(false);
+  const [user, setUser] = useState({
+    name: "",
+    username: "",
+    activity: "",
+    birthday: "",
+    email: "",
+    tel: "",
+    gender: "",
+    website: "",
+    aboutMe: ""
+  })
 
   return (
     <>
@@ -28,7 +39,7 @@ function OwnProfile({ darkLight }) {
           setClick={setClick}
           darkLight={darkLight}
         />
-        <ProfileFacts click={click} setClick={setClick} darkLight={darkLight} />
+        <ProfileFacts click={click} setClick={setClick} darkLight={darkLight} user={user} setUser={setUser} />
         <ProfileGallery
           click={click}
           setClick={setClick}
