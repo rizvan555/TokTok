@@ -17,7 +17,7 @@
 }
 .search-person-container {
   overflow-y: auto;
-  max-height: calc(100vh - 250px);
+  max-height: calc(100vh - 230px);
 }
 .search-person-section {
   display: flex;
@@ -42,18 +42,4 @@
   border-bottom: 3px solid red;
   padding-bottom: 2vh;
   text-align: center;
-}
-.footer-navbar {
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid lightgray;
-  padding: 2vh 2vw;
-}
-.home-footer,
-.search-footer,
-.frame-footer,
-.profile-footer {
-  display: flex;
-  border: none;
-  background-color: transparent;
 }
