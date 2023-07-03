@@ -14,7 +14,6 @@ import { useState } from "react";
 
 function OwnProfile({ darkLight }) {
 
-
   const [click, setClick] = useState(false);
   const [user, setUser] = useState({
     name: "",

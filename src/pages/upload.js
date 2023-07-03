@@ -1,19 +1,18 @@
 import "../css/upload.css";
 import React, { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import FileUpload from "../components/FileUpload";
 import Exclude from "../resource/icons/Exclude.svg";
-// import Layout from "../resource/images/Auto Layout Vertical.svg";
 
+// import Layout from "../resource/images/Auto Layout Vertical.svg";
 import { BiCategory, BiSolidCategory } from "react-icons/bi";
 import { AiFillCamera, AiOutlineCamera } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { CgCloseR } from "react-icons/cg";
 
 const Upload = ({ darkLight, setDarkLight }) => {
-  const [showGallery, setShowGallery] = useState(false);
+    const [showGallery, setShowGallery] = useState(false);
 
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
