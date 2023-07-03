@@ -17,7 +17,6 @@ const Upload = ({ darkLight, setDarkLight }) => {
     const [loading, setLoading] = useState(false);
     const [res, setRes] = useState({});
     const navigate = useNavigate();
-
     const handleUploadClick = () => {
         setShowGallery(!showGallery);
     };
