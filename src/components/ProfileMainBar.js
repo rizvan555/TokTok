@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 // ---------------------------------------------------
 
 const ProfileMainBar = ({ click, setClick, darkLight }) => {
+
   return (
     <nav className="profile_mainbar">
       <section>
