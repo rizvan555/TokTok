@@ -5,7 +5,7 @@
 /* Import Icons ------------------------------------------ */
 
 
-.signup_page {
+.signin_page {
     font-family: var(--font-family-bold);
     color: var(--primary-color);
     width: 90%;
@@ -27,7 +27,8 @@
 
 .toktokLogo {
     width: 7rem;
-    padding: 5vh 0;
+    margin: 5vh 0;
+    padding: 0;
 }
 
 /* --- Form -------------------------------- */
@@ -82,6 +83,13 @@ button {
 }
 
 /* --- Link ------------------------------------- */
+
+.forgot_link {
+    color: var(--feed-color);
+    text-decoration: none;
+    font-size: calc(var(--font-size-rem)*1.4);
+    font-weight: 500;
+}
 
 .link_to {
     padding-top: 30px;
