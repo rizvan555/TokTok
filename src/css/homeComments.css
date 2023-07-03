@@ -9,6 +9,10 @@
   align-items: center;
   gap: 4vw;
 }
+.left-button-icon:active {
+  transform: scale(0.9);
+  transition: all;
+}
 .send-button {
   border: none;
   background-color: transparent;
@@ -34,7 +38,7 @@
   margin-bottom: -2vh;
 }
 .tag-box {
-  color: blue;
+  color: #2C6AEE;
   text-align: start;
 }
 .footer-section {
@@ -84,24 +88,27 @@
 }
 .reply-button {
   border: none;
-  font-size: 15px;
+  font-size: 1rem;
 }
-.comment-write-section {
+.feedback-write-section {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4vw;
   padding: 3vh 1vw 5vh 1vh;
 }
-.comment-input {
+.feedback-input {
   padding: 12px;
-  border: none;
+  border: 1px solid #c1c1c1;
   border-radius: 10px;
   background-color: #fafafa;
   width: 58vw;
+  margin-right: -2vw;
 }
 .post-button {
   background-color: transparent;
   border: none;
   color: red;
+  font-weight: bold;
+  font-size: 1rem;
 }
