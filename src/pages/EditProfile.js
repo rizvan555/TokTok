@@ -22,6 +22,7 @@ import { BsArrowLeft } from "react-icons/bs";
 const EditProfile = ({ darkLight, setDarkLight }) => {
 
 
+
   const { state: navState } = useLocation();
   const nav = useNavigate();
   const [error, setError] = useState(navState?.redirectReason || "");
@@ -55,7 +56,6 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
       }
     }
   }
-
 
   return (
     <div className="editprofile_page">
