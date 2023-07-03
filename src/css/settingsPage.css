@@ -9,7 +9,7 @@
   padding-left: 3vw;
 }
 .left-button-icon:active {
-  transform: scale(0.90);
+  transform: scale(0.9);
   transition: all;
 }
 .settings-header {
@@ -45,8 +45,8 @@
   margin: 3vh auto 0 auto;
 }
 .settings-main-category:hover {
-  transform: scale(1.05);
-  transition: all;
+  transform: scale(1.1);
+  transition: 0.2s;
 }
 .settings-main-container div {
   display: flex;
@@ -71,8 +71,8 @@
   margin: 0 auto;
 }
 .setting-footer-category:hover {
-  transform: scale(1.05);
-  transition: all;
+  transform: scale(1.1);
+  transition: 0.2s;
 }
 .settings-footer-container div {
   display: flex;

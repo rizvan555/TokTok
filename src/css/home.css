@@ -94,8 +94,7 @@
   display: flex;
   justify-content: center;
   border-top: 1px solid lightgray;
-  padding: 3vh 2vw;
-  width: 100vw;
+  padding: 2vh 2vw;
 }
 .home-footer,
 .search-footer,
@@ -104,5 +103,4 @@
   display: flex;
   border: none;
   background-color: transparent;
-  width: 50vw;
 }
