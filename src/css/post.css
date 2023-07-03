@@ -41,6 +41,13 @@
   gap: 2%;
 }
 
+.location_button {
+  background-color: white;
+  border: none;
+  font-size: 1rem;
+  padding: 0;
+}
+
 hr {
   border-color: #eeeeee;
   margin: 1.5vh 0;
@@ -88,10 +95,10 @@ hr {
   transition: 0.3s;
 }
 
-.toggle input:checked + .slider {
+.toggle input:checked+.slider {
   background-color: #ff4d67;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(25px);
 }

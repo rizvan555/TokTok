@@ -58,7 +58,6 @@ app.post("/api/signup", async (req, res) => {
         if (existingUser) {
             return res.redirect("/signin");
         }
-
         // Erstelle einen neuen Benutzer
         const newUser = new User({ email });
         newUser.setPassword(password);
@@ -68,6 +67,7 @@ app.post("/api/signup", async (req, res) => {
 
         res.status(201).json({ message: "Benutzer erfolgreich erstellt" });
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: "Benutzer konnte nicht erstellt werden" });
     }
 });

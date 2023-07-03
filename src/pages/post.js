@@ -2,30 +2,28 @@ import "../css/post.css";
 import { Link, useLocation } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import Anny from "../resource/images/image1.png";
 import Profile from "../resource/images/Ellipseprofile_image_small.png";
 import { FiSettings } from "react-icons/fi";
 import { BsArrowLeft } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
 
 const NewPost = ({ darkLight, setDarkLight }) => {
-  const [isCheckedFacebook, setIsCheckedFacebook] = useState(false);
-  const [isCheckedTwitter, setIsCheckedTwitter] = useState(false);
-  const [isCheckedTumblr, setIsCheckedTumblr] = useState(false);
-  const [uploadedURL, setUploadedURL] = useState("");
+
 
   const location = useLocation();
-  // console.log(location.state);
+  console.log(location);
 
   const [post, setPost] = useState(
     {
-      content:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque ab quasi ullam eaque quos laudantium dicta blanditiis consectetur, praesentium itaque.",
+      content: "",
       image: location.state.imageURL,
-      location: "Lorem",
+      avatar: "",
+      location: "Düsseldorf",
+      facebook: false,
+      twitter: false,
+      tumblr: false
     },
   );
-  // console.log(post.image);
 
   useEffect(() => {
     axios
@@ -39,15 +37,19 @@ const NewPost = ({ darkLight, setDarkLight }) => {
   });
 
   const handleClickFacebook = () => {
-    setIsCheckedFacebook(!isCheckedFacebook);
+    setPost(prev => ({ ...prev, facebook: !prev.facebook }))
   };
 
   const handleClickTwitter = () => {
-    setIsCheckedTwitter(!isCheckedTwitter);
+    // setPost({
+    //   ...post,
+    //   twitter: !post.twitter,
+    // });
+    setPost(prev => ({ ...prev, twitter: !prev.twitter }))
   };
 
   const handleClickTumblr = () => {
-    setIsCheckedTumblr(!isCheckedTumblr);
+    setPost(prev => ({ ...prev, tumblr: !prev.tumblr }))
   };
 
   const textareaRef = useRef(null);
@@ -57,11 +59,6 @@ const NewPost = ({ darkLight, setDarkLight }) => {
     setPost({ ...post, content: e.target.value });
     adjustTextareaHeight();
   };
-
-  // const handleInputImage = async (e) => {
-  //   e.preventDefault();
-  //   setPost({ ...post, image: uploadedURL });
-  // }
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
@@ -91,7 +88,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
             value={post.content}
             onChange={handleInputChange}
           />
-          <img src={Anny} alt="uploaded" className="post_pic" />
+          <img src={post.image} alt="uploaded" className="post_pic" />
         </section>
       </header>
       <main>
@@ -103,7 +100,8 @@ const NewPost = ({ darkLight, setDarkLight }) => {
               style={{ color: !darkLight ? "white" : "black" }}
             />
           </Link>
-          <p>Add Location</p>
+          <button className="location_button">Add Location</button>
+          {/* <p>Add Location</p> */}
         </div>
         <hr />
         <section>
@@ -116,7 +114,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={isCheckedFacebook}
+                  checked={post.facebook}
                   onChange={handleClickFacebook}
                 />
                 <span className="slider"></span>
@@ -128,7 +126,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
               Twitter
               <input
                 type="checkbox"
-                checked={isCheckedTwitter}
+                checked={post.twitter}
                 onChange={handleClickTwitter}
               />
               <span className="slider"></span>
@@ -139,7 +137,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
               Tumblr
               <input
                 type="checkbox"
-                checked={isCheckedTumblr}
+                checked={post.tumblr}
                 onChange={handleClickTumblr}
               />
               <span className="slider"></span>
