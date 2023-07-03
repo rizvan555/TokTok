@@ -39,6 +39,7 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
   })
 
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
