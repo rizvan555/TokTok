@@ -93,7 +93,7 @@ app.post("/api/signin", async (req, res) => {
         }
 
         const token = user.generateAuthToken({ email });
-        res.cookie("auth", token, { httpOnly: true, maxAge: 1000 * 60 * 30 }); // Cookie
+        res.cookie("auth", token, { httpOnly: true, maxAge: 1000 * 60 * 120 }); // Cookie
         return res.status(200).json({ message: "Login erfolgreich", data: { token } });
 
     } catch (error) {
@@ -165,17 +165,8 @@ app.post(
         try {
             const b64 = Buffer.from(req.file.buffer).toString("base64");
             let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
-            const user = await User.findOne({ email: req.user.email });
-            if (!user) {
-                return res.status(404).json({ error: "User not found." });
-            }
-
-            user.avatar = cldRes.secure_url; // Aktualisiere das Avatar-Feld mit der URL des hochgeladenen Bildes
-            await user.save();
+            const cldRes = await handleUpload(dataURI);
             res.json(cldRes);
-
-            // const cldRes = await handleUpload(dataURI);
-            // res.json(cldRes);
         } catch (error) {
             console.log(error);
             res.status(500).send({
@@ -189,7 +180,7 @@ app.post(
 // ========== UPDATE USER ==========
 app.put("/api/user", authenticateToken, async (req, res) => {
 
-    const { name, username, activity, email, birthday, gender, tel, website, aboutMe } = req.body;
+    const { avatar, name, username, activity, email, birthday, gender, tel, website, aboutMe } = req.body;
 
     try {
         const user = await User.findOne({ email: req.user.email });
@@ -198,12 +189,13 @@ app.put("/api/user", authenticateToken, async (req, res) => {
             return res.status(404).json({ error: "User not found." });
         }
 
+        user.avatar = avatar
         user.name = name;
         user.username = username;
         user.email = email;
         user.activity = activity;
         user.birthday = birthday;
-        user.gender = gender;
+        user.gender = gender || null;
         user.tel = tel;
         user.website = website;
         user.aboutMe = aboutMe;
