@@ -1,5 +1,14 @@
 .file_button {
+    display: none;
+}
+
+.file_button::-webkit-file-upload-button {
     background-color: white;
     border: none;
-    /* visibility: hidden */
+    cursor: pointer;
+}
+
+.btn-green {
+    color: #FAFAFA;
+    background-color: #FF4D67;
 }

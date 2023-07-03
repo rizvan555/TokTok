@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 3vw;
-
+  border-bottom: 1px solid lightgray;
 }
 .left-box {
   display: flex;
@@ -27,9 +27,8 @@
 }
 .home-main {
   overflow-y: auto;
-  max-height: calc(100vh - 170px);
+  max-height: calc(100vh - 155px);
   padding: 0 2vw;
-
 }
 .header-section {
   display: flex;
@@ -83,17 +82,19 @@
   margin-bottom: 2vh;
   padding-left: 1vw;
 }
+/* --- CommentPage ----- */
 .comment-section {
   display: flex;
   align-items: center;
   gap: 2vw;
 }
+/* --- FooterNavbar ----- */
+
 .footer-navbar {
   display: flex;
   justify-content: center;
-  border-top: 1px solid gray;
-  padding: 3vh 2vw;
-  width: 100vw;
+  border-top: 1px solid lightgray;
+  padding: 2vh 2vw;
 }
 .home-footer,
 .search-footer,
@@ -102,5 +103,4 @@
   display: flex;
   border: none;
   background-color: transparent;
-  width: 50vw;
 }
