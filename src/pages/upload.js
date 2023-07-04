@@ -12,7 +12,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { CgCloseR } from "react-icons/cg";
 
 const Upload = ({ darkLight, setDarkLight }) => {
-    const [showGallery, setShowGallery] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
 
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -112,7 +112,6 @@ const Upload = ({ darkLight, setDarkLight }) => {
       <main>
         {showGallery && (
           <div className="dropdown-options">
-
             <FileUpload handleUpload={handleUpload} handleSelectFile={handleSelectFile} />
           </div>
         )}
