@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-
-
 const EditProfileTextInput = ({ user, setUser }) => {
 
     // onfocus="this.type='date'" onblur="this.type='text'"
