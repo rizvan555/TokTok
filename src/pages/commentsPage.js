@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/homeComments.css";
+import commentButton1 from "../resource/images/commentButton1.svg";
+import commentButton2 from "../resource/images/commentButton2.svg";
 import CommentButton from "../components/CommentButton";
 import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
@@ -11,6 +13,7 @@ import jonnyPhoto from "../resource/images/jonnyPhoto.png";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsSend } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
+// import axios from "axios";
 
 function CommentsPage({ darkLight }) {
   const [persons, setPersons] = useState([
@@ -38,6 +41,20 @@ function CommentsPage({ darkLight }) {
       isLiked: false,
     },
   ]);
+
+  // const [persons, setPersons] = useState([]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3000/comments")
+  //     .then((response) => {
+  //       setPersons(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
+
   const [inputValue, setInputValue] = useState(null);
 
   const toggleLike = (personIndex, feedbackIndex) => {
@@ -129,7 +146,11 @@ function CommentsPage({ darkLight }) {
                     </div>
                   </div>
                   <Link to="/settingsPage" className="comment-button-section">
-                    <button className="settings-button">...</button>
+                    {darkLight ? (
+                      <img src={commentButton1} alt="commentButton1" />
+                    ) : (
+                      <img src={commentButton2} alt="commentButton2" />
+                    )}
                   </Link>
                 </section>
 
@@ -145,7 +166,7 @@ function CommentsPage({ darkLight }) {
                     setPersons={setPersons}
                     index={index}
                   />
-                  <CommentButton person={person} />
+                  <CommentButton darkLight={darkLight} person={person} />
                 </section>
               </div>
             ))}
@@ -165,7 +186,11 @@ function CommentsPage({ darkLight }) {
                       </div>
                     </div>
                     <Link to="/settingsPage" className="comment-button-section">
-                      <button className="settings-button">...</button>
+                      {darkLight ? (
+                        <img src={commentButton1} alt="" />
+                      ) : (
+                        <img src={commentButton2} alt="" />
+                      )}
                     </Link>
                   </div>
                   <p className="feedback-box">{feedback.feedback}</p>

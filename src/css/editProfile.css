@@ -1,90 +1,89 @@
 /* Import Style Variablen -------------------------------- */
 
-@import '../index.css';
+@import "../index.css";
 
 /* ------------------------------------------------------ */
 
 .editprofile_page {
-    font-family: var(--font-family-bold);
-    color: var(--primary-color);
-    width: 95%;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-    padding: 2vh 3vw;
+  font-family: var(--font-family-bold);
+  color: var(--primary-color);
+  width: 95%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  padding: 2vh 3vw;
 }
 
 /* Edit - Profile - Topbar ------------------------------------- */
 
 .editprofile_topbar {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding-left: 7px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-left: 7px;
 }
 
 .editprofile_topbar h5 {
-    font-size: calc(var(--font-size-rem)*2.2);
-    margin: 0;
-    padding: 0;
-    padding-bottom: 5px;
+  font-size: calc(var(--font-size-rem) * 2.2);
+  margin: 0;
+  padding: 0;
+  padding-bottom: 5px;
 }
-
 
 /* Edit - Profile - Image ------------------------------------- */
 
 .image-container {
-    padding: 10px 0;
-    margin: 0 auto;
+  padding: 10px 0;
+  margin: 0 auto;
 }
 
 .editprofile_page .profile_image {
-    position: relative;
-    width: 33%;
+  position: relative;
+  width: 33%;
 }
 
 .editprofile_page .edit_icon {
-    position: absolute;
-    top: 71%;
-    left: 57%;
+  position: absolute;
+  top: 71%;
+  left: 57%;
 }
 
 /* Edit - Profile - Form -------------------------*/
 
 .text_form {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .text_form input,
 .text_form select,
 .text_form textarea {
-    display: inline-block;
-    margin-top: 12px;
-    font-family: var(--font-family-bold);
-    color: var(--secondary-color);
-    background-color: var(--input-color-1);
-    font-weight: 500;
-    border-radius: 10px;
-    width: 90%;
-    padding: 15px;
-    border-style: none;
-    appearance: none;
-    resize: none;
+  display: inline-block;
+  margin-top: 12px;
+  font-family: var(--font-family-bold);
+  color: var(--secondary-color);
+  background-color: var(--input-color-1);
+  font-weight: 500;
+  border-radius: 10px;
+  width: 90%;
+  padding: 15px;
+  border-style: none;
+  appearance: none;
+  resize: none;
 }
 
 .text_form select {
-    width: 98%;
-    appearance: none;
-    background-image: url('../resource/icons/ArrowDown_dropdown_editProfile.png');
-    background-position: 98%;
-    background-repeat: no-repeat;
+  width: 98%;
+  appearance: none;
+  background-image: url("../resource/icons/ArrowDown_dropdown_editProfile.png");
+  background-position: 98%;
+  background-repeat: no-repeat;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    background-image: url('../resource/icons/Groupcalendar_icon.svg');
-    background-repeat: no-repeat;
-    text-align: right;
-    background-size: 110%;
+  background-image: url("../resource/icons/Groupcalendar_icon.svg");
+  background-repeat: no-repeat;
+  text-align: right;
+  background-size: 110%;
 }
 
 /* input[type="date"]::placeholder {
@@ -92,31 +91,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 } */
 
 .text_form input:nth-of-type(5) {
-    background-image: url('../resource/icons/Groupmail_icon.svg');
-    background-repeat: no-repeat;
-    background-position: 96.5%;
+  background-image: url("../resource/icons/Groupmail_icon.svg");
+  background-repeat: no-repeat;
+  background-position: 96.5%;
 }
 
 .text_form input:hover,
 .text_form select:hover,
 .text_form textarea:hover {
-    background-color: var(--input-color-2);
+  background-color: var(--input-color-2);
 }
 
 .text_form input:focus,
 .text_form select:focus,
 .text_form textarea:focus {
-    outline: none;
+  outline: none;
 }
 
 /* Submit - Button -------------------------------------------- */
 
 .submit_button {
-    color: var(--pure-white);
-    background-color: var(--feed-color);
-    width: 98%;
-    border-style: none;
-    border-radius: 30px;
-    padding: 15px 0;
-    margin: 20px 0 30px 0;
+  color: var(--pure-white);
+  background-color: var(--feed-color);
+  width: 98%;
+  border-style: none;
+  border-radius: 30px;
+  padding: 15px 0;
+  margin: 20px 0 30px 0;
 }
