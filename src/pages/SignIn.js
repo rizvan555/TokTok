@@ -6,6 +6,9 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import "../css/signin.css";
 import toktokLogo_big from '../resource/logos/toktokLogo-big.png';
+import mailIcon from '../resource/icons/Messageemail_icon-filed.png';
+import showIcon from '../resource/icons/view-eye-svgrepo-com.svg';
+import hideIcon from '../resource/icons/eye-off-svgrepo-com.svg';
 
 // --------------------------------------
 
@@ -19,6 +22,8 @@ const SignIn = () => {
         email: "",
         password: ""
     })
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -52,8 +57,9 @@ const SignIn = () => {
                     onChange={(e) => {
                         setUser({ ...user, email: e.target.value })
                     }} />
+                <img className="mailIcon" src={mailIcon} alt="mail_icon" />
                 <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     id="password"
                     value={user.password}
@@ -61,11 +67,15 @@ const SignIn = () => {
                         setUser({ ...user, password: e.target.value })
                     }} />
                 <small>{error}</small>
+                <span
+                    className="toggle_password"
+                    onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? <img src={showIcon} /> : <img src={hideIcon} />}
+                </span>
                 <button>Log In</button>
             </form>
             <Link className="forgot_link">Forgot the password?</Link>
             <p className="link_to">Don't have an account? <Link to={"/signup"}>Sign up</Link></p>
-
         </div>
     );
 }
