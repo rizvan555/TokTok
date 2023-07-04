@@ -33,7 +33,7 @@ function App() {
       }}
     >
       <Routes>
-        <Route path="/" element={<Navigate to="/loading" />}></Route>
+        {/* <Route path="/" element={<Navigate to="/loading" />}></Route> */}
         <Route path="/loading" element={<LoadingPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
