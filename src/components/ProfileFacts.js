@@ -8,17 +8,18 @@ import "../css/ownProfile.css";
 
 import profile_image from '../resource/images/EllipseunknownUser.png';
 import profile_edit_icon from "../resource/icons/Edit Squareprofile_image_edit_icon.png";
+import newUserImage from '../resource/images/EllipseunknownUser.png';
+
 
 // ---------------------------------------------------
 
 const ProfileFacts = ({ click, darkLight, user, setUser }) => {
 
-  const location = useLocation();
+  const [res, setRes] = useState({});
+
+  // const location = useLocation();
   // console.log(location.state);
 
-  // const [avatar, setAvatar] = useState({
-  //   profil_img: profile_image
-  // })
 
   useEffect(() => {
     const getUserProfile = async () => {
@@ -40,11 +41,12 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
     <div style={{ color: !darkLight ? "white" : "black" }}>
       <article className="profile_article">
         <div className="image-container">
-          {/* <img
-            src={avatar.profil_img}
-            className="profile_img"
-            alt="profile_image_user"
-          /> */}
+          {user.avatar ? (
+            <img src={user.avatar} className='profile_image' alt="" />
+          ) : (
+            <img src={newUserImage} className='profile_image' alt="" />
+          )}
+          {/* {file && <center> {file.name}</center>} */}
           <Link to="/editprofile">
             <img
               src={profile_edit_icon}
@@ -54,17 +56,16 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
           </Link>
         </div>
 
-        <h1>{user.name}</h1>
-        {!click ? <h3>{user.activity}</h3> : ""}
+        <h1>{user.name ? user.name : "Your name"}</h1>
+        {!click ? <h3>{user.activity ? user.activity : "Tell other user something about you."}</h3> : ""}
         {!click ? (
           <p style={{ color: !darkLight ? "white" : "black" }}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio magni
-            totam, harum exercitationem accusamus facere praesentium expedita.
+            {user.aboutMe}
           </p>
         ) : (
           ""
         )}
-        {!click ? <p>www.toktok.com</p> : ""}
+        {!click ? <p>{user.website ? user.website : "Your domain"}</p> : ""}
       </article>
       {!click ? (
         <section className="follower_section">

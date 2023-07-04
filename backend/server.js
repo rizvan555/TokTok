@@ -183,24 +183,25 @@ app.put("/api/user", authenticateToken, async (req, res) => {
     const { avatar, name, username, activity, email, birthday, gender, tel, website, aboutMe } = req.body;
 
     try {
-        const user = await User.findOne({ email: req.user.email });
+        console.log(req.user);
 
+        const user = await User.findOneAndUpdate({ email: req.user.email }, { $set: req.body });
         if (!user) {
             return res.status(404).json({ error: "User not found." });
         }
 
-        user.avatar = avatar
-        user.name = name;
-        user.username = username;
-        user.email = email;
-        user.activity = activity;
-        user.birthday = birthday;
-        user.gender = gender || null;
-        user.tel = tel;
-        user.website = website;
-        user.aboutMe = aboutMe;
+        // user.avatar = avatar;
+        // user.name = name;
+        // user.username = username;
+        // user.email = email;
+        // user.activity = activity;
+        // user.birthday = birthday;
+        // user.gender = gender || null;
+        // user.tel = tel;
+        // user.website = website;
+        // user.aboutMe = aboutMe;
 
-        await user.save();
+        // await user.save();
         res.json(user);
 
     } catch (error) {
@@ -310,26 +311,38 @@ app.post("/api/newpost", authenticateToken,
     });
 
 
-// ========== POST NEW COMMENT ==========
 
-app.post("/api/newcomment", async (req, res) => {
+// COMMENTS
+
+// ========== GET ALL COMMENTS FOR ONE POST ==========
+app.get("/api/comments/:id")
+
+// ========== GET SINGLE COMMENT ==========
+app.get("/api/comment/:id")
+
+// ========== PUT NEW COMMENT TO A POST ==========
+app.put("/api/comments/:postid", async (req, res) => {
     try {
-        const { user, comment } = req.body;
+        const { user, content } = req.body;
+        const { postid } = req.params;
 
         const newComment = new Comment({
             user,
-            comment,
+            content,
+            post: postid,
         });
 
         const savedComment = await newComment.save();
 
-        res.status(201).json(savedPost);
+        res.status(201).json(savedComment);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Failed to create comment." });
     }
 });
 
+
+// ==================================================
 
 
 app.get("/*", (req, res) => {

@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import newUserImage from '../resource/images/EllipseunknownUser.png';
 
-const EditProfileImage = () => {
+const EditProfileImage = ({ user, setUser }) => {
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const [res, setRes] = useState({});
     const navigate = useNavigate();
 
     const handleSelectFile = (e) => setFile(e.target.files[0]);
-    const handleUpload = async () => {
+    const handleUpload = async (e) => {
+        e.preventDefault();
         try {
             setLoading(true);
             const data = new FormData();
@@ -19,7 +20,9 @@ const EditProfileImage = () => {
             setRes(response.data);
 
             const imageURL = response.data.secure_url;
-            navigate("/editprofile", { state: { imageURL } });
+            setUser({ ...user, avatar: imageURL })
+            // navigate("/profile", { state: { imageURL } });
+
         } catch (error) {
             alert(error.message);
         } finally {
@@ -43,7 +46,7 @@ const EditProfileImage = () => {
                 type="file"
                 onChange={handleSelectFile}
                 multiple={false}
-                className="file_button"
+                // className="file_button"
                 style={{ border: "none" }}
             />
             {/* <code>
