@@ -95,7 +95,7 @@ function CommentsPage({ darkLight }) {
   };
 
   return (
-    <div>
+    <div className="commentPage-container">
       <header className="commentPage-header">
         <div className="commentsHeader-left">
           <Link to="/">

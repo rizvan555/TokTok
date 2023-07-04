@@ -1,5 +1,6 @@
 .home-container {
   padding: 1vh 0vw;
+  font-family: "Urbanist", sans-serif;
 }
 
 .header {
@@ -23,7 +24,7 @@
 }
 
 .title {
-  font-weight: 300;
+  font-weight: bold;
 }
 
 .main-heart-button {
