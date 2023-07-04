@@ -32,11 +32,12 @@
 
 /* --- Form -------------------------------- */
 
-form {
+.signup_form {
     position: relative;
 }
 
-form input {
+.signup_form .password,
+.signup_form .email {
     display: inline-block;
     margin-top: 1.2rem;
     font-family: var(--font-family-bold);
@@ -53,39 +54,42 @@ form input {
     padding-left: 40px;
 }
 
-form input[type="email"] {
+.signup_form .email {
     position: relative;
 }
 
-form .mailIcon {
+.signup_form .mailIcon {
     position: absolute;
     left: 2.7%;
     top: 13.8%;
     width: 6%;
 }
 
-form input:nth-of-type(2) {
+.signup_form .password {
     background-image: url('../resource/icons/Locksafe-icon.png');
     background-position: 3%;
     background-repeat: no-repeat;
 }
 
-form input:hover {
+.signup_form .password:hover,
+.signup_form .email:hover {
     background-color: var(--input-color-2);
 }
 
-form input:focus {
+.signup_form .password:focus,
+.signup_form .email:focus {
     outline: none;
 }
 
-.toggle_password img {
+.toggle_password .hideIcon,
+.toggle_password .showIcon {
     position: absolute;
     right: 2%;
     top: 45%;
     width: 5%;
 }
 
-button {
+.signup_btn {
     color: var(--pure-white);
     background-color: var(--feed-color);
     width: 100%;
