@@ -21,9 +21,6 @@ import { BsArrowLeft } from "react-icons/bs";
 
 const EditProfile = ({ darkLight, setDarkLight }) => {
 
-
-
-    // const { state: navState } = useLocation();
     const nav = useNavigate();
     const [error, setError] = useState("");
     const [user, setUser] = useState({
