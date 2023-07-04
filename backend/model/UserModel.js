@@ -7,7 +7,7 @@ dotenv.config();
 process.env.TOKEN_SECRET;
 
 const userSchema = new mongoose.Schema({
-    email: { type: String, required: true, unique: true, lowercase: true },
+    email: { type: String, unique: true, lowercase: true },
     salt: { type: String, required: true, select: false },
     hash: { type: String, required: true, select: false },
     name: { type: String },
