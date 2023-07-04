@@ -96,7 +96,85 @@ function Home({ darkLight, setDarkLight }) {
                   </div>
                 </div>
                 <Link to="/settingsPage" className="settings-container">
-                  <button className="settings-button">...</button>
+                  {darkLight ? (
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M10.0002 0.75C15.1082 0.75 19.2502 4.891 19.2502 10C19.2502 15.108 15.1082 19.25 10.0002 19.25C4.89121 19.25 0.750214 15.108 0.750214 10C0.750214 4.892 4.89221 0.75 10.0002 0.75Z"
+                        stroke="#212121"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M13.9394 10.0129H13.9484"
+                        stroke="#212121"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M9.93041 10.0129H9.93941"
+                        stroke="#212121"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M5.9214 10.0129H5.9304"
+                        stroke="#212121"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M10.0002 0.75C15.1082 0.75 19.2502 4.891 19.2502 10C19.2502 15.108 15.1082 19.25 10.0002 19.25C4.89121 19.25 0.750214 15.108 0.750214 10C0.750214 4.892 4.89221 0.75 10.0002 0.75Z"
+                        stroke="#fff"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M13.9394 10.0129H13.9484"
+                        stroke="#fff"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M9.93041 10.0129H9.93941"
+                        stroke="#fff"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M5.9214 10.0129H5.9304"
+                        stroke="#fff"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  )}
                 </Link>
               </section>
               <section className="main-section">
@@ -108,7 +186,11 @@ function Home({ darkLight, setDarkLight }) {
                   setPersons={setPersons}
                   index={index}
                 />
-                <CommentButton person={person} />
+                <CommentButton
+                  person={person}
+                  darkLight={darkLight}
+                  setDarkLight={setDarkLight}
+                />
               </section>
             </div>
           ))}
