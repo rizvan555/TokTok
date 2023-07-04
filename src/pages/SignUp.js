@@ -1,8 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/signup.css"
 
+// Import - Style -----------------------
+
+import "../css/signup.css";
+import toktokLogo_big from '../resource/logos/toktokLogo-big.png';
+
+// --------------------------------------
 
 const defaultErrorState = Object.freeze({
   general: "",
@@ -52,31 +57,35 @@ const SignUp = () => {
             general: error?.response?.data?.error?.message || "",
           }));
         }
-
       })
   }
 
   return (
-    <div>
-
-      <h2>Create your Account</h2>
-
+    <div className="signup_page">
+      <h2 className="headline">Create your Account</h2>
+      <img className="toktokLogo" src={toktokLogo_big} alt="tiktokLogo_big" />
       <form onSubmit={handleSignIn}>
-
-        <input type="email"
-          placeholder="Email" id="email" value={data.email} onChange={(e) => { setData({ ...data, email: e.target.value }) }} />
+        <input
+          type="email"
+          placeholder="Email"
+          id="email"
+          value={data.email}
+          onChange={(e) => {
+            setData({ ...data, email: e.target.value })
+          }} />
         <small>{error.email && error.email}</small>
-
-        <input type="password" placeholder="Password" id="password" value={data.password} onChange={(e) => { setData({ ...data, password: e.target.value }) }} />
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          value={data.password}
+          onChange={(e) => {
+            setData({ ...data, password: e.target.value })
+          }} />
         <small>{error.password && error.password}</small>
-
-        <button >Sign Up</button>
-
+        <button >Sign up</button>
       </form>
-
-      <p>Already have an account? <Link to={"/signin"}>Sign in</Link></p>
-
-
+      <p className="link_to">Already have an account? <Link to={"/signin"}>Sign in</Link></p>
     </div>
   );
 }
