@@ -6,6 +6,7 @@ import Profile from "../resource/images/Ellipseprofile_image_small.png";
 import { FiSettings } from "react-icons/fi";
 import { BsArrowLeft } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
+import newUserImage from '../resource/images/EllipseunknownUser.png';
 
 const NewPost = ({ darkLight, setDarkLight }) => {
 
@@ -16,8 +17,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
   const [post, setPost] = useState(
     {
       content: "",
-      image: location.state.imageURL,
-      avatar: "",
+      image: location.state?.imageURL,
       location: "Düsseldorf",
       facebook: false,
       twitter: false,
@@ -35,6 +35,22 @@ const NewPost = ({ darkLight, setDarkLight }) => {
         console.log(error);
       });
   });
+
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    const getUserProfile = async () => {
+      try {
+        const response = await axios.get('/api/user');
+        setUser(response.data);
+        console.log(response);
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Benutzerdaten', error);
+      }
+    };
+    console.log(user);
+    getUserProfile();
+  }, []);
 
   const handleClickFacebook = () => {
     setPost(prev => ({ ...prev, facebook: !prev.facebook }))
@@ -79,7 +95,11 @@ const NewPost = ({ darkLight, setDarkLight }) => {
           <h2>New Post</h2>
         </section>
         <section className="new_post">
-          <img src={Profile} alt="profile" className="profile_pic" />
+          {user.avatar ? (
+            <img src={user.avatar} className='profile_image' alt="" />
+          ) : (
+            <img src={newUserImage} className='profile_image' alt="" />
+          )}
           <textarea
             ref={textareaRef}
             name="text"
@@ -152,6 +172,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
               />
             </Link>
             <p>Advanced Settings</p>
+
           </div>
         </section>
       </main>
