@@ -1,8 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/signup.css"
 
+// Import - Style -----------------------
+
+import "../css/signup.css";
+import toktokLogo_big from '../resource/logos/toktokLogo-big.png';
+import mailIcon from '../resource/icons/Messageemail_icon-filed.png';
+import showIcon from '../resource/icons/view-eye-svgrepo-com.svg';
+import hideIcon from '../resource/icons/eye-off-svgrepo-com.svg';
+
+// --------------------------------------
 
 const defaultErrorState = Object.freeze({
   general: "",
@@ -22,6 +30,8 @@ const SignUp = () => {
   const [data, setData] = useState(defaultData)
   const navigate = useNavigate()
   const [error, setError] = useState(defaultErrorState);
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSignIn = async (e) => {
     e.preventDefault()
@@ -52,31 +62,41 @@ const SignUp = () => {
             general: error?.response?.data?.error?.message || "",
           }));
         }
-
       })
   }
 
   return (
-    <div>
-
-      <h2>Create your Account</h2>
-
+    <div className="signup_page">
+      <h2 className="headline">Create your Account</h2>
+      <img className="toktokLogo" src={toktokLogo_big} alt="tiktokLogo_big" />
       <form onSubmit={handleSignIn}>
-
-        <input type="email"
-          placeholder="Email" id="email" value={data.email} onChange={(e) => { setData({ ...data, email: e.target.value }) }} />
+        <input
+          type="email"
+          placeholder="Email"
+          id="email"
+          value={data.email}
+          onChange={(e) => {
+            setData({ ...data, email: e.target.value })
+          }} />
+        <img className="mailIcon" src={mailIcon} alt="mail_icon" />
         <small>{error.email && error.email}</small>
-
-        <input type="password" placeholder="Password" id="password" value={data.password} onChange={(e) => { setData({ ...data, password: e.target.value }) }} />
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          id="password"
+          value={data.password}
+          onChange={(e) => {
+            setData({ ...data, password: e.target.value })
+          }} />
         <small>{error.password && error.password}</small>
-
-        <button >Sign Up</button>
-
+        <span
+          className="toggle_password"
+          onClick={() => setShowPassword(!showPassword)}>
+          {showPassword ? <img src={showIcon} /> : <img src={hideIcon} />}
+        </span>
+        <button >Sign up</button>
       </form>
-
-      <p>Already have an account? <Link to={"/signin"}>Sign in</Link></p>
-
-
+      <p className="link_to">Already have an account? <Link to={"/signin"}>Sign in</Link></p>
     </div>
   );
 }

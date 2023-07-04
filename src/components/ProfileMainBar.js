@@ -25,6 +25,7 @@ const ProfileMainBar = ({ click, setClick, darkLight, user, setUser }) => {
 
     getUserProfile();
   }, []);
+
   return (
     <nav className="profile_mainbar">
       <section>

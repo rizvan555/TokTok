@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./css/likeButton.css";
 import "./css/homeComments.css";
@@ -20,6 +20,7 @@ import SignIn from "./pages/SignIn";
 import { useState } from "react";
 import SettingsPage from "./pages/settingsPage";
 import EditProfile from "../src/pages/EditProfile";
+import LoadingPage from "../src/pages/loadingPage";
 
 function App() {
   const [darkLight, setDarkLight] = useState(true);
@@ -32,6 +33,8 @@ function App() {
       }}
     >
       <Routes>
+        {/* <Route path="/" element={<Navigate to="/loading" />}></Route> */}
+        <Route path="/loading" element={<LoadingPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route
