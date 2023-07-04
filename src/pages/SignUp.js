@@ -69,11 +69,11 @@ const SignUp = () => {
     <div className="signup_page">
       <h2 className="headline">Create your Account</h2>
       <img className="toktokLogo" src={toktokLogo_big} alt="tiktokLogo_big" />
-      <form onSubmit={handleSignIn}>
+      <form className="signup_form" onSubmit={handleSignIn}>
         <input
           type="email"
           placeholder="Email"
-          id="email"
+          className="email"
           value={data.email}
           onChange={(e) => {
             setData({ ...data, email: e.target.value })
@@ -83,7 +83,7 @@ const SignUp = () => {
         <input
           type={showPassword ? "text" : "password"}
           placeholder="Password"
-          id="password"
+          className="password"
           value={data.password}
           onChange={(e) => {
             setData({ ...data, password: e.target.value })
@@ -92,9 +92,9 @@ const SignUp = () => {
         <span
           className="toggle_password"
           onClick={() => setShowPassword(!showPassword)}>
-          {showPassword ? <img src={showIcon} /> : <img src={hideIcon} />}
+          {showPassword ? <img className="showIcon" src={showIcon} /> : <img className="hideIcon" src={hideIcon} />}
         </span>
-        <button >Sign up</button>
+        <button className="signup_btn">Sign up</button>
       </form>
       <p className="link_to">Already have an account? <Link to={"/signin"}>Sign in</Link></p>
     </div>
