@@ -1,10 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
-import { Post, User } from "./model/index.js"
+import { Post, User, Comment } from "./model/index.js"
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import Multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
+import mongoose from "mongoose";
+
+
 
 
 
@@ -315,19 +318,28 @@ app.post("/api/newpost", authenticateToken,
 // COMMENTS
 
 // ========== GET ALL COMMENTS FOR ONE POST ==========
-app.get("/api/comments/:id")
+app.get("/api/comments", async (req, res) => {
+    try {
+        const comments = await Comment.find();
+        res.status(200).json(comments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch comments." });
+    }
+});
 
 // ========== GET SINGLE COMMENT ==========
 app.get("/api/comment/:id")
 
 // ========== PUT NEW COMMENT TO A POST ==========
-app.put("/api/comments/:postid", async (req, res) => {
+app.put("/api/comments/:postid", authenticateToken, async (req, res) => {
     try {
-        const { user, content } = req.body;
+        const { content } = req.body;
         const { postid } = req.params;
 
+
         const newComment = new Comment({
-            user,
+            user: req.body.user,
             content,
             post: postid,
         });

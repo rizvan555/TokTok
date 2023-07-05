@@ -12,6 +12,7 @@ import '../css/otherProfile.css';
 // ------------------------------------
 
 const OtherProfile = () => {
+    
     return (
         <div className="otherprofile_page">
             <OtherProfileMainBar />
