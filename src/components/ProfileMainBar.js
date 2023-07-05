@@ -30,7 +30,7 @@ const ProfileMainBar = ({ click, setClick, darkLight, user, setUser }) => {
     <nav className="profile_mainbar">
       <section>
         <Link to="/">
-          <img src={logo} alt="logo toktok klein" />
+          <img src={logo} className="toktok-logo" alt="logo toktok klein" />
         </Link>
         <h2 style={{ color: !darkLight ? "white" : "black" }}> {user.username}</h2>
       </section>

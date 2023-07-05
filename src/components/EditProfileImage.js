@@ -5,7 +5,7 @@ import axios from "axios";
 // Import Images ----------------------------------------------------
 
 import newUserImage from '../resource/images/EllipseunknownUser.png';
-import editIcon from '../resource/icons/Edit Squareprofile_image_edit_icon.png';
+import editIcon from '../resource/icons/newEditIcon.svg';
 
 // ------------------------------------------------------------------
 
@@ -36,41 +36,21 @@ const EditProfileImage = ({ user, setUser }) => {
         }
     };
 
-    {/* <label htmlFor="file" className="file_label">
-                {" "}
-
-                <input
-                    className="edit_profile_file"
-                    type="file"
-                    onChange={handleSelectFile}
-                    multiple={false}
-                    // className="file_button"
-                    style={{ border: 'none' }}
-                />
-                {res.secure_url ? (
-                    <img src={res.secure_url} className='profile_image' alt="" />
-                ) : (
-                    <img src={newUserImage} className='profile_image' alt="" />
-                )}
-                {file && <center> {file.name}</center>}
-                <img className="edit_icon" src={editIcon} alt="editIcon" />
-            </label> */}
-
-
-
-
-
-
 
     return (
         <div className='edit-image-container'>
-            {/* <label for="fileInput" className="file-input-label"> */}
             {res.secure_url ? (
-                <img src={res.secure_url} className='profile-image' alt="" width='140' height='auto' />
+                <img src={res.secure_url}
+                    className='profile-image'
+                    width='140' height='140'
+                    style={{ 'border-radius': '100px' }}
+                    alt="profile image" />
             ) : (
-                <img src={newUserImage} className='profile-image' alt="" width='140' height='auto' />
+                <img src={newUserImage}
+                    className='profile-image'
+                    width='140' height='140'
+                    alt="default profile image" />
             )}
-            {/* </label> */}
             <input
                 type="file"
                 className="edit-profile-file"
@@ -79,16 +59,14 @@ const EditProfileImage = ({ user, setUser }) => {
             // className="file_button"
             // style={{ border: 'none' }}
             />
-
             {file && <center className="center-file-name">{file.name}</center>}
-
             {file && (
                 <button onClick={handleUpload} className="btn-green">
                     {loading ? "uploading..." : "upload to cloudinary"}
                 </button>
             )}
             <button className="edit-icon">
-                <img src={editIcon} alt="editIcon" />
+                <img src={editIcon} style={{ 'border-radius': '10px' }} alt="editIcon" />
             </button>
             {/* <code>
                 {Object.keys(res).length > 0 &&
