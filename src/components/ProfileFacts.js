@@ -7,7 +7,7 @@ import "../css/ownProfile.css";
 // Import - Images -----------------------------------
 
 import profile_image from '../resource/images/EllipseunknownUser.png';
-import profile_edit_icon from "../resource/icons/Edit Squareprofile_image_edit_icon.png";
+import profile_edit_icon from "../resource/icons/newEditIcon.svg";
 import newUserImage from '../resource/images/EllipseunknownUser.png';
 
 
@@ -42,7 +42,7 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
       <article className="profile_article">
         <div className="image-container">
           {user.avatar ? (
-            <img src={user.avatar} className='profile_image' alt="" />
+            <img src={user.avatar} className='profile_image' width='140' height='140' style={{ 'border-radius': '100px' }} alt="" />
           ) : (
             <img src={newUserImage} className='profile_image' alt="" />
           )}
@@ -52,6 +52,7 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
               src={profile_edit_icon}
               className="edit_icon"
               alt="edit_icon"
+              style={{ 'border-radius': '10px' }}
             />
           </Link>
         </div>

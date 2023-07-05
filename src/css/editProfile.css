@@ -5,13 +5,11 @@
 /* ------------------------------------------------------ */
 
 .editprofile_page {
-  font-family: var(--font-family-bold);
-  color: var(--primary-color);
-  width: 95%;
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
-  padding: 2vh 3vw;
+    font-family: var(--font-family-bold);
+    color: var(--primary-color);
+    margin: 0 auto;
+    text-align: center;
+    padding: 2vh 3vw;
 }
 
 /* Edit - Profile - Topbar ------------------------------------- */
@@ -35,20 +33,21 @@
 
 
 .edit-image-container {
-    padding: 20px 0;
+    padding-bottom: 20px;
     margin: 0 auto;
     position: relative;
 }
 
 .editprofile-page .profile-image {
-    width: 33%;
-    border-radius: 60px;
+    width: 140px;
+    height: auto;
+    border-radius: 100px;
 }
 
 .edit-icon {
     position: absolute;
-    top: 68%;
-    left: 57%;
+    top: 70%;
+    left: 59%;
     padding: 0;
     background-color: transparent;
     border: none;
@@ -63,9 +62,9 @@
     z-index: 1;
 }
 
-/* .edit-profile-file::-webkit-file-upload-button {
+.edit-profile-file::-webkit-file-upload-button {
     visibility: hidden;
-} */
+}
 
 .center-file-name {
     margin-top: 10px;
@@ -119,8 +118,6 @@
     background-repeat: no-repeat;
 }
 
-/* ::-webkit-calendar-picker-indicator  */
-
 .text_form .birthday {
     position: relative;
     background-repeat: no-repeat;
@@ -139,7 +136,6 @@
     width: 5%;
     cursor: pointer;
 }
-
 
 .text_form .email {
     background-image: url('../resource/icons/Groupmail_icon.svg');
@@ -169,17 +165,18 @@
 .text_form .website:focus,
 .text_form .aboutme:focus {
     outline: none;
-
 }
 
 /* Submit - Button -------------------------------------------- */
 
 .submit_button {
-  color: var(--pure-white);
-  background-color: var(--feed-color);
-  width: 98%;
-  border-style: none;
-  border-radius: 30px;
-  padding: 15px 0;
-  margin: 20px 0 30px 0;
+    color: var(--pure-white);
+    background-color: var(--feed-color);
+    width: 98%;
+    border-style: none;
+    border-radius: 30px;
+    padding: 15px 0;
+    margin: 20px 0 30px 0;
 }
+
+/* --------------------------------------------------- */
