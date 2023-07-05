@@ -23,7 +23,8 @@ const userSchema = new mongoose.Schema({
     aboutMe: { type: String },
     following: { type: String },
     followedBy: { type: String },
-    avatar: { type: String, default: "" }
+    avatar: { type: String, default: "" },
+    // comments: { type: String },
 });
 
 

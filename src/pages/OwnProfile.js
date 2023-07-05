@@ -27,6 +27,7 @@ function OwnProfile({ darkLight }) {
     gender: "",
     website: "",
     aboutMe: "",
+    comments: "",
   })
 
 
