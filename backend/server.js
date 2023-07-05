@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import Multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
-
+import cors from "cors"
 
 
 
@@ -42,6 +42,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 // app.use(express.static(ReactAppDistPath.pathname));
 
 
@@ -216,16 +217,16 @@ app.put("/api/user", authenticateToken, async (req, res) => {
 
 // ========== GET ALL POSTS FROM ONE USER ==========
 
-// app.get("/api/:user/posts", async (req, res) => {
-//     const { userid } = req.params;
+app.get("/api/:user/posts", async (req, res) => {
+    const { userid } = req.params;
 
-//     try {
-//         const posts = await Post.find({ user: userid });
-//         res.status(200).json(posts);
-//     } catch (error) {
-//         res.status(400).json({ error: error.message });
-//     }
-// });
+    try {
+        const posts = await Post.find({ user: userid });
+        res.status(200).json(posts);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
 
 
 // ========== GET ALL POSTS FROM ALL USERS ==========

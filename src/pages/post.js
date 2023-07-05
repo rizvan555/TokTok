@@ -189,9 +189,9 @@ const NewPost = ({ darkLight, setDarkLight }) => {
               />
             </Link>
             <p>Advanced Settings</p>
-            <hr />
-            <button type="submit" className="submit_button" onClick={handleSubmit}>Post</button>
           </div>
+          <hr />
+          <button type="submit" className="submit_button" onClick={handleSubmit}>Post</button>
         </section>
       </main>
     </div>
