@@ -18,7 +18,9 @@
 }
 
 .profile_pic {
-  width: 15%;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
 }
 
 #post_text {
@@ -32,7 +34,9 @@
 }
 
 .post_pic {
-  width: 15%;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
 }
 
 .location {
