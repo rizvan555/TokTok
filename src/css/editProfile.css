@@ -10,6 +10,7 @@
     margin: 0 auto;
     text-align: center;
     padding: 2vh 3vw;
+    position: relative;
 }
 
 /* Edit - Profile - Topbar ------------------------------------- */
@@ -19,23 +20,17 @@
     align-items: center;
     gap: 15px;
     padding-left: 7px;
-    position: relative;
 }
 
 .editprofile_topbar h5 {
     font-size: calc(var(--font-size-rem)*2.2);
     margin: 20px 0;
-    padding: 0;
-    padding-bottom: 5px;
 }
 
 /* Edit - Profile - Image ------------------------------------- */
 
-
 .edit-image-container {
-    padding-bottom: 20px;
     margin: 0 auto;
-    position: relative;
 }
 
 .editprofile-page .profile-image {
@@ -46,20 +41,21 @@
 
 .edit-icon {
     position: absolute;
-    top: 70%;
+    top: 21%;
     left: 59%;
     padding: 0;
     background-color: transparent;
     border: none;
+    z-index: 1;
 }
 
 .edit-profile-file {
     color: transparent;
     position: absolute;
-    top: 72%;
-    right: 35.5%;
+    top: 21.2%;
+    right: 34%;
     width: 7%;
-    z-index: 1;
+    z-index: 2;
 }
 
 .edit-profile-file::-webkit-file-upload-button {
@@ -67,7 +63,7 @@
 }
 
 .center-file-name {
-    margin-top: 10px;
+    padding-top: 10px;
 }
 
 .btn-green {
