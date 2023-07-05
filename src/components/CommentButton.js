@@ -1,14 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "../css/commentButton.css";
 import commentButton3 from "../resource/images/commentButton3.svg";
 import commentButton4 from "../resource/images/commentButton4.svg";
+import { Link } from "react-router-dom";
 
 function CommentButton({ person, darkLight }) {
   return (
     <div>
       <div className="comment-button-section">
-        <Link to="/commentsPage" className="commentButtonLink">
+        <Link
+          to={`/commentsPage/${person.username}`}
+          className="commentButtonLink"
+        >
           {darkLight ? (
             <img src={commentButton3} alt="commentButton3" />
           ) : (
