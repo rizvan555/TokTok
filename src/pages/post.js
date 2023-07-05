@@ -1,8 +1,7 @@
 import "../css/post.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import Profile from "../resource/images/Ellipseprofile_image_small.png";
 import { FiSettings } from "react-icons/fi";
 import { BsArrowLeft } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
@@ -13,6 +12,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
 
   const location = useLocation();
   console.log(location);
+  const navigate = useNavigate();
 
   const [post, setPost] = useState(
     {
@@ -70,10 +70,25 @@ const NewPost = ({ darkLight, setDarkLight }) => {
 
   const textareaRef = useRef(null);
 
-  const handleInputChange = async (e) => {
-    e.preventDefault();
-    setPost({ ...post, content: e.target.value });
+  // const handleInputChange = async (e) => {
+  //   e.preventDefault();
+  //   setPost({ ...post, content: e.target.value });
+  //   adjustTextareaHeight();
+  // };
+
+  const handleInputChange = (e) => {
+    const content = e.target.value;
+    setPost(prevPost => ({ ...prevPost, content }));
     adjustTextareaHeight();
+  };
+
+  const handleKeyDown = async (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      await axios.post("/api/newpost", post, { withCredentials: true });
+      // Zurücksetzen des Textfelds
+      navigate("/")
+    }
   };
 
   const adjustTextareaHeight = () => {
@@ -96,9 +111,9 @@ const NewPost = ({ darkLight, setDarkLight }) => {
         </section>
         <section className="new_post">
           {user.avatar ? (
-            <img src={user.avatar} className='profile_image' alt="" />
+            <img src={user.avatar} className='profile_pic' alt="" />
           ) : (
-            <img src={newUserImage} className='profile_image' alt="" />
+            <img src={newUserImage} className='profile_pic' alt="" />
           )}
           <textarea
             ref={textareaRef}
@@ -107,6 +122,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
             placeholder="Write a caption..."
             value={post.content}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
           <img src={post.image} alt="uploaded" className="post_pic" />
         </section>
