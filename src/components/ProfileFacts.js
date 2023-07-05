@@ -42,9 +42,9 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
       <article className="profile_article">
         <div className="image-container">
           {user.avatar ? (
-            <img src={user.avatar} className='profile_image' width='140' height='140' style={{ 'border-radius': '100px' }} alt="" />
+            <img src={user.avatar} className='profile_image' width='140' height='140' style={{ 'border-radius': '100px' }} alt="profile image" />
           ) : (
-            <img src={newUserImage} className='profile_image' alt="" />
+            <img src={newUserImage} className='profile_image' alt="default profile image" />
           )}
           {/* {file && <center> {file.name}</center>} */}
           <Link to="/editprofile">
