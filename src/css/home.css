@@ -51,6 +51,10 @@
   gap: 2vw;
 }
 
+.person-left-side img {
+  border-radius: 50%;
+}
+
 .name-box {
   line-height: 2px;
   text-align: start;

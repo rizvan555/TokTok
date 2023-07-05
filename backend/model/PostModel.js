@@ -7,6 +7,9 @@ const postSchema = new mongoose.Schema({
     image: { type: String },
     comments: { type: mongoose.SchemaTypes.ObjectId, ref: "Comment" },
     location: { type: String },
+    facebook: { type: Boolean },
+    twitter: { type: Boolean },
+    tumblr: { type: Boolean }
 });
 
 export const Post = mongoose.model("Post", postSchema);

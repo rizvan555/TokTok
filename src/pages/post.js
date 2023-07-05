@@ -12,7 +12,9 @@ const NewPost = ({ darkLight, setDarkLight }) => {
 
   const location = useLocation();
   console.log(location);
+
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const [post, setPost] = useState(
     {
@@ -25,16 +27,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
     },
   );
 
-  useEffect(() => {
-    axios
-      .post("/api/newpost", post, { withCredentials: true })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+
 
   const [user, setUser] = useState({})
 
@@ -68,13 +61,9 @@ const NewPost = ({ darkLight, setDarkLight }) => {
     setPost(prev => ({ ...prev, tumblr: !prev.tumblr }))
   };
 
+
   const textareaRef = useRef(null);
 
-  // const handleInputChange = async (e) => {
-  //   e.preventDefault();
-  //   setPost({ ...post, content: e.target.value });
-  //   adjustTextareaHeight();
-  // };
 
   const handleInputChange = (e) => {
     const content = e.target.value;
@@ -82,14 +71,27 @@ const NewPost = ({ darkLight, setDarkLight }) => {
     adjustTextareaHeight();
   };
 
-  const handleKeyDown = async (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      await axios.post("/api/newpost", post, { withCredentials: true });
-      // Zurücksetzen des Textfelds
-      navigate("/")
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError("");
+    navigate("/")
+
+    try {
+      const res = await axios.post("/api/newpost", post, { withCredentials: true });
+      // navigate("/")
+      console.log(res);
+    } catch (error) {
+      const responseError = error?.response?.data?.error?.message;
+      if (responseError) {
+        setError(responseError);
+      } else {
+        setError("Something went wrong. Please try again later.");
+      }
     }
   };
+
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
@@ -122,7 +124,6 @@ const NewPost = ({ darkLight, setDarkLight }) => {
             placeholder="Write a caption..."
             value={post.content}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
           />
           <img src={post.image} alt="uploaded" className="post_pic" />
         </section>
@@ -188,8 +189,9 @@ const NewPost = ({ darkLight, setDarkLight }) => {
               />
             </Link>
             <p>Advanced Settings</p>
-
           </div>
+          <hr />
+          <button type="submit" className="submit_button" onClick={handleSubmit}>Post</button>
         </section>
       </main>
     </div>

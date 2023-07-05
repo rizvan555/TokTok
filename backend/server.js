@@ -6,6 +6,10 @@ import cookieParser from "cookie-parser";
 import Multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import mongoose from "mongoose";
+import cors from "cors"
+
+
+
 
 dotenv.config({ path: new URL("../.env", import.meta.url).pathname });
 
@@ -36,6 +40,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 // app.use(express.static(ReactAppDistPath.pathname));
 
 app.use((req, res, next) => {
@@ -223,16 +228,16 @@ app.put("/api/user", authenticateToken, async (req, res) => {
 
 // ========== GET ALL POSTS FROM ONE USER ==========
 
-// app.get("/api/:user/posts", async (req, res) => {
-//     const { userid } = req.params;
+app.get("/api/:user/posts", async (req, res) => {
+    const { userid } = req.params;
 
-//     try {
-//         const posts = await Post.find({ user: userid });
-//         res.status(200).json(posts);
-//     } catch (error) {
-//         res.status(400).json({ error: error.message });
-//     }
-// });
+    try {
+        const posts = await Post.find({ user: userid });
+        res.status(200).json(posts);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
 
 // ========== GET ALL POSTS FROM ALL USERS ==========
 app.get("/api/posts", async (req, res) => {
@@ -292,15 +297,29 @@ app.post(
 );
 
 // ========== POST NEW POST with/from user _id ==========
-app.post("/api/newpost", authenticateToken, async (req, res) => {
-  try {
-    const { content, location, image } = req.body;
 
-    const newPost = new Post({
-      content,
-      location,
-      user: req.user._id,
-      image,
+app.post("/api/newpost", authenticateToken,
+    async (req, res) => {
+        try {
+            const { content, location, image, facebook, twitter, tumblr } = req.body;
+
+            const newPost = new Post({
+                content,
+                location,
+                user: req.user._id,
+                image,
+                facebook,
+                twitter,
+                tumblr
+            });
+
+            const savedPost = await newPost.save();
+
+            res.status(201).json(savedPost);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Failed to create post." });
+        }
     });
 
     const savedPost = await newPost.save();
