@@ -4,6 +4,7 @@
   justify-content: center;
   padding-top: 2vh;
   gap: 3vh;
+  font-family: "Urbanist", sans-serif;
 }
 .search-header {
   position: relative;

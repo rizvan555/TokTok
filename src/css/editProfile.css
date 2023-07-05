@@ -1,17 +1,17 @@
 /* Import Style Variablen -------------------------------- */
 
-@import '../index.css';
+@import "../index.css";
 
 /* ------------------------------------------------------ */
 
 .editprofile_page {
-    font-family: var(--font-family-bold);
-    color: var(--primary-color);
-    width: 95%;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-    padding: 1vh 0;
+  font-family: var(--font-family-bold);
+  color: var(--primary-color);
+  width: 95%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  padding: 2vh 3vw;
 }
 
 /* Edit - Profile - Topbar ------------------------------------- */
@@ -32,6 +32,7 @@
 }
 
 /* Edit - Profile - Image ------------------------------------- */
+
 
 .edit-image-container {
     padding: 20px 0;
@@ -168,16 +169,17 @@
 .text_form .website:focus,
 .text_form .aboutme:focus {
     outline: none;
+
 }
 
 /* Submit - Button -------------------------------------------- */
 
 .submit_button {
-    color: var(--pure-white);
-    background-color: var(--feed-color);
-    width: 98%;
-    border-style: none;
-    border-radius: 30px;
-    padding: 15px 0;
-    margin: 20px 0 30px 0;
+  color: var(--pure-white);
+  background-color: var(--feed-color);
+  width: 98%;
+  border-style: none;
+  border-radius: 30px;
+  padding: 15px 0;
+  margin: 20px 0 30px 0;
 }

@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./css/likeButton.css";
+import "./css/commentButton.css";
 import "./css/homeComments.css";
 import "./css/searchAll.css";
 import "./css/upload.css";

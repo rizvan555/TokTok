@@ -1,3 +1,7 @@
+.commentPage-container {
+  font-family: "Urbanist", sans-serif;
+}
+
 .commentPage-header {
   display: flex;
   align-items: center;
@@ -38,7 +42,7 @@
   margin-bottom: -2vh;
 }
 .tag-box {
-  color: #2C6AEE;
+  color: #2c6aee;
   text-align: start;
 }
 .footer-section {

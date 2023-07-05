@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../css/home.css";
 import "../css/likeButton.css";
+import commentButton1 from "../resource/images/commentButton1.svg";
+import commentButton2 from "../resource/images/commentButton2.svg";
 import toktokLogo from "../resource/logos/toktokLogo.png";
 import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
@@ -96,7 +98,11 @@ function Home({ darkLight, setDarkLight }) {
                   </div>
                 </div>
                 <Link to="/settingsPage" className="settings-container">
-                  <button className="settings-button">...</button>
+                  {darkLight ? (
+                    <img src={commentButton1} alt="commentButton1" />
+                  ) : (
+                    <img src={commentButton2} alt="commentButton2" />
+                  )}
                 </Link>
               </section>
               <section className="main-section">
@@ -108,7 +114,11 @@ function Home({ darkLight, setDarkLight }) {
                   setPersons={setPersons}
                   index={index}
                 />
-                <CommentButton person={person} />
+                <CommentButton
+                  person={person}
+                  darkLight={darkLight}
+                  setDarkLight={setDarkLight}
+                />
               </section>
             </div>
           ))}

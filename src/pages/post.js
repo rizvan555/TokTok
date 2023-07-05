@@ -1,23 +1,23 @@
 import "../css/post.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import Profile from "../resource/images/Ellipseprofile_image_small.png";
 import { FiSettings } from "react-icons/fi";
 import { BsArrowLeft } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
+import newUserImage from '../resource/images/EllipseunknownUser.png';
 
 const NewPost = ({ darkLight, setDarkLight }) => {
 
 
   const location = useLocation();
   console.log(location);
+  const navigate = useNavigate();
 
   const [post, setPost] = useState(
     {
       content: "",
-      image: location.state.imageURL,
-      avatar: "",
+      image: location.state?.imageURL,
       location: "Düsseldorf",
       facebook: false,
       twitter: false,
@@ -35,6 +35,22 @@ const NewPost = ({ darkLight, setDarkLight }) => {
         console.log(error);
       });
   });
+
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    const getUserProfile = async () => {
+      try {
+        const response = await axios.get('/api/user');
+        setUser(response.data);
+        console.log(response);
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Benutzerdaten', error);
+      }
+    };
+    console.log(user);
+    getUserProfile();
+  }, []);
 
   const handleClickFacebook = () => {
     setPost(prev => ({ ...prev, facebook: !prev.facebook }))
@@ -54,10 +70,25 @@ const NewPost = ({ darkLight, setDarkLight }) => {
 
   const textareaRef = useRef(null);
 
-  const handleInputChange = async (e) => {
-    e.preventDefault();
-    setPost({ ...post, content: e.target.value });
+  // const handleInputChange = async (e) => {
+  //   e.preventDefault();
+  //   setPost({ ...post, content: e.target.value });
+  //   adjustTextareaHeight();
+  // };
+
+  const handleInputChange = (e) => {
+    const content = e.target.value;
+    setPost(prevPost => ({ ...prevPost, content }));
     adjustTextareaHeight();
+  };
+
+  const handleKeyDown = async (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      await axios.post("/api/newpost", post, { withCredentials: true });
+      // Zurücksetzen des Textfelds
+      navigate("/")
+    }
   };
 
   const adjustTextareaHeight = () => {
@@ -79,7 +110,11 @@ const NewPost = ({ darkLight, setDarkLight }) => {
           <h2>New Post</h2>
         </section>
         <section className="new_post">
-          <img src={Profile} alt="profile" className="profile_pic" />
+          {user.avatar ? (
+            <img src={user.avatar} className='profile_pic' alt="" />
+          ) : (
+            <img src={newUserImage} className='profile_pic' alt="" />
+          )}
           <textarea
             ref={textareaRef}
             name="text"
@@ -87,6 +122,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
             placeholder="Write a caption..."
             value={post.content}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
           <img src={post.image} alt="uploaded" className="post_pic" />
         </section>
@@ -152,6 +188,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
               />
             </Link>
             <p>Advanced Settings</p>
+
           </div>
         </section>
       </main>
