@@ -295,13 +295,16 @@ app.post(
 app.post("/api/newpost", authenticateToken,
     async (req, res) => {
         try {
-            const { content, location, image } = req.body;
+            const { content, location, image, facebook, twitter, tumblr } = req.body;
 
             const newPost = new Post({
                 content,
                 location,
                 user: req.user._id,
-                image
+                image,
+                facebook,
+                twitter,
+                tumblr
             });
 
             const savedPost = await newPost.save();
