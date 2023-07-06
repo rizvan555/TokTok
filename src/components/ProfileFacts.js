@@ -42,7 +42,7 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
       <article className="profile_article">
         <div className="image-container">
           {user.avatar ? (
-            <img src={user.avatar} className='profile_image' width='140' height='140' style={{ 'border-radius': '100px' }} alt="profile image" />
+            <img src={user.avatar} className='profile_image' width='140' height='140' alt="profile image" />
           ) : (
             <img src={newUserImage} className='profile_image' alt="default profile image" />
           )}
@@ -75,7 +75,7 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
             <p style={{ color: !darkLight ? "white" : "black" }}>Posts</p>
           </div>
           <div className="followers">
-            <h5>46,379</h5>
+            <h5>46.379</h5>
             <p style={{ color: !darkLight ? "white" : "black" }}>Followers</p>
           </div>
           <div className="following">

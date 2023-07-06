@@ -3,6 +3,7 @@
 import ProfileMainBar from "../components/ProfileMainBar";
 import ProfileFacts from "../components/ProfileFacts";
 import ProfileGallery from "../components/ProfileGallery";
+import FooterNavbar from '../components/FooterNavbar';
 
 // --- style --------------------------
 
@@ -50,6 +51,8 @@ function OwnProfile({ darkLight }) {
           setClick={setClick}
           darkLight={darkLight}
         />
+        <FooterNavbar />
+
       </div>
       {click ? (
         <ProfileSettings
