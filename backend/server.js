@@ -37,7 +37,11 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 // app.use(express.static(ReactAppDistPath.pathname));
 
 app.use((req, res, next) => {
@@ -116,6 +120,7 @@ const authenticateToken = (req, res, next) => {
   if (!token && req?.cookies?.auth) {
     token = req.cookies.auth;
   }
+
 
   if (!token) {
     return res.sendStatus(401); // Token nicht vorhanden
@@ -294,19 +299,31 @@ app.post(
 );
 
 // ========== POST NEW POST with/from user _id ==========
+app.post("/api/newpost", authenticateToken,
+    async (req, res) => {
+        try {
+            const { content, location, image, facebook, twitter, tumblr, likeCount, commentCount, isLiked } = req.body;
 
-app.post("/api/newpost", authenticateToken, async (req, res) => {
-  try {
-    const { content, location, image, facebook, twitter, tumblr } = req.body;
+            const newPost = new Post({
+                content,
+                location,
+                user: req.user._id,
+                image,
+                facebook,
+                twitter,
+                tumblr,
+                likeCount,
+                commentCount,
+                isLiked,
+            });
 
-    const newPost = new Post({
-      content,
-      location,
-      user: req.user._id,
-      image,
-      facebook,
-      twitter,
-      tumblr,
+            const savedPost = await newPost.save();
+
+            res.status(201).json(savedPost);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: "Failed to create post." });
+        }
     });
 
     const savedPost = await newPost.save();

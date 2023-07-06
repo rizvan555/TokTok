@@ -4,6 +4,9 @@ import "../css/likeButton.css";
 import axios from "axios";
 import commentButton1 from "../resource/images/commentButton1.svg";
 import commentButton2 from "../resource/images/commentButton2.svg";
+import "../css/commentButton.css";
+import commentButton3 from "../resource/images/commentButton3.svg";
+import commentButton4 from "../resource/images/commentButton4.svg";
 import toktokLogo from "../resource/logos/toktokLogo.png";
 import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
@@ -105,6 +108,19 @@ function Home({ darkLight, setDarkLight }) {
     navigate("/commentsPage", { state: { person: users } });
   };
 
+  const [clickLike, setClickLike] = useState(false);
+  const [likeCount, setLikeCount] = useState(12);
+
+  const handleLikeToggle = () => {
+    if (clickLike) {
+      setLikeCount(likeCount - 1);
+    } else {
+      setLikeCount(likeCount + 1);
+    }
+    setClickLike(!clickLike);
+  };
+
+
   return (
     <div className="home-container">
       <header className="header">
@@ -164,6 +180,34 @@ function Home({ darkLight, setDarkLight }) {
             setDarkLight={setDarkLight}
             onclick={handleCommentClickDB}
           />
+          <div className="like-section">
+            <div
+              className="like-section"
+              onClick={handleLikeToggle}
+            >
+              {clickLike ? (
+                <img src={redHeart} alt="redHeart" />
+              ) : (
+                <GoHeart
+                  size={27}
+                  style={{ color: !darkLight ? "white" : "black" }}
+                />
+              )}
+              <p>{likeCount}</p>
+            </div>
+          </div>
+
+
+          <div className="comment-button-section">
+            <Link to="/commentsPage" className="commentButtonLink">
+              {darkLight ? (
+                <img src={commentButton3} alt="commentButton3" />
+              ) : (
+                <img src={commentButton4} alt="commentButton4" />
+              )}
+            </Link>
+            <p>2</p>
+          </div>
         </section>
 
         <div className="scrollable">
