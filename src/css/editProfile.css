@@ -35,8 +35,10 @@
 
 .editprofile-page .profile-image {
     width: 140px;
-    height: auto;
+    height: 140px;
     border-radius: 100px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .edit-icon {
@@ -123,6 +125,14 @@
 .text_form .birthday::-webkit-calendar-picker-indicator {
     opacity: 0.01;
     cursor: pointer;
+}
+
+.text_form .birthday::-webkit-datetime-edit-text {
+    color: transparent;
+}
+
+.text_form .birthday::-webkit-datetime-edit-placeholder {
+    color: initial;
 }
 
 .text_form .calendarIcon {

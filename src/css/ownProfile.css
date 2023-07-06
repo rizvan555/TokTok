@@ -108,9 +108,12 @@
 }
 
 .image-container .profile_img {
-  width: 33%;
+  /* width: 33%; */
   width: 140px;
-  height: auto;
+  height: 140px;
+  border-radius: 100px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .edit_icon {
