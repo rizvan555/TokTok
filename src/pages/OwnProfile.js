@@ -52,7 +52,6 @@ function OwnProfile({ darkLight }) {
           darkLight={darkLight}
         />
         <FooterNavbar />
-
       </div>
       {click ? (
         <ProfileSettings

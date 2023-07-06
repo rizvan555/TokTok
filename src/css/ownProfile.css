@@ -217,10 +217,12 @@
 /* Profile - Gallery - Section --------------- */
 
 .profile_gallery_images {
-  padding-bottom: 30px;
+  padding-bottom: 50px;
 }
 
 .profile_gallery_images img {
   width: 30%;
   padding: 2px;
 }
+
+/* Profile - Gallery - Footer - Bar ---------- */

@@ -6,7 +6,7 @@ import UserIcon from "../resource/icons/NEWUser-red.svg";
 import Profile from "../resource/icons/NEWProfile-icon.svg";
 import Frame from "../resource/icons/NEWUpload-icon.svg";
 import home from "../resource/icons/NEWHome-icon.svg";
-import Search from "../resource/icons/NEWSearch-icon.svg";
+import Search from "../resource/icons/SEARCHIcon-NEW2.svg";
 import redFrame from "../resource/icons/NEWUpload-red.svg";
 import redHome from "../resource/icons/NEWHome-red.svg";
 import redProfile from "../resource/icons/NEWProfile-red.svg";
@@ -14,8 +14,8 @@ import redSearch from "../resource/icons/NEWSearch-red.svg";
 import annyPhoto from "../resource/images/annyPhoto.png";
 import sarahPhoto from "../resource/images/sarahPhoto.png";
 import jonnyPhoto from "../resource/images/jonnyPhoto.png";
-import followButton from "../resource/images/followButton.png";
-import followingButton from "../resource/images/followingButton.png";
+import followButton from "../resource/icons/NEWFollow-icon.svg";
+import followingButton from "../resource/icons/NEWFollowing-icon.svg";
 
 function SearchAll({ darkLight }) {
   const [activeNav, setActiveNav] = useState(null);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Frame from "../resource/icons/NEWUpload-icon.svg";
 import home from "../resource/icons/NEWHome-icon.svg";
 import Profile from "../resource/icons/NEWProfile-icon.svg";
-import Search from "../resource/icons/NEWSearch-icon.svg";
+import Search from "../resource/icons/SEARCHIcon-NEW2.svg";
 import redFrame from "../resource/icons/NEWUpload-red.svg";
 import redHome from "../resource/icons/NEWHome-red.svg";
 import redProfile from "../resource/icons/NEWProfile-red.svg";
