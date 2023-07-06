@@ -21,31 +21,35 @@
   border: none;
   background-color: transparent;
 }
-.person-main-header-section {
+.person-section-container {
+  padding: 0 4vw;
+}
+.comment-user-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0vh 3vw;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.comment-user-header_left {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+.user-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.user-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 0px;
+}
+.footers-button-container {
+  display: flex;
+  gap: 5vw;
 }
 .commentButtonLink {
   text-decoration: none;
-}
-.comment-section {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  padding: 0 2vw;
-}
-.comment-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-.comment-box {
-  text-align: start;
-  margin-bottom: -2vh;
 }
 
 .comment-section2 {
@@ -167,4 +171,9 @@
   color: red;
   font-weight: bold;
   font-size: 1rem;
+}
+.person-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }

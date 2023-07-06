@@ -5,17 +5,9 @@ import axios from "axios";
 import commentButton1 from "../resource/images/commentButton1.svg";
 import commentButton2 from "../resource/images/commentButton2.svg";
 import "../css/commentButton.css";
-import commentButton3 from "../resource/images/commentButton3.svg";
-import commentButton4 from "../resource/images/commentButton4.svg";
 import toktokLogo from "../resource/logos/toktokLogo.png";
 import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
-import annyPhoto from "../resource/images/annyPhoto.png";
-import albertPhoto from "../resource/images/albertPhoto.png";
-import himePhoto from "../resource/images/himePhoto.png";
-import image1 from "../resource/images/image1.png";
-import image2 from "../resource/images/image2.png";
-import image3 from "../resource/images/image3.png";
 import FooterNavbar from "../components/FooterNavbar";
 import LikeButton from "../components/LikeButton";
 import CommentButton from "../components/CommentButton";
@@ -25,41 +17,41 @@ import { Link, useNavigate } from "react-router-dom";
 import PostItem from "../components/PostItem";
 
 function Home({ darkLight, setDarkLight }) {
-  const [persons, setPersons] = useState([
-    {
-      avatar: annyPhoto,
-      username: "anny-wilson",
-      activity: "Marketing Coordinator",
-      mainImg: image1,
-      heartImg: Heart,
-      redHeartImg: redHeart,
-      likeCount: 44389,
-      commentCount: 26376,
-      isLiked: false,
-    },
-    {
-      avatar: himePhoto,
-      username: "hime-tonuki",
-      activity: "Marketing Coordinator",
-      mainImg: image2,
-      heartImg: Heart,
-      redHeartImg: redHeart,
-      likeCount: 41381,
-      commentCount: 19387,
-      isLiked: false,
-    },
-    {
-      avatar: albertPhoto,
-      username: "albert-hawkins",
-      activity: "President of Sales",
-      mainImg: image3,
-      heartImg: Heart,
-      redHeartImg: redHeart,
-      likeCount: 55799,
-      commentCount: 11336,
-      isLiked: false,
-    },
-  ]);
+  // const [persons, setPersons] = useState([
+  //   {
+  //     avatar: annyPhoto,
+  //     username: "anny-wilson",
+  //     activity: "Marketing Coordinator",
+  //     mainImg: image1,
+  //     heartImg: Heart,
+  //     redHeartImg: redHeart,
+  //     likeCount: 44389,
+  //     commentCount: 26376,
+  //     isLiked: false,
+  //   },
+  //   {
+  //     avatar: himePhoto,
+  //     username: "hime-tonuki",
+  //     activity: "Marketing Coordinator",
+  //     mainImg: image2,
+  //     heartImg: Heart,
+  //     redHeartImg: redHeart,
+  //     likeCount: 41381,
+  //     commentCount: 19387,
+  //     isLiked: false,
+  //   },
+  //   {
+  //     avatar: albertPhoto,
+  //     username: "albert-hawkins",
+  //     activity: "President of Sales",
+  //     mainImg: image3,
+  //     heartImg: Heart,
+  //     redHeartImg: redHeart,
+  //     likeCount: 55799,
+  //     commentCount: 11336,
+  //     isLiked: false,
+  //   },
+  // ]);
 
   const [clickHeart, setClickHeart] = useState(true);
   const navigate = useNavigate();
@@ -79,14 +71,16 @@ function Home({ darkLight, setDarkLight }) {
     fetchPosts();
   }, []);
 
-  const handleCommentClick = (userName) => {
-    const filteredPerson = persons.find((p) => p.username === userName);
-    console.log(filteredPerson);
-    navigate("/commentsPage", { state: { person: filteredPerson } });
-  };
+  // const handleCommentClick = (userName) => {
+  //   const filteredPerson = persons.find((p) => p.username === userName);
+  //   console.log(filteredPerson);
+  //   navigate("/commentsPage", { state: { person: filteredPerson } });
+  // };
 
-  const handleCommentClickDB = () => {
-    navigate("/commentsPage", { state: { person: posts } });
+  const handleCommentClickDB = (id) => {
+    const filteredPerson = posts.find((post) => post._id === id);
+    console.log(filteredPerson);
+    navigate("/commentsPage", { state: { post: filteredPerson } });
   };
 
   return (
