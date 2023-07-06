@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Frame from "../resource/icons/Frame.png";
-import home from "../resource/icons/home.png";
-import Profile from "../resource/icons/Profile.png";
-import Search from "../resource/icons/Search.png";
-import redFrame from "../resource/icons/redFrame.png";
-import redHome from "../resource/icons/redHome.png";
-import redProfile from "../resource/icons/redProfile.png";
-import redSearch from "../resource/icons/redSearch.png";
+import Frame from "../resource/icons/NEWUpload-icon.svg";
+import home from "../resource/icons/NEWHome-icon.svg";
+import Profile from "../resource/icons/NEWProfile-icon.svg";
+import Search from "../resource/icons/NEWSearch-icon.svg";
+import redFrame from "../resource/icons/NEWUpload-red.svg";
+import redHome from "../resource/icons/NEWHome-red.svg";
+import redProfile from "../resource/icons/NEWProfile-red.svg";
+import redSearch from "../resource/icons/NEWSearch-red.svg";
 import { Link } from "react-router-dom";
 import "../css/home.css";
 
