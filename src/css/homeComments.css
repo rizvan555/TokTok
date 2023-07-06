@@ -25,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1vh 3vw;
+  padding: 0vh 3vw;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .commentButtonLink {
@@ -34,23 +34,78 @@
 .comment-section {
   display: flex;
   flex-direction: column;
-  width: 96%;
+  align-items: start;
+  justify-content: start;
   padding: 0 2vw;
+}
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 .comment-box {
   text-align: start;
   margin-bottom: -2vh;
 }
+
+.comment-section2 {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  padding: 0 1vw;
+}
+.comment-box2 {
+  margin-bottom: 3vh;
+}
+.container_comment-box2 {
+  display: flex;
+  justify-content: space-between;
+  width: 92vw;
+}
+.comment-box-left2 {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+}
+.like-container {
+  display: flex;
+  align-items: center;
+  gap: 10vw;
+}
+
+.reply-button {
+  border: none;
+  font-size: 1rem;
+}
+
 .tag-box {
   color: #2c6aee;
   text-align: start;
 }
 .footer-section {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 5vw;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 2vw;
+}
+.footer-section-buttons {
+  display: flex;
+  gap: 3vw;
+}
+.comment-container {
+  display: flex;
+  flex-direction: column;
+}
+.comment-name-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comment-name-box_user {
+  display: flex;
+  flex-direction: column;
 }
 .feedbacks-section {
   padding: 5vh 3vw;
@@ -90,10 +145,7 @@
   align-items: center;
   gap: 6vw;
 }
-.reply-button {
-  border: none;
-  font-size: 1rem;
-}
+
 .feedback-write-section {
   display: flex;
   align-items: center;

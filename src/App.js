@@ -55,6 +55,12 @@ function App() {
           }
         />
         <Route
+          path="/commentsPage/:username"
+          element={
+            <CommentsPage darkLight={darkLight} setDarkLight={setDarkLight} />
+          }
+        />
+        <Route
           path="/search"
           element={
             <SearchAll darkLight={darkLight} setDarkLight={setDarkLight} />

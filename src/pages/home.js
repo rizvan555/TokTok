@@ -26,9 +26,9 @@ import { Link } from "react-router-dom";
 function Home({ darkLight, setDarkLight }) {
   const [persons, setPersons] = useState([
     {
-      profilImg: annyPhoto,
-      name: "anny-wilson",
-      position: "Marketing Coordinator",
+      avatar: annyPhoto,
+      username: "anny-wilson",
+      activity: "Marketing Coordinator",
       mainImg: image1,
       heartImg: Heart,
       redHeartImg: redHeart,
@@ -37,9 +37,9 @@ function Home({ darkLight, setDarkLight }) {
       isLiked: false,
     },
     {
-      profilImg: himePhoto,
-      name: "hime-tonuki",
-      position: "Marketing Coordinator",
+      avatar: himePhoto,
+      username: "hime-tonuki",
+      activity: "Marketing Coordinator",
       mainImg: image2,
       heartImg: Heart,
       redHeartImg: redHeart,
@@ -48,9 +48,9 @@ function Home({ darkLight, setDarkLight }) {
       isLiked: false,
     },
     {
-      profilImg: albertPhoto,
-      name: "anny-wilson",
-      position: "President of Sales",
+      avatar: albertPhoto,
+      username: "albert-hawkins",
+      activity: "President of Sales",
       mainImg: image3,
       heartImg: Heart,
       redHeartImg: redHeart,
@@ -203,16 +203,20 @@ function Home({ darkLight, setDarkLight }) {
               <section className="header-section">
                 <div className="person-left-side">
                   <img
-                    src={person.profilImg}
+                    src={person.avatar}
                     alt="photo1"
                     className="person-photo"
                   />
                   <div className="name-box">
-                    <h3 className="name">{person.name}</h3>
-                    <h5 className="position">{person.position}</h5>
+                    <h3 className="name">{person.username}</h3>
+                    <h5 className="position">{person.activity}</h5>
                   </div>
                 </div>
-                <Link to="/settingsPage" className="settings-container">
+                <Link
+                  to="/settingsPage"
+                  className="settings-container"
+                  // onClick={() => handleClickCommentButton(person.name)}
+                >
                   {darkLight ? (
                     <img src={commentButton1} alt="commentButton1" />
                   ) : (
@@ -230,6 +234,7 @@ function Home({ darkLight, setDarkLight }) {
                   index={index}
                 />
                 <CommentButton
+                  persons={persons}
                   person={person}
                   darkLight={darkLight}
                   setDarkLight={setDarkLight}
