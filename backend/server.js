@@ -42,7 +42,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 // app.use(express.static(ReactAppDistPath.pathname));
 
 
@@ -116,20 +116,34 @@ const authenticateToken = (req, res, next) => {
     }
 
     if (!token) {
-        return res.sendStatus(401); // Token nicht vorhanden
+        redirectToSignIn(req, res); // Token nicht vorhanden, Weiterleitung zur Signin-Seite
+        return;
     }
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
         if (err) {
-            return res.sendStatus(403); // Token ungültig oder abgelaufen
+            redirectToSignIn(req, res); // Token ungültig oder abgelaufen, Weiterleitung zur Signin-Seite
+            return;
         }
+        // if (!token) {
+        //     // return res.sendStatus(401);
+        //     return res.redirect("/signin"); // Token nicht vorhanden
+        // }
+
+        // jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+        //     if (err) {
+        //         return res.redirect("/signin");
+        //         // return res.sendStatus(403); // Token ungültig oder abgelaufen
+        //     }
 
         req.user = user; // Speichere den Benutzer aus dem Token im Request-Objekt
         next(); // Rufe die nächste Middleware oder den Controller auf
     });
 };
 
-
+const redirectToSignIn = (req, res) => {
+    res.redirect("/signin");
+};
 // ========== VERIFY ==========
 app.get("/api/secure", authenticateToken, (req, res) => {
     res.json(req.user);
@@ -296,7 +310,7 @@ app.post(
 app.post("/api/newpost", authenticateToken,
     async (req, res) => {
         try {
-            const { content, location, image, facebook, twitter, tumblr } = req.body;
+            const { content, location, image, facebook, twitter, tumblr, likeCount, commentCount, isLiked } = req.body;
 
             const newPost = new Post({
                 content,
@@ -305,7 +319,10 @@ app.post("/api/newpost", authenticateToken,
                 image,
                 facebook,
                 twitter,
-                tumblr
+                tumblr,
+                likeCount,
+                commentCount,
+                isLiked,
             });
 
             const savedPost = await newPost.save();
