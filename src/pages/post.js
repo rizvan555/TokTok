@@ -23,7 +23,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
       location: "Düsseldorf",
       facebook: false,
       twitter: false,
-      tumblr: false
+      tumblr: false,
     },
   );
 
@@ -79,9 +79,11 @@ const NewPost = ({ darkLight, setDarkLight }) => {
     navigate("/")
 
     try {
+      post.user = user?._id
       const res = await axios.post("/api/newpost", post, { withCredentials: true });
       // navigate("/")
       console.log(res);
+
     } catch (error) {
       const responseError = error?.response?.data?.error?.message;
       if (responseError) {

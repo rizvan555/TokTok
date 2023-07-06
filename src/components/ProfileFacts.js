@@ -58,10 +58,10 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
         </div>
 
         <h1>{user.name ? user.name : "Your name"}</h1>
-        {!click ? <h3>{user.activity ? user.activity : "Tell other user something about you."}</h3> : ""}
+        {!click ? <h3>{user.activity ? user.activity : "Job title"}</h3> : ""}
         {!click ? (
           <p style={{ color: !darkLight ? "white" : "black" }}>
-            {user.aboutMe}
+            {user.aboutMe ? user.aboutMe : "Tell other user something about you."}
           </p>
         ) : (
           ""
