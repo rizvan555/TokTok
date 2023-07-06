@@ -20,6 +20,7 @@ function CommentsPage({ darkLight }) {
   const [comments, setComments] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const { username } = useParams();
+  const [myFilteredPerson, setMyFilteredPerson] = useState({});
   const [persons, setPersons] = useState([
     {
       avatar: annyPhoto,
@@ -133,6 +134,12 @@ function CommentsPage({ darkLight }) {
     }
   };
 
+  const handleCommentClick = (userName) => {
+    const filteredPerson = persons.find((p) => p.username === userName);
+    setMyFilteredPerson(filteredPerson);
+    console.log(filteredPerson);
+  };
+
   const clickPostButton = (personIndex) => {
     setInputValue("");
     addFeedback(personIndex);
@@ -209,7 +216,11 @@ function CommentsPage({ darkLight }) {
                 setPersons={setPersons}
                 index={personIndex}
               />
-              <CommentButton person={person} darkLight={darkLight} />
+              <CommentButton
+                person={person}
+                darkLight={darkLight}
+                onClick={handleCommentClick}
+              />
             </section>
             <section className="feedbacks-section">
               {person.feedbacks.map((feedback, feedbackIndex) => (
