@@ -18,7 +18,7 @@ import LikeButton from "../components/LikeButton";
 import CommentButton from "../components/CommentButton";
 import { GoHeart } from "react-icons/go";
 import CustomizedSwitches from "../components/CustomizedSwitches";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home({ darkLight, setDarkLight }) {
   const [persons, setPersons] = useState([
@@ -32,6 +32,8 @@ function Home({ darkLight, setDarkLight }) {
       likeCount: 44389,
       commentCount: 26376,
       isLiked: false,
+      content:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam",
     },
     {
       avatar: himePhoto,
@@ -43,6 +45,8 @@ function Home({ darkLight, setDarkLight }) {
       likeCount: 41381,
       commentCount: 19387,
       isLiked: false,
+      content:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam",
     },
     {
       avatar: albertPhoto,
@@ -54,41 +58,52 @@ function Home({ darkLight, setDarkLight }) {
       likeCount: 55799,
       commentCount: 11336,
       isLiked: false,
+      content:
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam",
     },
   ]);
   const [clickHeart, setClickHeart] = useState(true);
-
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    const getUserProfile = async () => {
-      try {
-        const response = await axios.get('/api/user');
-        setUser(response.data);
-        console.log(response);
-      } catch (error) {
-        console.error('Fehler beim Abrufen der Benutzerdaten', error);
-      }
-    };
-    console.log(user);
-    getUserProfile();
-  }, []);
-
   const [posts, setPosts] = useState({});
+  const [users, setUsers] = useState({});
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const getUserProfile = async () => {
+  //     try {
+  //       const response = await axios.get("/api/user");
+  //       setUsers(response.data);
+  //       console.log(response);
+  //     } catch (error) {
+  //       console.error("Fehler beim Abrufen der Benutzerdaten", error);
+  //     }
+  //   };
+  //   console.log(users);
+  //   getUserProfile();
+  // }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('/api/:user/posts');
+        const response = await axios.get("/api/:user/posts");
         setPosts(response.data);
         console.log(response);
       } catch (error) {
-        console.error('Fehler beim Abrufen der Benutzerdaten', error);
+        console.error("Fehler beim Abrufen der Benutzerdaten", error);
       }
     };
     console.log(posts);
     fetchPosts();
   }, []);
+
+  const handleCommentClick = (userName) => {
+    const filteredPerson = persons.find((p) => p.username === userName);
+    console.log(filteredPerson);
+    navigate("/commentsPage", { state: { person: filteredPerson } });
+  };
+
+  const handleCommentClickDB = () => {
+    navigate("/commentsPage", { state: { person: users } });
+  };
 
   return (
     <div className="home-container">
@@ -119,18 +134,13 @@ function Home({ darkLight, setDarkLight }) {
       </div> */}
 
       <main className="home-main">
-
-        <div key={user._id} className="person-main-container">
+        <div key={users._id} className="person-main-container">
           <section className="header-section">
             <div className="person-left-side">
-              <img
-                src={user.avatar}
-                alt="photo1"
-                className="person-photo"
-              />
+              <img src={users.avatar} alt="photo1" className="person-photo" />
               <div className="name-box">
-                <h3 className="name">{user.name}</h3>
-                <h5 className="position">{user.activity}</h5>
+                <h3 className="name">{users.name}</h3>
+                <h5 className="position">{users.activity}</h5>
               </div>
             </div>
             <Link to="/settingsPage" className="settings-container">
@@ -147,22 +157,14 @@ function Home({ darkLight, setDarkLight }) {
           <img src={posts[posts.length - 1]?.image} alt="image1" />
         </section>
         <section className="main-footer-section">
-          <LikeButton
-            person={posts}
-            setPersons={setPosts}
-            id={posts._id}
-          />
+          <LikeButton person={posts} setPersons={setPosts} id={posts._id} />
           <CommentButton
             person={posts}
             darkLight={darkLight}
             setDarkLight={setDarkLight}
+            onclick={handleCommentClickDB}
           />
         </section>
-
-
-
-
-
 
         <div className="scrollable">
           {persons.map((person, index) => (
@@ -201,10 +203,9 @@ function Home({ darkLight, setDarkLight }) {
                   index={index}
                 />
                 <CommentButton
-                  persons={persons}
                   person={person}
                   darkLight={darkLight}
-                  setDarkLight={setDarkLight}
+                  onclick={handleCommentClick}
                 />
               </section>
             </div>
