@@ -31,6 +31,9 @@ function OwnProfile({ darkLight }) {
     comments: "",
   })
 
+  window.onload = function () {
+    window.scrollTo(0, 0)
+  }
 
   return (
     <>
@@ -45,12 +48,14 @@ function OwnProfile({ darkLight }) {
           setClick={setClick}
           darkLight={darkLight} user={user} setUser={setUser}
         />
-        <ProfileFacts click={click} setClick={setClick} darkLight={darkLight} user={user} setUser={setUser} />
-        <ProfileGallery
-          click={click}
-          setClick={setClick}
-          darkLight={darkLight}
-        />
+        <main className="main-ownProfile">
+          <ProfileFacts click={click} setClick={setClick} darkLight={darkLight} user={user} setUser={setUser} />
+          <ProfileGallery
+            click={click}
+            setClick={setClick}
+            darkLight={darkLight}
+          />
+        </main>
         <FooterNavbar />
       </div>
       {click ? (

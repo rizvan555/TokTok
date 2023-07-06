@@ -3,12 +3,18 @@
 @import "../index.css";
 
 /* ------------------------------------------------------ */
+
+/* body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
 .ownprofile_page {
   font-family: var(--font-family-bold);
   color: var(--primary-color);
   /* width: 95%; */
   margin: 0 auto;
-  padding: vh 0vw;
   text-align: center;
   padding: 4.7vh 1.1vw 0 1.1vw;
 }
@@ -97,15 +103,21 @@
   transition: all;
 }
 
+.main-ownProfile {
+  overflow-y: auto;
+  max-height: calc(100vh - 155px);
+  padding: 0 2vw;
+}
+
 /* Profile - Image ------------------------------------- */
 
 .image-container {
   position: relative;
   padding-top: 10px;
   margin: 0 auto;
-
-  /* Profile - Image ------------------------------------- */
 }
+
+/* Profile - Image ------------------------------------- */
 
 .image-container .profile_img {
   /* width: 33%; */
@@ -123,6 +135,7 @@
 }
 
 /* Profile - Facts ------------------------------------- */
+
 .profile_article h1 {
   font-size: calc(var(--font-size-rem) * 2.4);
   font-weight: 600;
