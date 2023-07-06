@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../css/homeComments.css";
 import CommentButton from "../components/CommentButton";
 import LikeButton from "../components/LikeButton";
@@ -9,12 +9,14 @@ import { BsSend } from "react-icons/bs";
 import commentButton1 from "../resource/images/commentButton1.svg";
 import commentButton2 from "../resource/images/commentButton2.svg";
 import axios from "axios";
+
 function CommentsPage({ darkLight }) {
   const [users, setUsers] = useState({});
   const [comments, setComments] = useState([]);
   const [posts, setPosts] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const { state } = useLocation();
+  const navigate = useNavigate();
   console.log("state", state);
   const post = state?.post;
 
@@ -88,31 +90,7 @@ function CommentsPage({ darkLight }) {
     );
   };
 
-  const addFeedback = (personIndex) => {
-    if (inputValue) {
-      setPosts((persons) =>
-        persons.map((person, index) =>
-          index === personIndex
-            ? {
-                ...person,
-                feedbacks: [
-                  ...(person.feedbacks ? person.feedbacks : []),
-                  {
-                    img: jonnyPhoto,
-                    name: "andrew_nguyen",
-                    position: "Dog Trainer",
-                    feedback: inputValue,
-                    likeCount: 0,
-                    isLiked: false,
-                  },
-                ],
-                commentCount: person.commentCount + 1,
-              }
-            : person
-        )
-      );
-    }
-  };
+  const addFeedback = (personIndex) => {};
 
   const clickPostButton = (personIndex) => {
     setInputValue("");
@@ -134,12 +112,12 @@ function CommentsPage({ darkLight }) {
   // };
 
   // const clickPostButton = (postId) => {
-  //   const userId = user[0]._id;
-  //   createComment(postId, userId, inputValue);
+  //   const id = post._id;
   //   setInputValue("");
-  //   navigate("/commentspage");
+  //   navigate("/commentsPage");
   // };
-  console.log(post);
+
+  // console.log(post);
 
   return (
     <div className="commentPage-container">
@@ -191,41 +169,13 @@ function CommentsPage({ darkLight }) {
           onChange={(e) => setInputValue(e.target.value)}
         />
         <button
-          // onClick={() => clickPostButton(personIndex)}
+          onClick={() => clickPostButton(inputValue)}
           className="post-button"
           style={{ color: darkLight ? "red" : "white" }}
         >
           Post
         </button>
       </section>
-
-      {posts.map((post, personIndex) => (
-        <div key={personIndex}>
-          {/* <section className="person-section-container">
-            <div className="comment-user-header">
-              <div className="comment-user-header_left">
-                <img src={post.image} alt="image" className="user-photo" />
-                <div className="user-title">
-                  <h3>{post?.user?.name}</h3>
-                  <p>{post?.user?.activity}</p>
-                </div>
-              </div>
-              <Link to="/settingsPage" className="settings-container">
-                {darkLight ? (
-                  <img src={commentButton1} alt="commentButton1" />
-                ) : (
-                  <img src={commentButton2} alt="commentButton2" />
-                )}
-              </Link>
-            </div>
-            <p>{post.content}</p>
-            <div className="footers-button-container">
-              <LikeButton person={posts} setPersons={setPosts} id={posts._id} />
-              <CommentButton person={posts} darkLight={darkLight} />
-            </div>
-          </section> */}
-        </div>
-      ))}
     </div>
   );
 }
