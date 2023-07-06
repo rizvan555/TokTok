@@ -43,13 +43,23 @@ function OwnProfile({ darkLight }) {
           backgroundColor: click ? "rgba(0,0,0,0.5)" : "",
         }}
       >
-        <ProfileMainBar
-          click={click}
-          setClick={setClick}
-          darkLight={darkLight} user={user} setUser={setUser}
-        />
+        <header className="header-ownProfile">
+          <ProfileMainBar
+            click={click}
+            setClick={setClick}
+            darkLight={darkLight}
+            user={user}
+            setUser={setUser}
+          />
+        </header>
         <main className="main-ownProfile">
-          <ProfileFacts click={click} setClick={setClick} darkLight={darkLight} user={user} setUser={setUser} />
+          <ProfileFacts
+            click={click}
+            setClick={setClick}
+            darkLight={darkLight}
+            user={user}
+            setUser={setUser}
+          />
           <ProfileGallery
             click={click}
             setClick={setClick}

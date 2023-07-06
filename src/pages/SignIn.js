@@ -70,7 +70,11 @@ const SignIn = () => {
                 <span
                     className="toggle_password"
                     onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <img className="showIcon" src={showIcon} /> : <img className="hideIcon" src={hideIcon} />}
+                    {showPassword ?
+                        <img className="showIcon" src={showIcon} />
+                        :
+                        <img className="hideIcon" src={hideIcon}
+                        />}
                 </span>
                 <button className="signin_btn">Log In</button>
             </form>

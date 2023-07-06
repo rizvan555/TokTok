@@ -16,19 +16,24 @@
   /* width: 95%; */
   margin: 0 auto;
   text-align: center;
-  padding: 4.7vh 1.1vw 0 1.1vw;
+  padding-top: 1.65vh;
 }
 
 .ownprofile_page p {
   letter-spacing: var(--letter-spacing);
 }
 
+
 /* Profile - Bar - Top ---------------------------------- */
 
-.profile_main_bar {
+.header-ownProfile {
+  padding: 0 3vw;
+}
+
+.profile_mainbar {
   display: flex;
   justify-content: space-between;
-  padding-top: 17px 3vw;
+  align-items: center;
 }
 
 .toktok-logo {
@@ -36,8 +41,9 @@
   height: 30px;
 }
 
-.profile_main_bar section {
+.profile_mainbar section {
   display: flex;
+  margin: 3.2vh 0;
 }
 
 .profile_main_bar section h2 {
@@ -105,7 +111,7 @@
 
 .main-ownProfile {
   overflow-y: auto;
-  max-height: calc(100vh - 155px);
+  max-height: calc(100vh - 154.1px);
   padding: 0 2vw;
 }
 
@@ -229,9 +235,9 @@
 
 /* Profile - Gallery - Section --------------- */
 
-.profile_gallery_images {
+/* .profile_gallery_images {
   padding-bottom: 50px;
-}
+} */
 
 .profile_gallery_images img {
   width: 30%;

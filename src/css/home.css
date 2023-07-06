@@ -30,6 +30,7 @@
 .main-heart-button {
   background-color: transparent;
   border: none;
+  padding-top: 4px;
 }
 
 .home-main {

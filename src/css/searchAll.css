@@ -21,7 +21,7 @@
 
 .search-person-container {
   overflow-y: auto;
-  max-height: calc(100vh - 230px);
+  max-height: calc(100vh - 181.5px);
 }
 
 .search-person-section {
