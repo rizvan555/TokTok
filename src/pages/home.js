@@ -16,41 +16,7 @@ import CustomizedSwitches from "../components/CustomizedSwitches";
 import { Link, useNavigate } from "react-router-dom";
 
 function Home({ darkLight, setDarkLight }) {
-  // const [persons, setPersons] = useState([
-  //   {
-  //     avatar: annyPhoto,
-  //     username: "anny-wilson",
-  //     activity: "Marketing Coordinator",
-  //     mainImg: image1,
-  //     heartImg: Heart,
-  //     redHeartImg: redHeart,
-  //     likeCount: 44389,
-  //     commentCount: 26376,
-  //     isLiked: false,
-  //   },
-  //   {
-  //     avatar: himePhoto,
-  //     username: "hime-tonuki",
-  //     activity: "Marketing Coordinator",
-  //     mainImg: image2,
-  //     heartImg: Heart,
-  //     redHeartImg: redHeart,
-  //     likeCount: 41381,
-  //     commentCount: 19387,
-  //     isLiked: false,
-  //   },
-  //   {
-  //     avatar: albertPhoto,
-  //     username: "albert-hawkins",
-  //     activity: "President of Sales",
-  //     mainImg: image3,
-  //     heartImg: Heart,
-  //     redHeartImg: redHeart,
-  //     likeCount: 55799,
-  //     commentCount: 11336,
-  //     isLiked: false,
-  //   },
-  // ]);
+ 
 
   const [clickHeart, setClickHeart] = useState(true);
   const navigate = useNavigate();
@@ -146,7 +112,6 @@ function Home({ darkLight, setDarkLight }) {
                     setPersons={setPosts}
                     id={posts._id}
                   />
-
                   <CommentButton
                     post={post}
                     darkLight={darkLight}
