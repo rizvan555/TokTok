@@ -244,7 +244,14 @@ app.get("/api/user/posts", async (req, res) => {
 // ========== GET ALL POSTS FROM ALL USERS ==========
 app.get("/api/posts", async (req, res) => {
     try {
-        const posts = await Post.find().populate("user");
+        const posts = await Post.find().populate("user").populate({
+            path: "comments",
+            model: "Comment",
+            populate: {
+                path: "user",
+                model: "User"
+            }
+        });
         res.json(posts);
     } catch (error) {
         console.error(error);
@@ -327,12 +334,35 @@ app.post("/api/newpost", authenticateToken,
     });
 
 
+
+
+// LIKES 
+// ========== LIKE A POST AND UPDATE LIKES ==========
+app.put('/api/posts/updateLike', async (req, res) => {
+    const { postId, isLiked, likeCount } = req.body;
+
+    try {
+        const updatedPost = await Post.findByIdAndUpdate(
+            postId,
+            { isLiked, likeCount },
+            { new: true }
+        );
+        res.json(updatedPost);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Fehler beim Aktualisieren der Daten.' });
+    }
+});
+
+
+
+
 // COMMENTS
 
 // ========== GET ALL COMMENTS FOR ONE POST ==========
 app.get("/api/comments", async (req, res) => {
     try {
-        const comments = await Comment.find();
+        const comments = await Comment.find().populate("feedback");
         res.status(200).json(comments);
     } catch (error) {
         console.error(error);
