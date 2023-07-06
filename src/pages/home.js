@@ -50,7 +50,7 @@ function Home({ darkLight, setDarkLight }) {
               style={{ color: !darkLight ? "white" : "black" }}
             />
           ) : (
-            <img src={redHeart} alt="redHeart" />
+            <img src={redHeart} alt="redHeart" width='27' height='27' />
           )}
         </button>
       </header>

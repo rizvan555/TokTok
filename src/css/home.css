@@ -1,5 +1,5 @@
 .home-container {
-  padding: 1vh 0vw;
+  padding: 1vh 0vw 0vh 0vw;
   font-family: "Urbanist", sans-serif;
 }
 
@@ -30,6 +30,7 @@
 .main-heart-button {
   background-color: transparent;
   border: none;
+  padding-top: 4px;
 }
 
 .home-main {
@@ -115,9 +116,12 @@
 
 .footer-navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   border-top: 1px solid lightgray;
   padding: 2vh 2vw;
+  /* position: fixed;
+  bottom: 0; */
+  /* width: 100%; */
 }
 
 .home-footer,
@@ -127,4 +131,5 @@
   display: flex;
   border: none;
   background-color: transparent;
+  padding: 0;
 }

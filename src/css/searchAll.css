@@ -3,23 +3,27 @@
   flex-direction: column;
   justify-content: center;
   padding-top: 2vh;
-  gap: 3vh;
+  /* gap: 3vh; */
   font-family: "Urbanist", sans-serif;
 }
+
 .search-header {
   position: relative;
   display: flex;
   justify-content: center;
 }
+
 .search-icon {
   position: absolute;
   left: 8%;
   top: 25%;
 }
+
 .search-person-container {
   overflow-y: auto;
-  max-height: calc(100vh - 230px);
+  max-height: calc(100vh - 181.5px);
 }
+
 .search-person-section {
   display: flex;
   justify-content: space-between;
@@ -28,10 +32,12 @@
   padding: 0 2vw;
   height: 12vh;
 }
+
 .followButton {
   background-color: transparent;
   border: none;
 }
+
 .input-box {
   width: 70%;
   padding: 2vh 10vw;
@@ -39,8 +45,9 @@
   border: 1px solid lightgray;
   background-color: transparent;
 }
+
 .center-icon {
   border-bottom: 3px solid red;
-  padding-bottom: 2vh;
+  padding: 2vh 0;
   text-align: center;
 }
