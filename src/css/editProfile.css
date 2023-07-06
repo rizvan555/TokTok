@@ -84,15 +84,7 @@
     position: relative;
 }
 
-.text_form .name,
-.text_form .username,
-.text_form .activity,
-.text_form .birthday,
-.text_form .email,
-.text_form .tel,
-.text_form .website,
-.text_form .gender,
-.text_form .aboutme {
+.text_form :is(input, select, textarea) {
     display: inline-block;
     margin-top: 12px;
     font-family: var(--font-family-bold);
@@ -149,27 +141,11 @@
     background-position: 97.5%;
 }
 
-.text_form .name:hover,
-.text_form .username:hover,
-.text_form .activity:hover,
-.text_form .birthday:hover,
-.text_form .email:hover,
-.text_form .tel:hover,
-.text_form .gender:hover,
-.text_form .website:hover,
-.text_form .aboutme:hover {
+.text_form :is(input, select, textarea):hover {
     background-color: var(--input-color-2);
 }
 
-.text_form .name:focus,
-.text_form .username:focus,
-.text_form .activity:focus,
-.text_form .birthday:focus,
-.text_form .email:focus,
-.text_form .tel:focus,
-.text_form .gender:focus,
-.text_form .website:focus,
-.text_form .aboutme:focus {
+.text_form :is(input, select, textarea):focus {
     outline: none;
 }
 

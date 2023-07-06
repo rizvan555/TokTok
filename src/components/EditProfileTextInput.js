@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 
 // Import Icon ------------------------------------------
+
 import calendarIcon from '../resource/icons/Groupcalendar_icon.svg';
+
 // ------------------------------------------------------
 
 const EditProfileTextInput = ({ user, setUser }) => {
+
+    const [showDate, setShowDate] = useState(true);
 
     return (
         <div className="text_form">
@@ -37,8 +41,9 @@ const EditProfileTextInput = ({ user, setUser }) => {
                 name="birthday"
                 className="birthday"
                 placeholder="birthday"
-                pattern="\d{2}\.\d{2}\.\d{4}"
+                pattern="(0[1-9]|[1-2][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}"
                 value={user.birthday}
+                // onClick={() => setShowDate(!showDate)}
                 onChange={(event) => { setUser({ ...user, birthday: event.currentTarget.value }) }}
             />
             <img

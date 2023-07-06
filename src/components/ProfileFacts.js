@@ -75,7 +75,7 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
             <p style={{ color: !darkLight ? "white" : "black" }}>Posts</p>
           </div>
           <div className="followers">
-            <h5>46,379</h5>
+            <h5>46.379</h5>
             <p style={{ color: !darkLight ? "white" : "black" }}>Followers</p>
           </div>
           <div className="following">
