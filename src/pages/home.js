@@ -10,18 +10,12 @@ import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
 import FooterNavbar from "../components/FooterNavbar";
 import LikeButton from "../components/LikeButton";
-import CommentButton from "../components/CommentButton";
 import { GoHeart } from "react-icons/go";
 import CustomizedSwitches from "../components/CustomizedSwitches";
-import { Link, useNavigate } from "react-router-dom";
 import PostItem from "../components/PostItem";
 
 function Home({ darkLight, setDarkLight }) {
- 
-
   const [clickHeart, setClickHeart] = useState(true);
-  const navigate = useNavigate();
-
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
@@ -36,18 +30,6 @@ function Home({ darkLight, setDarkLight }) {
     // console.log(posts);
     fetchPosts();
   }, []);
-
-  // const handleCommentClick = (userName) => {
-  //   const filteredPerson = persons.find((p) => p.username === userName);
-  //   console.log(filteredPerson);
-  //   navigate("/commentsPage", { state: { person: filteredPerson } });
-  // };
-
-  const handleCommentClickDB = (id) => {
-    const filteredPerson = posts.find((post) => post._id === id);
-    console.log(filteredPerson);
-    navigate("/commentsPage", { state: { post: filteredPerson } });
-  };
 
   return (
     <div className="home-container">
@@ -75,7 +57,6 @@ function Home({ darkLight, setDarkLight }) {
 
       <main className="home-main">
         <section className="main-section">
-
           {posts.map((post, index) => (
             <PostItem
               key={post._id}
@@ -83,13 +64,13 @@ function Home({ darkLight, setDarkLight }) {
               username={post?.user?.username}
               activity={post.activity}
               image={post.image}
-              // heartImg={post.heartImg}
-              // redHeartImg={post.redHeartImg}
               likeCount={post.likeCount}
               commentCount={post.commentCount}
               isLiked={post.isLiked}
               darkLight={darkLight}
               setDarkLight={setDarkLight}
+              post={post}
+              posts={posts}
             />
           ))}
         </section>
@@ -101,7 +82,8 @@ function Home({ darkLight, setDarkLight }) {
 
 export default Home;
 
-{/* <section className="main-footer-section">
+{
+  /* <section className="main-footer-section">
           <LikeButton person={posts} setPersons={setPosts} id={posts._id} />
           <CommentButton
             person={posts}
@@ -136,9 +118,11 @@ export default Home;
             </Link>
             <p>2</p>
           </div>
-        </section> */}
+        </section> */
+}
 
-{/* <div className="scrollable">
+{
+  /* <div className="scrollable">
         <div className="scrollable">
           {persons.map((person, index) => (
             <div key={index} className="person-main-container">
@@ -183,4 +167,5 @@ export default Home;
               </section>
             </div>
           ))}
-        </div> */}
+        </div> */
+}

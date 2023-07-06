@@ -3,20 +3,25 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../css/homeComments.css";
 import CommentButton from "../components/CommentButton";
 import LikeButton from "../components/LikeButton";
-import jonnyPhoto from "../resource/images/jonnyPhoto.png";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsSend } from "react-icons/bs";
 import commentButton1 from "../resource/images/commentButton1.svg";
 import commentButton2 from "../resource/images/commentButton2.svg";
+import redHeart from "../resource/images/redHeart.png";
+
 import axios from "axios";
+import { GoHeart } from "react-icons/go";
 
 function CommentsPage({ darkLight }) {
   const [users, setUsers] = useState({});
   const [comments, setComments] = useState([]);
   const [posts, setPosts] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const { state } = useLocation();
+  const [commentList, setCommentList] = useState([]);
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
   const navigate = useNavigate();
+  const { state } = useLocation();
   console.log("state", state);
   const post = state?.post;
 
@@ -55,31 +60,19 @@ function CommentsPage({ darkLight }) {
     fetchPosts();
   }, []);
 
-  const toggleLike = (posts, feedbackIndex) => {
-    setPosts((p) =>
-      posts.map((person, index) =>
-        p === person
-          ? {
-              ...p,
-              feedbacks: p.feedbacks.map((f) =>
-                f === feedbackIndex
-                  ? {
-                      ...f,
-                      likeCount: f.likeCount + (f.isLiked ? -1 : 1),
-                      isLiked: !f.isLiked,
-                    }
-                  : f
-              ),
-            }
-          : p
-      )
-    );
+  const toggleLike = () => {
+    if (liked) {
+      setLikes(likes - 1);
+    } else {
+      setLikes(likes + 1);
+    }
+    setLiked(!liked);
   };
 
-  const toggleLike2 = (_id) => {
-    setComments((comments) =>
-      comments.map((comment, personIndex) =>
-        personIndex === _id
+  const toggleCommentLike = (commentIndex) => {
+    setCommentList((commentList) =>
+      commentList.map((comment, index) =>
+        index === commentIndex
           ? {
               ...comment,
               likeCount: comment.likeCount + (comment.isLiked ? -1 : 1),
@@ -90,34 +83,34 @@ function CommentsPage({ darkLight }) {
     );
   };
 
-  const addFeedback = (personIndex) => {};
-
-  const clickPostButton = (personIndex) => {
-    setInputValue("");
-    addFeedback(personIndex);
+  const createComment = async (postId, userId, content) => {
+    try {
+      const response = await axios.put(`/api/comments/${postId}`, {
+        userId,
+        content,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  // =========== ADD A NEW COMMENT  ===========
+  const clickPostButton = () => {
+    if (inputValue.trim() !== "") {
+      const newComment = { content: inputValue, likeCount: 0 };
+      setCommentList((prevComments) => [...prevComments, newComment]);
+      setInputValue("");
 
-  // const createComment = async (postId, userId, content) => {
-  //   try {
-  //     const response = await axios.put(`/api/comments/${postId}`, {
-  //       userId,
-  //       content,
-  //     });
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+      const postId = post?.id;
+      const userId = users[0]?.id;
+      createComment(postId, userId, inputValue);
+    }
+  };
 
-  // const clickPostButton = (postId) => {
-  //   const id = post._id;
-  //   setInputValue("");
-  //   navigate("/commentsPage");
-  // };
-
-  // console.log(post);
+  const footersButtonContainerClass =
+    commentList.length > 0
+      ? "footers-button-container active"
+      : "footers-button-container";
 
   return (
     <div className="commentPage-container">
@@ -137,30 +130,92 @@ function CommentsPage({ darkLight }) {
         </button>
       </header>
       <section className="person-section-container">
-        <div className="comment-user-header">
-          <div className="comment-user-header_left">
-            <img src={post?.user?.avatar} alt="image" className="user-photo" />
-            <div className="user-title">
-              <h3>{post?.user?.name}</h3>
-              <p>{post?.user?.activity}</p>
+        <div className="person-section-container_child">
+          <div className="comment-user-header">
+            <div className="comment-user-header_left">
+              <img
+                src={post?.user?.avatar}
+                alt="image"
+                className="user-photo"
+              />
+              <div className="user-title">
+                <h2>{post?.user?.name}</h2>
+                <p>{post?.user?.activity}</p>
+              </div>
+            </div>
+            <Link to="/settingsPage" className="settings-container">
+              {darkLight ? (
+                <img src={commentButton1} alt="commentButton1" />
+              ) : (
+                <img src={commentButton2} alt="commentButton2" />
+              )}
+            </Link>
+          </div>
+          <p>{post?.content}</p>
+          <div className={footersButtonContainerClass}>
+            <div className="footersButtonContainerClass_1">
+              <div className="like-section" onClick={toggleLike}>
+                {liked ? (
+                  <img src={redHeart} alt="redHeart" />
+                ) : (
+                  <GoHeart size={27} />
+                )}
+                <p>{likes}</p>
+              </div>
+              <CommentButton person={posts} darkLight={darkLight} />
             </div>
           </div>
-          <Link to="/settingsPage" className="settings-container">
-            {darkLight ? (
-              <img src={commentButton1} alt="commentButton1" />
-            ) : (
-              <img src={commentButton2} alt="commentButton2" />
-            )}
-          </Link>
         </div>
-        <p>{post?.content}</p>
-        <div className="footers-button-container">
-          <LikeButton person={posts} setPersons={setPosts} id={posts._id} />
-          <CommentButton person={posts} darkLight={darkLight} />
+
+        <div className="comment-list-container">
+          {commentList.map((comment, index) => (
+            <div key={index} className="comment">
+              <div className="comment-header-box">
+                <div className="comment-left-box">
+                  <img
+                    src={post?.user?.avatar}
+                    alt="image"
+                    className="user-photo1"
+                  />
+                  <div className="user-title">
+                    <h3>{post?.user?.name}</h3>
+                    <p className="user-activity">{post?.user?.activity}</p>
+                  </div>
+                </div>
+                <Link to="/settingsPage" className="settings-container">
+                  {darkLight ? (
+                    <img src={commentButton1} alt="commentButton1" />
+                  ) : (
+                    <img src={commentButton2} alt="commentButton2" />
+                  )}
+                </Link>
+              </div>
+              {comment.content}
+              <div className="comment-down-box">
+                <div
+                  className="like-section"
+                  onClick={() => toggleCommentLike(index)}
+                >
+                  {comment.isLiked ? (
+                    <img src={redHeart} alt="redHeart" />
+                  ) : (
+                    <GoHeart size={27} />
+                  )}
+                  <p>{comment.likeCount}</p>
+                </div>
+                <p>Reply</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
+
       <section className="feedback-write-section">
-        <img src={post?.image} alt="photoalbert" className="person-photo" />
+        <img
+          src={post?.user.avatar}
+          alt="photoalbert"
+          className="person-photo"
+        />
         <input
           type="text"
           placeholder="Your comment"
@@ -169,7 +224,7 @@ function CommentsPage({ darkLight }) {
           onChange={(e) => setInputValue(e.target.value)}
         />
         <button
-          onClick={() => clickPostButton(inputValue)}
+          onClick={clickPostButton}
           className="post-button"
           style={{ color: darkLight ? "red" : "white" }}
         >
