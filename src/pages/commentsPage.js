@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import "../css/homeComments.css";
 import CommentButton from "../components/CommentButton";
 import Heart from "../resource/images/Heart.png";
@@ -16,11 +16,14 @@ import commentButton1 from "../resource/images/commentButton1.svg";
 import commentButton2 from "../resource/images/commentButton2.svg";
 import axios from "axios";
 function CommentsPage({ darkLight }) {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState({});
   const [comments, setComments] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const { username } = useParams();
-  const [myFilteredPerson, setMyFilteredPerson] = useState({});
+  const { state } = useLocation();
+  const person = state?.person;
+  const myPerson = state?.posts;
+
   const [persons, setPersons] = useState([
     {
       avatar: annyPhoto,
@@ -68,28 +71,37 @@ function CommentsPage({ darkLight }) {
       }
     };
 
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get("/api/posts");
+        setPosts(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     fetchUserProfile();
     fetchComments();
+    fetchPosts();
   }, []);
 
-  const toggleLike = (personIndex, feedbackIndex) => {
-    setPersons((persons) =>
+  const toggleLike = (person, feedbackIndex) => {
+    setPersons((p) =>
       persons.map((person, index) =>
-        index === personIndex
+        p === person
           ? {
-              ...person,
-              feedbacks: person.feedbacks.map((feedback, i) =>
-                i === feedbackIndex
+              ...p,
+              feedbacks: p.feedbacks.map((f) =>
+                f === feedbackIndex
                   ? {
-                      ...feedback,
-                      likeCount:
-                        feedback.likeCount + (feedback.isLiked ? -1 : 1),
-                      isLiked: !feedback.isLiked,
+                      ...f,
+                      likeCount: f.likeCount + (f.isLiked ? -1 : 1),
+                      isLiked: !f.isLiked,
                     }
-                  : feedback
+                  : f
               ),
             }
-          : person
+          : p
       )
     );
   };
@@ -134,12 +146,6 @@ function CommentsPage({ darkLight }) {
     }
   };
 
-  const handleCommentClick = (userName) => {
-    const filteredPerson = persons.find((p) => p.username === userName);
-    setMyFilteredPerson(filteredPerson);
-    console.log(filteredPerson);
-  };
-
   const clickPostButton = (personIndex) => {
     setInputValue("");
     addFeedback(personIndex);
@@ -182,46 +188,43 @@ function CommentsPage({ darkLight }) {
           <BsSend size={20} style={{ color: !darkLight ? "white" : "black" }} />
         </button>
       </header>
+
+      {/* ________________________________________________________________ */}
+      <section className="person-main-header-section">
+        <div className="person-left-side">
+          <img src={person.avatar} alt="photo1" className="person-photo" />
+          <div className="name-box">
+            <h3 className="name">{person.username}</h3>
+            <h5 className="position">{person.activity}</h5>
+          </div>
+        </div>
+        <Link to="/settingsPage" className="comment-button-section">
+          {darkLight ? (
+            <img src={commentButton1} alt="commentButton1" />
+          ) : (
+            <img src={commentButton2} alt="commentButton2" />
+          )}
+        </Link>
+      </section>
+      <section className="comment-section">
+        <p className="comment-box">{person.content}</p>
+        <p className="tag-box">{person.tags}</p>
+      </section>
+      <section className="footer-section">
+        <LikeButton
+          person={person}
+          persons={persons}
+          setPersons={setPersons}
+          // index={personIndex}
+        />
+        <CommentButton person={person} darkLight={darkLight} />
+      </section>
+
+      {/* ________________________________________________________________ */}
+
       {persons.map((person, personIndex) => (
         <div key={personIndex}>
           <main>
-            <section className="person-main-header-section">
-              <div className="person-left-side">
-                <img
-                  src={person.avatar}
-                  alt="photo1"
-                  className="person-photo"
-                />
-                <div className="name-box">
-                  <h3 className="name">{person.username}</h3>
-                  <h5 className="position">{person.activity}</h5>
-                </div>
-              </div>
-              <Link to="/settingsPage" className="comment-button-section">
-                {darkLight ? (
-                  <img src={commentButton1} alt="commentButton1" />
-                ) : (
-                  <img src={commentButton2} alt="commentButton2" />
-                )}
-              </Link>
-            </section>
-            <section className="comment-section">
-              <p className="comment-box">{person.content}</p>
-              <p className="tag-box">{person.tags}</p>
-            </section>
-            <section className="footer-section">
-              <LikeButton
-                person={person}
-                persons={persons}
-                setPersons={setPersons}
-                index={personIndex}
-              />
-              <CommentButton
-                person={person}
-                darkLight={darkLight}
-                onClick={handleCommentClick}
-              />
-            </section>
             <section className="feedbacks-section">
               {person.feedbacks.map((feedback, feedbackIndex) => (
                 <div key={feedbackIndex} className="feedback-section">

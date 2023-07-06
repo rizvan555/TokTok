@@ -21,7 +21,7 @@ import LikeButton from "../components/LikeButton";
 import CommentButton from "../components/CommentButton";
 import { GoHeart } from "react-icons/go";
 import CustomizedSwitches from "../components/CustomizedSwitches";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home({ darkLight, setDarkLight }) {
   // const [persons, setPersons] = useState([
@@ -59,7 +59,11 @@ function Home({ darkLight, setDarkLight }) {
   //     isLiked: false,
   //   },
   // ]);
+
   const [clickHeart, setClickHeart] = useState(true);
+  const [posts, setPosts] = useState({});
+  const [users, setUsers] = useState({});
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({});
 
@@ -87,7 +91,7 @@ function Home({ darkLight, setDarkLight }) {
         setPosts(response.data);
         console.log(response);
       } catch (error) {
-        console.error('Fehler beim Abrufen der Benutzerdaten', error);
+        console.error("Fehler beim Abrufen der Benutzerdaten", error);
       }
     };
     console.log(posts);
@@ -95,17 +99,14 @@ function Home({ darkLight, setDarkLight }) {
   }, []);
 
 
+  const handleCommentClick = (userName) => {
+    const filteredPerson = persons.find((p) => p.username === userName);
+    console.log(filteredPerson);
+    navigate("/commentsPage", { state: { person: filteredPerson } });
+  };
 
-  const [clickLike, setClickLike] = useState(false);
-  const [likeCount, setLikeCount] = useState(12);
-
-  const handleLikeToggle = () => {
-    if (clickLike) {
-      setLikeCount(likeCount - 1);
-    } else {
-      setLikeCount(likeCount + 1);
-    }
-    setClickLike(!clickLike);
+  const handleCommentClickDB = () => {
+    navigate("/commentsPage", { state: { person: users } });
   };
 
 
@@ -135,9 +136,6 @@ function Home({ darkLight, setDarkLight }) {
 
 
       <main className="home-main">
-
-
-
 
         <section className="main-section">
           <div key={user._id} className="person-main-container">
@@ -179,6 +177,13 @@ function Home({ darkLight, setDarkLight }) {
           </div>
         </section>
         {/* <section className="main-footer-section">
+          <LikeButton person={posts} setPersons={setPosts} id={posts._id} />
+          <CommentButton
+            person={posts}
+            darkLight={darkLight}
+            setDarkLight={setDarkLight}
+            onclick={handleCommentClickDB}
+          />
           <div className="like-section">
             <div
               className="like-section"
@@ -208,12 +213,8 @@ function Home({ darkLight, setDarkLight }) {
           </div>
         </section> */}
 
-
-
-
-
-
         {/* <div className="scrollable">
+        <div className="scrollable">
           {persons.map((person, index) => (
             <div key={index} className="person-main-container">
               <section className="header-section">
@@ -250,10 +251,9 @@ function Home({ darkLight, setDarkLight }) {
                   index={index}
                 />
                 <CommentButton
-                  persons={persons}
                   person={person}
                   darkLight={darkLight}
-                  setDarkLight={setDarkLight}
+                  onclick={handleCommentClick}
                 />
               </section>
             </div>
