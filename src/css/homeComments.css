@@ -24,6 +24,9 @@
 .person-section-container {
   padding: 0 4vw;
 }
+.person-section-container_child {
+  border-bottom: 1px solid #e1e1e1;
+}
 .comment-user-header {
   display: flex;
   align-items: center;
@@ -72,12 +75,39 @@
   align-items: center;
   gap: 2vw;
 }
-.like-container {
+.footersButtonContainerClass_1 {
   display: flex;
   align-items: center;
-  gap: 10vw;
+  gap: 6vw;
 }
 
+.like-section {
+  display: flex;
+  align-items: center;
+}
+.comment-header-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.comment-left-box {
+  display: flex;
+  align-items: center;
+  gap: 2vw;
+  margin-bottom: 3vh;
+}
+.user-photo1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.user-activity {
+  font-size: 0.8rem;
+}
+.comment-down-box {
+  display: flex;
+  gap: 5vw;
+}
 .reply-button {
   border: none;
   font-size: 1rem;
