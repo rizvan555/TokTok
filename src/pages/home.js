@@ -24,70 +24,70 @@ import CustomizedSwitches from "../components/CustomizedSwitches";
 import { Link, useNavigate } from "react-router-dom";
 
 function Home({ darkLight, setDarkLight }) {
-  const [persons, setPersons] = useState([
-    {
-      avatar: annyPhoto,
-      username: "anny-wilson",
-      activity: "Marketing Coordinator",
-      mainImg: image1,
-      heartImg: Heart,
-      redHeartImg: redHeart,
-      likeCount: 44389,
-      commentCount: 26376,
-      isLiked: false,
-      content:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam",
-    },
-    {
-      avatar: himePhoto,
-      username: "hime-tonuki",
-      activity: "Marketing Coordinator",
-      mainImg: image2,
-      heartImg: Heart,
-      redHeartImg: redHeart,
-      likeCount: 41381,
-      commentCount: 19387,
-      isLiked: false,
-      content:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam",
-    },
-    {
-      avatar: albertPhoto,
-      username: "albert-hawkins",
-      activity: "President of Sales",
-      mainImg: image3,
-      heartImg: Heart,
-      redHeartImg: redHeart,
-      likeCount: 55799,
-      commentCount: 11336,
-      isLiked: false,
-      content:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam",
-    },
-  ]);
+  // const [persons, setPersons] = useState([
+  //   {
+  //     avatar: annyPhoto,
+  //     username: "anny-wilson",
+  //     activity: "Marketing Coordinator",
+  //     mainImg: image1,
+  //     heartImg: Heart,
+  //     redHeartImg: redHeart,
+  //     likeCount: 44389,
+  //     commentCount: 26376,
+  //     isLiked: false,
+  //   },
+  //   {
+  //     avatar: himePhoto,
+  //     username: "hime-tonuki",
+  //     activity: "Marketing Coordinator",
+  //     mainImg: image2,
+  //     heartImg: Heart,
+  //     redHeartImg: redHeart,
+  //     likeCount: 41381,
+  //     commentCount: 19387,
+  //     isLiked: false,
+  //   },
+  //   {
+  //     avatar: albertPhoto,
+  //     username: "albert-hawkins",
+  //     activity: "President of Sales",
+  //     mainImg: image3,
+  //     heartImg: Heart,
+  //     redHeartImg: redHeart,
+  //     likeCount: 55799,
+  //     commentCount: 11336,
+  //     isLiked: false,
+  //   },
+  // ]);
+
   const [clickHeart, setClickHeart] = useState(true);
   const [posts, setPosts] = useState({});
   const [users, setUsers] = useState({});
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const getUserProfile = async () => {
-  //     try {
-  //       const response = await axios.get("/api/user");
-  //       setUsers(response.data);
-  //       console.log(response);
-  //     } catch (error) {
-  //       console.error("Fehler beim Abrufen der Benutzerdaten", error);
-  //     }
-  //   };
-  //   console.log(users);
-  //   getUserProfile();
-  // }, []);
+  const [user, setUser] = useState({});
 
+  useEffect(() => {
+    const getUserProfile = async () => {
+      try {
+
+        const response = await axios.get('/api/user');
+        setUser(response.data);
+        console.log(response);
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Benutzerdaten', error);
+      }
+    };
+    console.log(user);
+    getUserProfile();
+  }, []);
+
+
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("/api/:user/posts");
+        const response = await axios.get('/api/posts');
         setPosts(response.data);
         console.log(response);
       } catch (error) {
@@ -98,6 +98,7 @@ function Home({ darkLight, setDarkLight }) {
     fetchPosts();
   }, []);
 
+
   const handleCommentClick = (userName) => {
     const filteredPerson = persons.find((p) => p.username === userName);
     console.log(filteredPerson);
@@ -106,18 +107,6 @@ function Home({ darkLight, setDarkLight }) {
 
   const handleCommentClickDB = () => {
     navigate("/commentsPage", { state: { person: users } });
-  };
-
-  const [clickLike, setClickLike] = useState(false);
-  const [likeCount, setLikeCount] = useState(12);
-
-  const handleLikeToggle = () => {
-    if (clickLike) {
-      setLikeCount(likeCount - 1);
-    } else {
-      setLikeCount(likeCount + 1);
-    }
-    setClickLike(!clickLike);
   };
 
 
@@ -144,35 +133,50 @@ function Home({ darkLight, setDarkLight }) {
           )}
         </button>
       </header>
-      {/* <div>
-        <img src={user.avatar} alt="" />
-        <p>{posts[posts.length - 1]?.content}</p>
-      </div> */}
+
 
       <main className="home-main">
-        <div key={users._id} className="person-main-container">
-          <section className="header-section">
-            <div className="person-left-side">
-              <img src={users.avatar} alt="photo1" className="person-photo" />
-              <div className="name-box">
-                <h3 className="name">{users.name}</h3>
-                <h5 className="position">{users.activity}</h5>
-              </div>
-            </div>
-            <Link to="/settingsPage" className="settings-container">
-              {darkLight ? (
-                <img src={commentButton1} alt="commentButton1" />
-              ) : (
-                <img src={commentButton2} alt="commentButton2" />
-              )}
-            </Link>
-          </section>
-        </div>
 
         <section className="main-section">
-          <img src={posts[posts.length - 1]?.image} alt="image1" />
+          <div key={user._id} className="person-main-container">
+
+
+            {posts.map((post) => {
+              console.log(post?.user?.avatar);
+              return (
+                <div key={post._id} className="post-container">
+                  <section className="header-section">
+                    <Link to="/settingsPage" className="settings-container">
+                      {darkLight ? (
+                        <img src={commentButton1} alt="commentButton1" />
+                      ) : (
+                        <img src={commentButton2} alt="commentButton2" />
+                      )}
+                    </Link>
+                  </section>
+                  <div className="person-left-side">
+                    <img
+                      src={post?.user?.avatar}
+                      alt="photo1"
+                      className="person-photo"
+                    />
+                    <div className="name-box">
+                      <h3 className="name">{post?.user?.name}</h3>
+                      <h5 className="position">{post?.user?.activity}</h5>
+                    </div>
+                  </div>
+                  <div className="post-header">
+                    <h3 className="post-author">{post.name}</h3>
+                  </div>
+                  <img src={post.image} alt="user-avatar" className="user-avatar" />
+                </div >
+              )
+
+            })}
+
+          </div>
         </section>
-        <section className="main-footer-section">
+        {/* <section className="main-footer-section">
           <LikeButton person={posts} setPersons={setPosts} id={posts._id} />
           <CommentButton
             person={posts}
@@ -197,7 +201,6 @@ function Home({ darkLight, setDarkLight }) {
             </div>
           </div>
 
-
           <div className="comment-button-section">
             <Link to="/commentsPage" className="commentButtonLink">
               {darkLight ? (
@@ -208,8 +211,9 @@ function Home({ darkLight, setDarkLight }) {
             </Link>
             <p>2</p>
           </div>
-        </section>
+        </section> */}
 
+        {/* <div className="scrollable">
         <div className="scrollable">
           {persons.map((person, index) => (
             <div key={index} className="person-main-container">
@@ -254,7 +258,7 @@ function Home({ darkLight, setDarkLight }) {
               </section>
             </div>
           ))}
-        </div>
+        </div> */}
       </main>
 
       <FooterNavbar />
