@@ -24,70 +24,50 @@ import CustomizedSwitches from "../components/CustomizedSwitches";
 import { Link, useNavigate } from "react-router-dom";
 
 function Home({ darkLight, setDarkLight }) {
-  // const [persons, setPersons] = useState([
-  //   {
-  //     avatar: annyPhoto,
-  //     username: "anny-wilson",
-  //     activity: "Marketing Coordinator",
-  //     mainImg: image1,
-  //     heartImg: Heart,
-  //     redHeartImg: redHeart,
-  //     likeCount: 44389,
-  //     commentCount: 26376,
-  //     isLiked: false,
-  //   },
-  //   {
-  //     avatar: himePhoto,
-  //     username: "hime-tonuki",
-  //     activity: "Marketing Coordinator",
-  //     mainImg: image2,
-  //     heartImg: Heart,
-  //     redHeartImg: redHeart,
-  //     likeCount: 41381,
-  //     commentCount: 19387,
-  //     isLiked: false,
-  //   },
-  //   {
-  //     avatar: albertPhoto,
-  //     username: "albert-hawkins",
-  //     activity: "President of Sales",
-  //     mainImg: image3,
-  //     heartImg: Heart,
-  //     redHeartImg: redHeart,
-  //     likeCount: 55799,
-  //     commentCount: 11336,
-  //     isLiked: false,
-  //   },
-  // ]);
+  const [persons, setPersons] = useState([
+    {
+      avatar: annyPhoto,
+      username: "anny-wilson",
+      activity: "Marketing Coordinator",
+      mainImg: image1,
+      heartImg: Heart,
+      redHeartImg: redHeart,
+      likeCount: 44389,
+      commentCount: 26376,
+      isLiked: false,
+    },
+    {
+      avatar: himePhoto,
+      username: "hime-tonuki",
+      activity: "Marketing Coordinator",
+      mainImg: image2,
+      heartImg: Heart,
+      redHeartImg: redHeart,
+      likeCount: 41381,
+      commentCount: 19387,
+      isLiked: false,
+    },
+    {
+      avatar: albertPhoto,
+      username: "albert-hawkins",
+      activity: "President of Sales",
+      mainImg: image3,
+      heartImg: Heart,
+      redHeartImg: redHeart,
+      likeCount: 55799,
+      commentCount: 11336,
+      isLiked: false,
+    },
+  ]);
 
   const [clickHeart, setClickHeart] = useState(true);
-  const [posts, setPosts] = useState({});
-  const [users, setUsers] = useState({});
   const navigate = useNavigate();
-
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    const getUserProfile = async () => {
-      try {
-
-        const response = await axios.get('/api/user');
-        setUser(response.data);
-        console.log(response);
-      } catch (error) {
-        console.error('Fehler beim Abrufen der Benutzerdaten', error);
-      }
-    };
-    console.log(user);
-    getUserProfile();
-  }, []);
-
 
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('/api/posts');
+        const response = await axios.get("/api/posts");
         setPosts(response.data);
         console.log(response);
       } catch (error) {
@@ -98,7 +78,6 @@ function Home({ darkLight, setDarkLight }) {
     fetchPosts();
   }, []);
 
-
   const handleCommentClick = (userName) => {
     const filteredPerson = persons.find((p) => p.username === userName);
     console.log(filteredPerson);
@@ -106,9 +85,8 @@ function Home({ darkLight, setDarkLight }) {
   };
 
   const handleCommentClickDB = () => {
-    navigate("/commentsPage", { state: { person: users } });
+    navigate("/commentsPage", { state: { person: posts } });
   };
-
 
   return (
     <div className="home-container">
@@ -134,13 +112,9 @@ function Home({ darkLight, setDarkLight }) {
         </button>
       </header>
 
-
       <main className="home-main">
-
         <section className="main-section">
-          <div key={user._id} className="person-main-container">
-
-
+          <div key={posts._id} className="person-main-container">
             {posts.map((post) => {
               console.log(post?.user?.avatar);
               return (
@@ -168,14 +142,29 @@ function Home({ darkLight, setDarkLight }) {
                   <div className="post-header">
                     <h3 className="post-author">{post.name}</h3>
                   </div>
-                  <img src={post.image} alt="user-avatar" className="user-avatar" />
-                </div >
-              )
+                  <img
+                    src={post.image}
+                    alt="user-avatar"
+                    className="user-avatar"
+                  />
+                  <LikeButton
+                    person={posts}
+                    setPersons={setPosts}
+                    id={posts._id}
+                  />
 
+                  <CommentButton
+                    person={posts}
+                    darkLight={darkLight}
+                    setDarkLight={setDarkLight}
+                    onclick={handleCommentClickDB}
+                  />
+                </div>
+              );
             })}
-
           </div>
         </section>
+
         {/* <section className="main-footer-section">
           <LikeButton person={posts} setPersons={setPosts} id={posts._id} />
           <CommentButton
