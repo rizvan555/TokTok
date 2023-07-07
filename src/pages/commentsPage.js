@@ -29,7 +29,8 @@ function CommentsPage({ darkLight }) {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get("/api/user");
-        setUsers([response.data]);
+        setUsers(response.data);
+        console.log("Hallo", response.data);
       } catch (error) {
         console.error("Fehler beim Abrufen der Benutzerdaten", error);
       }
@@ -172,13 +173,9 @@ function CommentsPage({ darkLight }) {
             <div key={index} className="comment">
               <div className="comment-header-box">
                 <div className="comment-left-box">
-                  <img
-                    src={post?.user?.avatar}
-                    alt="image"
-                    className="user-photo1"
-                  />
+                  <img src={users.avatar} alt="image" className="user-photo1" />
                   <div className="user-title">
-                    <h3>{post?.user?.name}</h3>
+                    <h3>{users.name}</h3>
                     <p className="user-activity">{post?.user?.activity}</p>
                   </div>
                 </div>
@@ -211,11 +208,7 @@ function CommentsPage({ darkLight }) {
       </section>
 
       <section className="feedback-write-section">
-        <img
-          src={post?.user.avatar}
-          alt="photoalbert"
-          className="person-photo"
-        />
+        <img src={users.avatar} alt="userImage" className="person-photo" />
         <input
           type="text"
           placeholder="Your comment"
