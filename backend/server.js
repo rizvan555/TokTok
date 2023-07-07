@@ -242,7 +242,7 @@ app.get("/api/user/posts", async (req, res) => {
 });
 
 // ========== GET ALL POSTS FROM ALL USERS ==========
-app.get("/api/posts", async (req, res) => {
+app.get("/api/posts", authenticateToken, async (req, res) => {
     try {
         const posts = await Post.find().populate("user").populate({
             path: "comments",
@@ -309,7 +309,7 @@ app.post(
 app.post("/api/newpost", authenticateToken,
     async (req, res) => {
         try {
-            const { content, location, image, facebook, twitter, tumblr, likeCount, commentCount, isLiked, user } = req.body;
+            const { content, location, image, facebook, twitter, tumblr, likeCount, commentCount, isLiked, user, createdAt } = req.body;
             console.log(req.body);
             const newPost = new Post({
                 content,
@@ -322,6 +322,7 @@ app.post("/api/newpost", authenticateToken,
                 likeCount,
                 commentCount,
                 isLiked,
+                createdAt
             });
 
             const savedPost = await newPost.save();
@@ -338,16 +339,23 @@ app.post("/api/newpost", authenticateToken,
 
 // LIKES 
 // ========== LIKE A POST AND UPDATE LIKES ==========
-app.put('/api/posts/updateLike', async (req, res) => {
-    const { postId, isLiked, likeCount } = req.body;
+app.put('/api/posts/updateLike', authenticateToken, async (req, res) => {
+    const { postId } = req.body;
 
     try {
-        const updatedPost = await Post.findByIdAndUpdate(
-            postId,
-            { isLiked, likeCount },
-            { new: true }
-        );
-        res.json(updatedPost);
+        const isLiked = await Post.find({ likes: { $in: [req.user.id] } })
+        if (isLiked.length > 0) {
+            const updatedPost = await Post.findByIdAndUpdate(postId, { $pullAll: { likes: [req.user.id] } })
+            res.json(updatedPost)
+        } else {
+            const updatedPost = await Post.findByIdAndUpdate(
+                postId,
+                { $push: { likes: req.user.id } },
+                { new: true }
+            );
+            res.json(updatedPost);
+        }
+        console.log(isLiked);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Fehler beim Aktualisieren der Daten.' });
@@ -376,13 +384,14 @@ app.get("/api/comment/:id");
 // ========== PUT NEW COMMENT TO A POST ==========
 app.put("/api/comments/:postid", authenticateToken, async (req, res) => {
     try {
-        const { content } = req.body;
+        const { content, likeCount } = req.body;
         const { postid } = req.params;
 
         const newComment = new Comment({
             user: req.body.user,
             content,
             post: postid,
+            likeCount,
         });
 
         const savedComment = await newComment.save();
