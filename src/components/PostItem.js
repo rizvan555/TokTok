@@ -25,10 +25,12 @@ const PostItem = ({
   isLiked,
   darkLight,
   setDarkLight,
+  setreFetch
 }) => {
   const [liked, setLiked] = useState(isLiked);
   const [likes, setLikes] = useState(likeCount);
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleCommentClickDB = (id) => {
     const filteredPost = posts.find((post) => post._id === id);
@@ -41,22 +43,23 @@ const PostItem = ({
     }
   };
 
-  const toggleLike = () => {
-    if (liked) {
-      setLikes(likes - 1);
-    } else {
-      setLikes(likes + 1);
-    }
-    setLiked(!liked);
+  const toggleLike = async () => {
 
-    axios
-      .put("/api/posts/updateLike", {
-        postId: "",
-        isLiked: !liked,
-        likeCount: liked ? likes - 1 : likes + 1,
-      })
-      .then((response) => { })
-      .catch((error) => { });
+    try {
+
+      await axios.put("/api/posts/updateLike", {
+        postId: post._id,
+      });
+      setreFetch(prev => !prev)
+    } catch (error) {
+      const responseError = error?.response?.data?.error?.message;
+      if (responseError) {
+        setError(responseError);
+      } else {
+        setError("Something went wrong. Please try again later.");
+      }
+      console.error(error);
+    }
   };
 
   return (
@@ -83,14 +86,16 @@ const PostItem = ({
             <img src={image} alt="post-image" className="post-image" />
           </div>
           <section className="main-footer-section">
+
             <div className="like-section" onClick={toggleLike}>
-              {liked ? (
+              {post.likes.length > 0 ? (
                 <img src={redHeart} alt="redHeart" />
               ) : (
                 <GoHeart size={27} />
               )}
-              <p>{likes}</p>
+              <p>{post.likes.length}</p>
             </div>
+
             <div>
               <CommentButton
                 postId={post._id}
