@@ -74,6 +74,7 @@ const PostItem = ({
       console.log("Post not found");
     }
 
+
     if (filtereComments) {
       navigate("/commentsPage", { state: { comment: filtereComments } });
     } else {
@@ -106,7 +107,7 @@ const PostItem = ({
           </div>
           <section className="main-footer-section">
             <div className="like-section" onClick={toggleLike}>
-              {post.likes.length > 0 ? (
+              {post?.likes?.includes(post.currentUser) ? (
                 <img src={redHeart} alt="redHeart" />
               ) : (
                 <GoHeart size={27} />
