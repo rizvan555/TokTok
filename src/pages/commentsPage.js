@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../css/homeComments.css";
 import CommentButton from "../components/CommentButton";
-import LikeButton from "../components/LikeButton";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsSend } from "react-icons/bs";
 import commentButton1 from "../resource/images/commentButton1.svg";
 import commentButton2 from "../resource/images/commentButton2.svg";
 import redHeart from "../resource/images/redHeart.png";
-
 import axios from "axios";
 import { GoHeart } from "react-icons/go";
 
@@ -23,7 +21,7 @@ function CommentsPage({ darkLight }) {
   const navigate = useNavigate();
   const { state } = useLocation();
   console.log("state", state);
-  const post = state?.post;
+  const post = state?.post || null;
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -71,8 +69,8 @@ function CommentsPage({ darkLight }) {
   };
 
   const toggleCommentLike = (commentIndex) => {
-    setCommentList((commentList) =>
-      commentList.map((comment, index) =>
+    setComments((comments) =>
+      comments.map((comment, index) =>
         index === commentIndex
           ? {
               ...comment,
@@ -99,131 +97,168 @@ function CommentsPage({ darkLight }) {
   const clickPostButton = () => {
     if (inputValue.trim() !== "") {
       const newComment = { content: inputValue, likeCount: 0 };
-      setCommentList((prevComments) => [...prevComments, newComment]);
+      setComments((prevComments) => [...prevComments, newComment]);
       setInputValue("");
-
-      const postId = post?.id;
-      const userId = users[0]?.id;
+      const postId = post?._id;
+      const userId = users?.id;
       createComment(postId, userId, inputValue);
     }
   };
 
   const footersButtonContainerClass =
-    commentList.length > 0
+    comments.length > 0
       ? "footers-button-container active"
       : "footers-button-container";
 
   return (
-    <div className="commentPage-container">
-      <header className="commentPage-header">
-        <div className="commentsHeader-left">
-          <Link to="/">
-            <BsArrowLeft
-              size={25}
-              style={{ color: !darkLight ? "white" : "black" }}
-              className="left-button-icon"
-            />
-          </Link>
-          <h2>Comments</h2>
-        </div>
-        <button className="send-button">
-          <BsSend size={20} style={{ color: !darkLight ? "white" : "black" }} />
-        </button>
-      </header>
-      <section className="person-section-container">
-        <div className="person-section-container_child">
-          <div className="comment-user-header">
-            <div className="comment-user-header_left">
-              <img
-                src={post?.user?.avatar}
-                alt="image"
-                className="user-photo"
+    <div className="scrollable">
+      <div className="commentPage-container">
+        <header
+          className="commentPage-header"
+          style={{ backgroundColor: darkLight ? "white" : "black" }}
+        >
+          <div className="commentsHeader-left">
+            <Link to="/">
+              <BsArrowLeft
+                size={25}
+                style={{ color: !darkLight ? "white" : "black" }}
+                className="left-button-icon"
               />
-              <div className="user-title">
-                <h2>{post?.user?.name}</h2>
-                <p>{post?.user?.activity}</p>
-              </div>
-            </div>
-            <Link to="/settingsPage" className="settings-container">
-              {darkLight ? (
-                <img src={commentButton1} alt="commentButton1" />
-              ) : (
-                <img src={commentButton2} alt="commentButton2" />
-              )}
             </Link>
+            <h2>Comments</h2>
           </div>
-          <p>{post?.content}</p>
-          <div className={footersButtonContainerClass}>
-            <div className="footersButtonContainerClass_1">
-              <div className="like-section" onClick={toggleLike}>
-                {liked ? (
-                  <img src={redHeart} alt="redHeart" />
-                ) : (
-                  <GoHeart size={27} />
-                )}
-                <p>{likes}</p>
-              </div>
-              <CommentButton person={posts} darkLight={darkLight} />
-            </div>
-          </div>
-        </div>
-
-        <div className="comment-list-container">
-          {commentList.map((comment, index) => (
-            <div key={index} className="comment">
-              <div className="comment-header-box">
-                <div className="comment-left-box">
-                  <img src={users.avatar} alt="image" className="user-photo1" />
-                  <div className="user-title">
-                    <h3>{users.name}</h3>
-                    <p className="user-activity">{post?.user?.activity}</p>
-                  </div>
+          <button className="send-button">
+            <BsSend
+              size={20}
+              style={{ color: !darkLight ? "white" : "black" }}
+            />
+          </button>
+        </header>
+        <section className="person-section-container">
+          <div
+            className="person-section-container_child"
+            style={{ backgroundColor: darkLight ? "white" : "black" }}
+          >
+            <div className="comment-user-header">
+              <div className="comment-user-header_left">
+                <img
+                  src={post?.user?.avatar}
+                  alt="image"
+                  className="user-photo"
+                  style={{
+                    border: !darkLight
+                      ? "1px solid #eeeeee"
+                      : "1px solid #fafafa",
+                  }}
+                />
+                <div className="user-title">
+                  <h3>{post?.user?.name}</h3>
+                  <p className="user-title-activity">{post?.user?.activity}</p>
                 </div>
-                <Link to="/settingsPage" className="settings-container">
-                  {darkLight ? (
-                    <img src={commentButton1} alt="commentButton1" />
-                  ) : (
-                    <img src={commentButton2} alt="commentButton2" />
-                  )}
-                </Link>
               </div>
-              {comment.content}
-              <div className="comment-down-box">
-                <div
-                  className="like-section"
-                  onClick={() => toggleCommentLike(index)}
-                >
-                  {comment.isLiked ? (
+              <Link to="/settingsPage" className="settings-container">
+                {darkLight ? (
+                  <img src={commentButton1} alt="commentButton1" />
+                ) : (
+                  <img src={commentButton2} alt="commentButton2" />
+                )}
+              </Link>
+            </div>
+            <p>{post?.content}</p>
+            <div className={footersButtonContainerClass}>
+              <div className="footersButtonContainerClass_1">
+                <div className="like-section" onClick={toggleLike}>
+                  {liked ? (
                     <img src={redHeart} alt="redHeart" />
                   ) : (
                     <GoHeart size={27} />
                   )}
-                  <p>{comment.likeCount}</p>
+                  <p>{likes}</p>
                 </div>
-                <p>Reply</p>
+                <CommentButton person={posts} darkLight={darkLight} />
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
 
-      <section className="feedback-write-section">
-        <img src={users.avatar} alt="userImage" className="person-photo" />
-        <input
-          type="text"
-          placeholder="Your comment"
-          className="feedback-input"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <button
-          onClick={clickPostButton}
-          className="post-button"
-          style={{ color: darkLight ? "red" : "white" }}
+          <div className="comment-list-container">
+            {comments.map((comment, index) => {
+              return (
+                <div key={index} className="comment">
+                  <div className="comment-header-box">
+                    <div className="comment-left-box">
+                      <img
+                        src={users.avatar}
+                        alt="image"
+                        className="user-photo1"
+                        style={{
+                          border: !darkLight
+                            ? "1px solid #eeeeee"
+                            : "1px solid #fafafa",
+                        }}
+                      />
+                      <div className="user-title">
+                        <h3 className="user-title-name">{users.name}</h3>
+                        <p className="user-title-activity">{users.activity}</p>
+                      </div>
+                    </div>
+                    <Link to="/settingsPage" className="settings-container">
+                      {darkLight ? (
+                        <img src={commentButton1} alt="commentButton1" />
+                      ) : (
+                        <img src={commentButton2} alt="commentButton2" />
+                      )}
+                    </Link>
+                  </div>
+                  {comment.content}
+                  <div className="comment-down-box">
+                    <div
+                      className="like-section"
+                      onClick={() => toggleCommentLike(index)}
+                    >
+                      {comment.isLiked ? (
+                        <img src={redHeart} alt="redHeart" />
+                      ) : (
+                        <GoHeart size={27} />
+                      )}
+                      <p>{comment.likeCount}</p>
+                    </div>
+                    <p>Reply</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section
+          className="feedback-write-section"
+          style={{ backgroundColor: darkLight ? "white" : "black" }}
         >
-          Post
-        </button>
-      </section>
+          <img
+            src={users.avatar}
+            alt="userImage"
+            className="person-photo"
+            style={{
+              border: !darkLight ? "1px solid #eeeeee" : "1px solid #fafafa",
+            }}
+          />
+          <input
+            type="text"
+            placeholder="Your comment"
+            className="feedback-input"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            style={{ backgroundColor: !darkLight ? "#eeeeee" : "#fafafa" }}
+          />
+          <button
+            onClick={clickPostButton}
+            className="post-button"
+            style={{ color: darkLight ? "red" : "white" }}
+          >
+            Post
+          </button>
+        </section>
+      </div>
     </div>
   );
 }

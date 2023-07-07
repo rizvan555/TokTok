@@ -11,7 +11,6 @@ import toktokLogo from "../resource/logos/toktokLogo.png";
 import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
 import FooterNavbar from "../components/FooterNavbar";
-import LikeButton from "../components/LikeButton";
 import { GoHeart } from "react-icons/go";
 import CustomizedSwitches from "../components/CustomizedSwitches";
 import PostItem from "../components/PostItem";
