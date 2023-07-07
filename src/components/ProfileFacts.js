@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
@@ -6,7 +6,6 @@ import "../css/ownProfile.css";
 
 // Import - Images -----------------------------------
 
-import profile_image from '../resource/images/EllipseunknownUser.png';
 import profile_edit_icon from "../resource/icons/newEditIcon.svg";
 import newUserImage from '../resource/images/EllipseunknownUser.png';
 
@@ -17,8 +16,6 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
 
   const [res, setRes] = useState({});
 
-  // const location = useLocation();
-  // console.log(location.state);
 
   useEffect(() => {
     const getUserProfile = async () => {
