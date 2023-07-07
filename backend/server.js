@@ -245,20 +245,22 @@ app.get("/api/user/posts", async (req, res) => {
 // ========== GET ALL POSTS FROM ALL USERS ==========
 
 app.get("/api/posts", authenticateToken, async (req, res) => {
-    try {
-        const posts = await Post.find().populate("user").populate({
-            path: "comments",
-            model: "Comment",
-            populate: {
-                path: "user",
-                model: "User"
-            }
-        });
-        res.json(posts);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "No posts found." });
-    }
+  try {
+    const posts = await Post.find()
+      .populate("user")
+      .populate({
+        path: "comments",
+        model: "Comment",
+        populate: {
+          path: "user",
+          model: "User",
+        },
+      });
+    res.json(posts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "No posts found." });
+  }
 });
 
 // ========== GET ONE POST with Post _id ==========
@@ -309,32 +311,34 @@ app.post(
 
 // ========== POST NEW POST with/from user _id ==========
 
-app.post("/api/newpost", authenticateToken,
-    async (req, res) => {
-        try {
-            const { content, location, image, facebook, twitter, tumblr, likeCount, commentCount, isLiked, user, createdAt } = req.body;
-            console.log(req.body);
-            const newPost = new Post({
-                content,
-                location,
-                user: new mongoose.Types.ObjectId(user),
-                image,
-                facebook,
-                twitter,
-                tumblr,
-                likeCount,
-                commentCount,
-                isLiked,
-                createdAt
-            });
-
-            const savedPost = await newPost.save();
-
-            res.status(201).json(savedPost);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ error: "Failed to create post." });
-        }
+app.post("/api/newpost", authenticateToken, async (req, res) => {
+  try {
+    const {
+      content,
+      location,
+      image,
+      facebook,
+      twitter,
+      tumblr,
+      likeCount,
+      commentCount,
+      isLiked,
+      user,
+      createdAt,
+    } = req.body;
+    console.log(req.body);
+    const newPost = new Post({
+      content,
+      location,
+      user: new mongoose.Types.ObjectId(user),
+      image,
+      facebook,
+      twitter,
+      tumblr,
+      likeCount,
+      commentCount,
+      isLiked,
+      createdAt,
     });
 
     const savedPost = await newPost.save();
@@ -349,27 +353,29 @@ app.post("/api/newpost", authenticateToken,
 // LIKES
 // ========== LIKE A POST AND UPDATE LIKES ==========
 
-app.put('/api/posts/updateLike', authenticateToken, async (req, res) => {
-    const { postId } = req.body;
+app.put("/api/posts/updateLike", authenticateToken, async (req, res) => {
+  const { postId } = req.body;
 
-    try {
-        const isLiked = await Post.find({ likes: { $in: [req.user.id] } })
-        if (isLiked.length > 0) {
-            const updatedPost = await Post.findByIdAndUpdate(postId, { $pullAll: { likes: [req.user.id] } })
-            res.json(updatedPost)
-        } else {
-            const updatedPost = await Post.findByIdAndUpdate(
-                postId,
-                { $push: { likes: req.user.id } },
-                { new: true }
-            );
-            res.json(updatedPost);
-        }
-        console.log(isLiked);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Fehler beim Aktualisieren der Daten.' });
+  try {
+    const isLiked = await Post.find({ likes: { $in: [req.user.id] } });
+    if (isLiked.length > 0) {
+      const updatedPost = await Post.findByIdAndUpdate(postId, {
+        $pullAll: { likes: [req.user.id] },
+      });
+      res.json(updatedPost);
+    } else {
+      const updatedPost = await Post.findByIdAndUpdate(
+        postId,
+        { $push: { likes: req.user.id } },
+        { new: true }
+      );
+      res.json(updatedPost);
     }
+    console.log(isLiked);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Fehler beim Aktualisieren der Daten." });
+  }
 });
 
 // COMMENTS
@@ -400,7 +406,6 @@ app.put("/api/comments/:postid", authenticateToken, async (req, res) => {
       post: postid,
       likeCount,
     });
-
 
     const savedComment = await newComment.save();
 
