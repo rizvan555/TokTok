@@ -62,6 +62,7 @@ const PostItem = ({
         }
     };
 
+
     console.log(post);
     console.log(post.likes);
     console.log(post.currentUser);
@@ -116,6 +117,7 @@ const PostItem = ({
             </div>
         </div>
     );
+
 };
 
 export default PostItem;
