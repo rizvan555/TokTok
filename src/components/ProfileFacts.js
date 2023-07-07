@@ -20,7 +20,6 @@ const ProfileFacts = ({ click, darkLight, user, setUser }) => {
   // const location = useLocation();
   // console.log(location.state);
 
-
   useEffect(() => {
     const getUserProfile = async () => {
       try {

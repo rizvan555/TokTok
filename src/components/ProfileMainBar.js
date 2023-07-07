@@ -32,7 +32,7 @@ const ProfileMainBar = ({ click, setClick, darkLight, user, setUser }) => {
         <Link to="/">
           <img src={logo} className="toktok-logo" alt="logo toktok klein" />
         </Link>
-        <h2 style={{ color: !darkLight ? "white" : "black" }}> {user.username}</h2>
+        <h2 style={{ color: !darkLight ? "white" : "black" }}>{user.username ? user.username : "Your username"}</h2>
       </section>
       <nav className="head-navigation">
         <Link to="/upload">

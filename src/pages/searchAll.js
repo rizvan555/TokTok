@@ -157,6 +157,10 @@ function SearchAll({ darkLight }) {
     }
   };
 
+  window.onload = function () {
+    window.scrollTo(0, 0)
+  }
+
   return (
     <div className="search-container">
       <div className="search-header">
