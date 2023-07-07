@@ -14,7 +14,6 @@ import FooterNavbar from "../components/FooterNavbar";
 import { GoHeart } from "react-icons/go";
 import CustomizedSwitches from "../components/CustomizedSwitches";
 import PostItem from "../components/PostItem";
-import { useNavigate } from "react-router-dom";
 
 function Home({ darkLight, setDarkLight }) {
   const [clickHeart, setClickHeart] = useState(true);
