@@ -61,7 +61,7 @@ const PostItem = ({
       console.log("Post not found");
     }
   };
-  console.log(posts);
+  console.log(post);
 
 
   return (
@@ -90,7 +90,7 @@ const PostItem = ({
           <section className="main-footer-section">
 
             <div className="like-section" onClick={toggleLike}>
-              {post.likes.length > 0 ? (
+              {post?.likes?.includes(post.currentUser) ? (
                 <img src={redHeart} alt="redHeart" />
               ) : (
                 <GoHeart size={27} />

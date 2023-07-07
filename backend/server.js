@@ -246,14 +246,16 @@ app.get("/api/user/posts", async (req, res) => {
 
 app.get("/api/posts", authenticateToken, async (req, res) => {
   try {
-    const posts = await Post.find().populate("user").populate({
+    let posts = await Post.find().populate("user").populate({
       path: "comments",
       model: "Comment",
       populate: {
         path: "user",
         model: "User"
       }
-    });
+    }).exec();
+    const data = posts.map((post) => ({ ...post._doc, currentUser: req.user.id }))
+    console.log(data);
     res.json(posts);
   } catch (error) {
     console.error(error);
