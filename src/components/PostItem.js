@@ -11,28 +11,46 @@ import "../css/home.css";
 import "../css/likeButton.css";
 
 const PostItem = ({
-    avatar,
-    username,
-    activity,
-    image,
-    post,
-    posts,
-    postKey,
-    heartImg,
-    redHeartImg,
-    likeCount,
-    commentCount,
-    isLiked,
-    darkLight,
-    setDarkLight,
-    setPosts
+  avatar,
+  username,
+  activity,
+  image,
+  post,
+  posts,
+  postKey,
+  heartImg,
+  redHeartImg,
+  likeCount,
+  commentCount,
+  isLiked,
+  darkLight,
+  setDarkLight,
+  setreFetch
 }) => {
-    const [liked, setLiked] = useState(isLiked);
-    const [likes, setLikes] = useState(likeCount);
-    const navigate = useNavigate();
-    const [error, setError] = useState("");
+  const [liked, setLiked] = useState(isLiked);
+  const [likes, setLikes] = useState(likeCount);
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
+  const toggleLike = async () => {
 
+    try {
+
+      await axios.put("/api/posts/updateLike", {
+        postId: post._id,
+      });
+      setreFetch(prev => !prev)
+    } catch (error) {
+      const responseError = error?.response?.data?.error?.message;
+      if (responseError) {
+        setError(responseError);
+      } else {
+        setError("Something went wrong. Please try again later.");
+      }
+      console.error(error);
+    }
+  };
+  
     const handleCommentClickDB = (id) => {
         const filteredPost = posts.find((post) => post._id === id);
         console.log("Posts:", posts);
@@ -44,35 +62,6 @@ const PostItem = ({
         }
     };
     console.log(posts);
-
-    const toggleLike = async () => {
-        // if (liked) {
-        //     setLikes(likes - 1);
-        // } else {
-        //     setLikes(likes + 1);
-        // }
-        // setLiked(!liked);
-        console.log("HI");
-        try {
-
-            const { data } = await axios.put("/api/posts/updateLike", {
-                postId: post._id,
-            });
-            console.log(data);
-            const i = posts.findIndex((ele) => ele._id === data._id)
-            posts[i].likes = data.likes
-            setPosts(posts)
-            console.log(posts[i]);
-        } catch (error) {
-            const responseError = error?.response?.data?.error?.message;
-            if (responseError) {
-                setError(responseError);
-            } else {
-                setError("Something went wrong. Please try again later.");
-            }
-            console.error(error);
-        }
-    };
 
     return (
         <div>
@@ -111,6 +100,7 @@ const PostItem = ({
         </div>
     );
 
+
   return (
     <div>
       <div className="person-main-container">
@@ -135,14 +125,16 @@ const PostItem = ({
             <img src={image} alt="post-image" className="post-image" />
           </div>
           <section className="main-footer-section">
+
             <div className="like-section" onClick={toggleLike}>
-              {liked ? (
+              {post.likes.length > 0 ? (
                 <img src={redHeart} alt="redHeart" />
               ) : (
                 <GoHeart size={27} />
               )}
-              <p>{likes}</p>
+              <p>{post.likes.length}</p>
             </div>
+
             <div>
               <CommentButton
                 postId={post._id}

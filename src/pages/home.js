@@ -14,11 +14,13 @@ import FooterNavbar from "../components/FooterNavbar";
 import { GoHeart } from "react-icons/go";
 import CustomizedSwitches from "../components/CustomizedSwitches";
 import PostItem from "../components/PostItem";
+import { useNavigate } from "react-router-dom";
 
 function Home({ darkLight, setDarkLight }) {
   const [clickHeart, setClickHeart] = useState(true);
   const [posts, setPosts] = useState([]);
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const [refetch, setreFetch] = useState(false)
 
 
   useEffect(() => {
@@ -43,7 +45,7 @@ function Home({ darkLight, setDarkLight }) {
     };
 
     fetchPosts();
-  }, []);
+  }, [refetch]);
 
 
   return (
@@ -85,9 +87,8 @@ function Home({ darkLight, setDarkLight }) {
               setDarkLight={setDarkLight}
               post={post}
               posts={posts}
-              setPosts={setPosts}
+              setreFetch={setreFetch}
             />
-
           ))}
         </section>
       </main>
