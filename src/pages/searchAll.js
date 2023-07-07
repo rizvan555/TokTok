@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import "../css/searchAll.css";
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
-import UserIcon from "../resource/icons/UserIcon.png";
-import Profile from "../resource/icons/Profile.png";
-import Frame from "../resource/icons/Frame.png";
-import home from "../resource/icons/home.png";
-import Search from "../resource/icons/Search.png";
-import redFrame from "../resource/icons/redFrame.png";
-import redHome from "../resource/icons/redHome.png";
-import redProfile from "../resource/icons/redProfile.png";
-import redSearch from "../resource/icons/redSearch.png";
+import UserIcon from "../resource/icons/NEWUser-red.svg";
+import Profile from "../resource/icons/NEWProfile-icon.svg";
+import Frame from "../resource/icons/NEWUpload-icon.svg";
+import home from "../resource/icons/NEWHome-icon.svg";
+import Search from "../resource/icons/SEARCHIcon-NEW2.svg";
+import redFrame from "../resource/icons/NEWUpload-red.svg";
+import redHome from "../resource/icons/NEWHome-red.svg";
+import redProfile from "../resource/icons/NEWProfile-red.svg";
+import redSearch from "../resource/icons/NEWSearch-red.svg";
 import annyPhoto from "../resource/images/annyPhoto.png";
 import sarahPhoto from "../resource/images/sarahPhoto.png";
 import jonnyPhoto from "../resource/images/jonnyPhoto.png";
-import followButton from "../resource/images/followButton.png";
-import followingButton from "../resource/images/followingButton.png";
+import followButton from "../resource/icons/NEWFollow-icon.svg";
+import followingButton from "../resource/icons/NEWFollowing-icon.svg";
 
 function SearchAll({ darkLight }) {
   const [activeNav, setActiveNav] = useState(null);
@@ -97,9 +97,9 @@ function SearchAll({ darkLight }) {
       persons.map((person, personIndex) =>
         personIndex === index
           ? {
-              ...person,
-              isFollowing: !person.isFollowing,
-            }
+            ...person,
+            isFollowing: !person.isFollowing,
+          }
           : person
       )
     );
@@ -156,6 +156,10 @@ function SearchAll({ darkLight }) {
       setUsers(filtered);
     }
   };
+
+  window.onload = function () {
+    window.scrollTo(0, 0)
+  }
 
   return (
     <div className="search-container">

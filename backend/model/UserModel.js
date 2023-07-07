@@ -46,7 +46,7 @@ userSchema.methods.verifyPassword = function (password) {
 };
 
 userSchema.methods.generateAuthToken = function () {
-    const payload = { email: this.email };
+    const payload = { id: this._id, email: this.email };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
     return token;
 };

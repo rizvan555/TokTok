@@ -12,6 +12,7 @@
     margin: 0 auto;
     padding: 0;
     text-align: center;
+    position: relative;
 }
 
 /* --- Headline ---------------------------- */
@@ -37,8 +38,7 @@
     position: relative;
 }
 
-.signin_form .password,
-.signin_form .email {
+.signin_form :is(input) {
     display: inline-block;
     margin-top: 1.2rem;
     font-family: var(--font-family-bold);
@@ -55,11 +55,6 @@
     padding-left: 40px;
 }
 
-
-.signin_form .email {
-    position: relative;
-}
-
 .signin_form .mailIcon {
     position: absolute;
     left: 2.7%;
@@ -71,23 +66,21 @@
     background-image: url('../resource/icons/Locksafe-icon.png');
     background-position: 3%;
     background-repeat: no-repeat;
+    position: relative;
 }
 
-.signin_form .email:hover,
-.signin_form .password:hover {
+.signin_form :is(input):hover {
     background-color: var(--input-color-2);
 }
 
-.signin_form .email:focus,
-.signin_form .password:focus {
+.signin_form :is(input):focus {
     outline: none;
 }
 
-.toggle_password .hideIcon,
-.toggle_password .showIcon {
+.toggle_password :is(.hideIcon, .showIcon) {
     position: absolute;
     right: 2%;
-    top: 45%;
+    top: 43%;
     width: 5%;
 }
 

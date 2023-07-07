@@ -3,26 +3,38 @@
 @import "../index.css";
 
 /* ------------------------------------------------------ */
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .ownprofile_page {
   font-family: var(--font-family-bold);
   color: var(--primary-color);
   /* width: 95%; */
   margin: 0 auto;
-  padding: vh 0vw;
   text-align: center;
-  padding: 4.7vh 1.1vw 0 1.1vw;
+  padding-top: 1.65vh;
 }
 
 .ownprofile_page p {
   letter-spacing: var(--letter-spacing);
 }
 
+
 /* Profile - Bar - Top ---------------------------------- */
 
-.profile_main_bar {
+.header-ownProfile {
+  padding: 0 3vw;
+}
+
+.profile_mainbar {
   display: flex;
   justify-content: space-between;
-  padding-top: 17px 3vw;
+  align-items: center;
+  padding: 0;
 }
 
 .toktok-logo {
@@ -30,8 +42,9 @@
   height: 30px;
 }
 
-.profile_main_bar section {
+.profile_mainbar section {
   display: flex;
+  margin: 3.2vh 0;
 }
 
 .profile_main_bar section h2 {
@@ -97,18 +110,23 @@
   transition: all;
 }
 
+.main-ownProfile {
+  overflow-y: auto;
+  max-height: calc(100vh - 154.1px);
+  padding: 0 2vw;
+}
+
 /* Profile - Image ------------------------------------- */
 
 .image-container {
   position: relative;
   padding-top: 10px;
   margin: 0 auto;
-
-  /* Profile - Image ------------------------------------- */
 }
 
-.image-container .profile_img {
-  /* width: 33%; */
+/* Profile - Image ------------------------------------- */
+
+.image-container .profile_image {
   width: 140px;
   height: 140px;
   border-radius: 100px;
@@ -123,6 +141,7 @@
 }
 
 /* Profile - Facts ------------------------------------- */
+
 .profile_article h1 {
   font-size: calc(var(--font-size-rem) * 2.4);
   font-weight: 600;
@@ -216,11 +235,13 @@
 
 /* Profile - Gallery - Section --------------- */
 
-.profile_gallery_images {
-  padding-bottom: 30px;
-}
+/* .profile_gallery_images {
+  padding-bottom: 50px;
+} */
 
 .profile_gallery_images img {
   width: 30%;
   padding: 2px;
 }
+
+/* Profile - Gallery - Footer - Bar ---------- */
