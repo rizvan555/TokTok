@@ -5,7 +5,7 @@ function LikeButton({ person, index, setPersons }) {
   const toggleLike = (index) => {
     setPersons((persons) =>
       persons.map((person, personIndex) =>
-        personIndex === index
+        personIndex === index 
           ? {
               ...person,
               likeCount: person.likeCount + (person.isLiked ? -1 : 1),

@@ -9,7 +9,10 @@ const postSchema = new mongoose.Schema({
     location: { type: String },
     facebook: { type: Boolean },
     twitter: { type: Boolean },
-    tumblr: { type: Boolean }
+    tumblr: { type: Boolean },
+    likeCount: { type: Number, default: 0 },
+    commentCount: { type: Number, default: 0 },
+    isLiked: { type: Boolean, default: false }
 });
 
 export const Post = mongoose.model("Post", postSchema);

@@ -1,21 +1,26 @@
+// CommentButton.js
 import React from "react";
-import { Link } from "react-router-dom";
 import "../css/commentButton.css";
 import commentButton3 from "../resource/images/commentButton3.svg";
 import commentButton4 from "../resource/images/commentButton4.svg";
 
-function CommentButton({ person, darkLight }) {
+function CommentButton({ handleCommentClickDB, post, darkLight, postId }) {
   return (
     <div>
       <div className="comment-button-section">
-        <Link to="/commentsPage" className="commentButtonLink">
+        <div
+          className="commentButtonLink"
+          onClick={() => {
+            handleCommentClickDB(postId);
+          }}
+        >
           {darkLight ? (
             <img src={commentButton3} alt="commentButton3" />
           ) : (
             <img src={commentButton4} alt="commentButton4" />
           )}
-        </Link>
-        <p>{person.commentCount}</p>
+        </div>
+        <p>{post?.commentCount}</p>
       </div>
     </div>
   );

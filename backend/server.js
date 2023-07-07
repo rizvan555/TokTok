@@ -1,18 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
-import { Post, User, Comment } from "./model/index.js"
+import { Post, User, Comment } from "./model/index.js";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import Multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
-import mongoose from "mongoose";
-import cors from "cors"
-
-
-
+import mongoose, { ObjectId } from "mongoose";
+import cors from "cors";
 
 dotenv.config({ path: new URL("../.env", import.meta.url).pathname });
-
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -23,7 +19,7 @@ cloudinary.config({
 async function handleUpload(file) {
     const res = await cloudinary.uploader.upload(file, {
         resource_type: "auto",
-        transformation: [{ width: 350, height: 350, crop: "limit" }]
+        transformation: [{ width: 350, height: 350, crop: "limit" }],
     });
     return res;
 }
@@ -33,7 +29,6 @@ const upload = Multer({
     storage,
 });
 
-
 const PORT = process.env.BE_PORT || 4000;
 const app = express();
 
@@ -42,18 +37,23 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(cors({
     origin: true,
     credentials: true
 }));
 // app.use(express.static(ReactAppDistPath.pathname));
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    next();
+});
 
 app.get("/api/status", (req, res) => {
     res.send({ status: "Tutto bene! :)" });
 });
-
-
 
 // ========== SIGN UP ==========
 app.post("/api/signup", async (req, res) => {
@@ -79,7 +79,6 @@ app.post("/api/signup", async (req, res) => {
     }
 });
 
-
 // ========== SIGN IN ==========
 app.post("/api/signin", async (req, res) => {
     const { email, password } = req.body;
@@ -89,24 +88,28 @@ app.post("/api/signin", async (req, res) => {
         const user = await User.findOne({ email }).select("+hash").select("+salt");
 
         if (!user) {
-            return res.status(401).json({ message: "Ungültige E-mail oder Passwort" });
+            return res
+                .status(401)
+                .json({ message: "Ungültige E-mail oder Passwort" });
         }
         console.log(user);
 
         // Überprüft PW
         const isPasswordValid = user.verifyPassword(password);
         if (!isPasswordValid) {
-            return res.status(401).json({ message: "Ungültige E-mail oder Passwort" });
+            return res
+                .status(401)
+                .json({ message: "Ungültige E-mail oder Passwort" });
         }
 
         const token = user.generateAuthToken({ email });
         res.cookie("auth", token, { httpOnly: true, maxAge: 1000 * 60 * 120 }); // Cookie
-        return res.status(200).json({ message: "Login erfolgreich", data: { token } });
-
+        return res
+            .status(200)
+            .json({ message: "Login erfolgreich", data: { token } });
     } catch (error) {
         res.status(500).json({ message: "Login fehlgeschlagen", error });
         console.log(error);
-
     }
 });
 
@@ -117,6 +120,7 @@ const authenticateToken = (req, res, next) => {
     if (!token && req?.cookies?.auth) {
         token = req.cookies.auth;
     }
+
 
     if (!token) {
         return res.sendStatus(401); // Token nicht vorhanden
@@ -132,19 +136,16 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-
 // ========== VERIFY ==========
 app.get("/api/secure", authenticateToken, (req, res) => {
     res.json(req.user);
 });
-
 
 // ========== LOGOUT ==========
 app.get("/api/logout", async (req, res) => {
     res.clearCookie("auth");
     res.send("Ok");
 });
-
 
 // ========== GET LOGED IN USER  ==========
 app.get("/api/user", authenticateToken, async (req, res) => {
@@ -161,7 +162,6 @@ app.get("/api/user", authenticateToken, async (req, res) => {
         res.status(500).json({ error: "Something went wrong." });
     }
 });
-
 
 // ========== POST/EDIT NEW PROFILE IMAGE ==========
 app.post(
@@ -183,16 +183,28 @@ app.post(
     }
 );
 
-
 // ========== UPDATE USER ==========
 app.put("/api/user", authenticateToken, async (req, res) => {
-
-    const { avatar, name, username, activity, email, birthday, gender, tel, website, aboutMe } = req.body;
+    const {
+        avatar,
+        name,
+        username,
+        activity,
+        email,
+        birthday,
+        gender,
+        tel,
+        website,
+        aboutMe,
+    } = req.body;
 
     try {
         console.log(req.user);
 
-        const user = await User.findOneAndUpdate({ email: req.user.email }, { $set: req.body });
+        const user = await User.findOneAndUpdate(
+            { email: req.user.email },
+            { $set: req.body }
+        );
         if (!user) {
             return res.status(404).json({ error: "User not found." });
         }
@@ -210,17 +222,15 @@ app.put("/api/user", authenticateToken, async (req, res) => {
 
         // await user.save();
         res.json(user);
-
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Error editing." });
     }
 });
 
-
 // ========== GET ALL POSTS FROM ONE USER ==========
 
-app.get("/api/:user/posts", async (req, res) => {
+app.get("/api/user/posts", async (req, res) => {
     const { userid } = req.params;
 
     try {
@@ -231,21 +241,23 @@ app.get("/api/:user/posts", async (req, res) => {
     }
 });
 
-
 // ========== GET ALL POSTS FROM ALL USERS ==========
 app.get("/api/posts", async (req, res) => {
     try {
-        const posts = await Post.find();
-        res.send(posts).json(posts)
-
+        const posts = await Post.find().populate("user").populate({
+            path: "comments",
+            model: "Comment",
+            populate: {
+                path: "user",
+                model: "User"
+            }
+        });
+        res.json(posts);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "No posts found." })
-
+        res.status(500).json({ error: "No posts found." });
     }
-
-})
-
+});
 
 // ========== GET ONE POST with Post _id ==========
 app.get("/api/posts/:id", async (req, res) => {
@@ -261,7 +273,6 @@ app.get("/api/posts/:id", async (req, res) => {
     }
 });
 
-
 // ========== FIND ALL USERS ==========
 app.get("/api/users", async (req, res) => {
     try {
@@ -269,10 +280,9 @@ app.get("/api/users", async (req, res) => {
         res.status(200).json(allUsers);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "No users found." })
+        res.status(500).json({ error: "No users found." });
     }
 });
-
 
 // ========== UPLOAD NEW IMAGE FILE ==========
 app.post(
@@ -299,16 +309,19 @@ app.post(
 app.post("/api/newpost", authenticateToken,
     async (req, res) => {
         try {
-            const { content, location, image, facebook, twitter, tumblr } = req.body;
-
+            const { content, location, image, facebook, twitter, tumblr, likeCount, commentCount, isLiked, user } = req.body;
+            console.log(req.body);
             const newPost = new Post({
                 content,
                 location,
-                user: req.user._id,
+                user: new mongoose.Types.ObjectId(user),
                 image,
                 facebook,
                 twitter,
-                tumblr
+                tumblr,
+                likeCount,
+                commentCount,
+                isLiked,
             });
 
             const savedPost = await newPost.save();
@@ -322,12 +335,34 @@ app.post("/api/newpost", authenticateToken,
 
 
 
+
+// LIKES 
+// ========== LIKE A POST AND UPDATE LIKES ==========
+app.put('/api/posts/updateLike', async (req, res) => {
+    const { postId, isLiked, likeCount } = req.body;
+
+    try {
+        const updatedPost = await Post.findByIdAndUpdate(
+            postId,
+            { isLiked, likeCount },
+            { new: true }
+        );
+        res.json(updatedPost);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Fehler beim Aktualisieren der Daten.' });
+    }
+});
+
+
+
+
 // COMMENTS
 
 // ========== GET ALL COMMENTS FOR ONE POST ==========
 app.get("/api/comments", async (req, res) => {
     try {
-        const comments = await Comment.find();
+        const comments = await Comment.find().populate("feedback");
         res.status(200).json(comments);
     } catch (error) {
         console.error(error);
@@ -336,14 +371,13 @@ app.get("/api/comments", async (req, res) => {
 });
 
 // ========== GET SINGLE COMMENT ==========
-app.get("/api/comment/:id")
+app.get("/api/comment/:id");
 
 // ========== PUT NEW COMMENT TO A POST ==========
 app.put("/api/comments/:postid", authenticateToken, async (req, res) => {
     try {
         const { content } = req.body;
         const { postid } = req.params;
-
 
         const newComment = new Comment({
             user: req.body.user,
@@ -360,9 +394,7 @@ app.put("/api/comments/:postid", authenticateToken, async (req, res) => {
     }
 });
 
-
 // ==================================================
-
 
 app.get("/*", (req, res) => {
     // res.sendFile(ReactAppIndex.pathname);
