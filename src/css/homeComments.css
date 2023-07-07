@@ -1,12 +1,24 @@
 .commentPage-container {
+  height: 100vh;
   font-family: "Urbanist", sans-serif;
 }
-
+.scrollable {
+  overflow: scroll;
+  max-height: calc(100vh - 105px);
+  padding-bottom: 7vh;
+}
 .commentPage-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 3vw;
+  padding: 0 4vw;
+  height: 8vh;
+  position: fixed;
+  top: 1;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background-color: #fff;
 }
 .commentsHeader-left {
   display: flex;
@@ -25,12 +37,24 @@
   padding: 0 4vw;
 }
 .person-section-container_child {
-  border-bottom: 1px solid #e1e1e1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 9vh 4vw 0vh 4vw;
+  background-color: #fff;
+  z-index: 100;
+  border-bottom: 1px solid #eeeeee;
 }
 .comment-user-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.footersButtonContainerClass_1 {
+  display: flex;
+  align-items: center;
+  gap: 6vw;
 }
 .comment-user-header_left {
   display: flex;
@@ -38,14 +62,22 @@
   gap: 2vw;
 }
 .user-photo {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  border: 1px solid #e1e1e1;
 }
 .user-title {
   display: flex;
   flex-direction: column;
   line-height: 0px;
+  justify-content: center;
+}
+.user-title-name {
+  font-size: 0.9rem;
+}
+.user-title-activity {
+  font-size: 0.7rem;
 }
 .footers-button-container {
   display: flex;
@@ -55,32 +87,12 @@
   text-decoration: none;
 }
 
-.comment-section2 {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  padding: 0 1vw;
+.comment-list-container {
+  padding: 31vh 0 7vh 0;
 }
-.comment-box2 {
-  margin-bottom: 3vh;
+.comment {
+  margin-bottom: 2vh;
 }
-.container_comment-box2 {
-  display: flex;
-  justify-content: space-between;
-  width: 92vw;
-}
-.comment-box-left2 {
-  display: flex;
-  align-items: center;
-  gap: 2vw;
-}
-.footersButtonContainerClass_1 {
-  display: flex;
-  align-items: center;
-  gap: 6vw;
-}
-
 .like-section {
   display: flex;
   align-items: center;
@@ -97,12 +109,13 @@
   margin-bottom: 3vh;
 }
 .user-photo1 {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
+  border: 1px solid #fafafa;
 }
-.user-activity {
-  font-size: 0.8rem;
+.user-title-activity {
+  font-size: 0.7rem;
 }
 .comment-down-box {
   display: flex;
@@ -112,7 +125,6 @@
   border: none;
   font-size: 1rem;
 }
-
 .tag-box {
   color: #2c6aee;
   text-align: start;
@@ -181,11 +193,19 @@
 }
 
 .feedback-write-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4vw;
-  padding: 3vh 1vw 5vh 1vh;
+  padding: 4vh 1vw 3vh 1vh;
+  background-color: #fff;
+  z-index: 100;
+  border-top: 1px solid #eeeeee;
+  border-radius: 23px 23px 0 0;
 }
 .feedback-input {
   padding: 12px;
@@ -206,4 +226,5 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: 1px solid #fafafa;
 }
