@@ -1,10 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GoHeart } from "react-icons/go";
 import redHeart from "../resource/images/redHeart.png";
 import commentButton1 from "../resource/images/commentButton1.svg";
 import commentButton2 from "../resource/images/commentButton2.svg";
-import LikeButton from "../components/LikeButton";
 import CommentButton from "../components/CommentButton";
 import axios from "axios";
 import "../css/home.css";
@@ -31,7 +30,6 @@ const PostItem = ({
   const [likes, setLikes] = useState(likeCount);
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const [comments, setComments] = useState([]);
 
   const toggleLike = async () => {
     try {
@@ -50,32 +48,13 @@ const PostItem = ({
     }
   };
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const response = await axios.get("/api/comments");
-        setComments(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchComments();
-  }, []);
-
   const handleCommentClickDB = (id) => {
     const filteredPost = posts.find((post) => post._id === id);
-    const filtereComments = comments.find((comment) => comment._id === id);
     console.log("Posts:", posts);
     console.log("Filtered Post:", filteredPost);
 
     if (filteredPost) {
       navigate("/commentsPage", { state: { post: filteredPost } });
-    } else {
-      console.log("Post not found");
-    }
-
-    if (filtereComments) {
-      navigate("/commentsPage", { state: { comment: filtereComments } });
     } else {
       console.log("Post not found");
     }
