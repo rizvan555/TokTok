@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "../css/home.css";
 import "../css/likeButton.css";
 import axios from "axios";
@@ -9,7 +11,6 @@ import toktokLogo from "../resource/logos/toktokLogo.png";
 import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
 import FooterNavbar from "../components/FooterNavbar";
-import LikeButton from "../components/LikeButton";
 import { GoHeart } from "react-icons/go";
 import CustomizedSwitches from "../components/CustomizedSwitches";
 import PostItem from "../components/PostItem";
@@ -20,6 +21,7 @@ function Home({ darkLight, setDarkLight }) {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate()
   const [refetch, setreFetch] = useState(false)
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -44,6 +46,7 @@ function Home({ darkLight, setDarkLight }) {
 
     fetchPosts();
   }, [refetch]);
+
 
   return (
     <div className="home-container">
@@ -86,7 +89,6 @@ function Home({ darkLight, setDarkLight }) {
               posts={posts}
               setreFetch={setreFetch}
             />
-
           ))}
         </section>
       </main>

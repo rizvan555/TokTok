@@ -32,17 +32,6 @@ const PostItem = ({
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  const handleCommentClickDB = (id) => {
-    const filteredPost = posts.find((post) => post._id === id);
-    console.log("Posts:", posts);
-    console.log("Filtered Post:", filteredPost);
-    if (filteredPost) {
-      navigate("/commentsPage", { state: { post: filteredPost } });
-    } else {
-      console.log("Post not found");
-    }
-  };
-
   const toggleLike = async () => {
 
     try {
@@ -61,6 +50,56 @@ const PostItem = ({
       console.error(error);
     }
   };
+  
+    const handleCommentClickDB = (id) => {
+        const filteredPost = posts.find((post) => post._id === id);
+        console.log("Posts:", posts);
+        console.log("Filtered Post:", filteredPost);
+        if (filteredPost) {
+            navigate("/commentsPage", { state: { post: filteredPost } });
+        } else {
+            console.log("Post not found");
+        }
+    };
+    console.log(posts);
+
+    return (
+        <div>
+            <div className="person-main-container">
+                <div className="post-container">
+                    <div className="person-left-side">
+                        <img src={avatar} alt="photo1" className="person-photo" />
+                        <div className="name-box">
+                            <h3 className="name">{username}</h3>
+                            <h5 className="position">{activity}</h5>
+                        </div>
+                    </div>
+                    <div className="post-header">
+                        <h3 className="post-author">{username}</h3>
+                    </div>
+                    <img src={image} alt="user-avatar" className="user-avatar" />
+                </div>
+                <section className="main-footer-section">
+                    <div className="like-section" onClick={toggleLike}>
+                        {liked ? (
+                            <img src={redHeart} alt="redHeart" />
+                        ) : (
+                            <GoHeart size={27} />
+                        )}
+                        <p>{likes}</p>
+                    </div>
+
+                    <CommentButton
+                        postId={post._id}
+                        post={post}
+                        darkLight={darkLight}
+                        handleCommentClickDB={handleCommentClickDB}
+                    />
+                </section>
+            </div>
+        </div>
+    );
+
 
   return (
     <div>
