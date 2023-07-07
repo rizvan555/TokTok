@@ -25,21 +25,20 @@ const PostItem = ({
   isLiked,
   darkLight,
   setDarkLight,
-  setreFetch
+  setreFetch,
 }) => {
   const [liked, setLiked] = useState(isLiked);
   const [likes, setLikes] = useState(likeCount);
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [comments, setComments] = useState([]);
 
   const toggleLike = async () => {
-
     try {
-
       await axios.put("/api/posts/updateLike", {
         postId: post._id,
       });
-      setreFetch(prev => !prev)
+      setreFetch((prev) => !prev);
     } catch (error) {
       const responseError = error?.response?.data?.error?.message;
       if (responseError) {
@@ -51,18 +50,37 @@ const PostItem = ({
     }
   };
 
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get("/api/comments");
+        setComments(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchComments();
+  }, []);
+
   const handleCommentClickDB = (id) => {
     const filteredPost = posts.find((post) => post._id === id);
+    const filtereComments = comments.find((comment) => comment._id === id);
     console.log("Posts:", posts);
     console.log("Filtered Post:", filteredPost);
+
     if (filteredPost) {
       navigate("/commentsPage", { state: { post: filteredPost } });
     } else {
       console.log("Post not found");
     }
-  };
-  console.log(post);
 
+
+    if (filtereComments) {
+      navigate("/commentsPage", { state: { comment: filtereComments } });
+    } else {
+      console.log("Post not found");
+    }
+  };
 
   return (
     <div>
@@ -88,7 +106,6 @@ const PostItem = ({
             <img src={image} alt="post-image" className="post-image" />
           </div>
           <section className="main-footer-section">
-
             <div className="like-section" onClick={toggleLike}>
               {post?.likes?.includes(post.currentUser) ? (
                 <img src={redHeart} alt="redHeart" />
@@ -107,9 +124,7 @@ const PostItem = ({
               />
             </div>
           </section>
-
         </div>
-
       </div>
     </div>
   );

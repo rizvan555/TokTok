@@ -33,7 +33,7 @@ const SignIn = () => {
       .post("/api/signin", user)
       .then((res) => {
         console.log(res);
-        navigate("/");
+        navigate("/home");
       })
       .catch((error) => {
         const responseError = error?.response?.data?.error?.message;
@@ -91,4 +91,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-    
