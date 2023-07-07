@@ -246,6 +246,7 @@ app.get("/api/user/posts", async (req, res) => {
 
 app.get("/api/posts", authenticateToken, async (req, res) => {
   try {
+
     const posts = await Post.find().populate("user").populate({
       path: "comments",
       model: "Comment",
@@ -309,6 +310,7 @@ app.post(
 
 // ========== POST NEW POST with/from user _id ==========
 
+
 app.post("/api/newpost", authenticateToken,
   async (req, res) => {
     try {
@@ -327,7 +329,6 @@ app.post("/api/newpost", authenticateToken,
         isLiked,
         createdAt
       });
-
       const savedPost = await newPost.save();
 
       res.status(201).json(savedPost);
@@ -340,14 +341,17 @@ app.post("/api/newpost", authenticateToken,
 // LIKES
 // ========== LIKE A POST AND UPDATE LIKES ==========
 
-app.put('/api/posts/updateLike', authenticateToken, async (req, res) => {
+app.put("/api/posts/updateLike", authenticateToken, async (req, res) => {
   const { postId } = req.body;
 
   try {
-    const isLiked = await Post.find({ likes: { $in: [req.user.id] } })
+    const isLiked = await Post.find({ likes: { $in: [req.user.id] } });
     if (isLiked.length > 0) {
-      const updatedPost = await Post.findByIdAndUpdate(postId, { $pullAll: { likes: [req.user.id] } })
-      res.json(updatedPost)
+      const updatedPost = await Post.findByIdAndUpdate(postId, {
+        $pullAll: { likes: [req.user.id] },
+      });
+      res.json(updatedPost);
+
     } else {
       const updatedPost = await Post.findByIdAndUpdate(
         postId,
@@ -391,7 +395,6 @@ app.put("/api/comments/:postid", authenticateToken, async (req, res) => {
       post: postid,
       likeCount,
     });
-
 
     const savedComment = await newComment.save();
 
