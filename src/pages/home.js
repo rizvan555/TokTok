@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "../css/home.css";
 import "../css/likeButton.css";
 import axios from "axios";
@@ -17,19 +19,33 @@ import PostItem from "../components/PostItem";
 function Home({ darkLight, setDarkLight }) {
   const [clickHeart, setClickHeart] = useState(true);
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
+
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get("/api/posts");
-        setPosts(response.data);
-        console.log(response);
+        if (response.status === 200) {
+          const sortedPosts = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          setPosts(sortedPosts);
+          console.log(response);
+        } else {
+          console.error("Fehler beim Abrufen der Benutzerdaten", response);
+        }
       } catch (error) {
-        console.error("Fehler beim Abrufen der Benutzerdaten", error);
+        if (error.response && error.response.status === 401) {
+
+        } else {
+          console.error("Fehler beim Abrufen der Benutzerdaten", error);
+          navigate("/signin", { state: { message: "Fehler beim Abrufen der Benutzerdaten" } });
+        }
       }
     };
-    // console.log(posts);
+
     fetchPosts();
   }, []);
+
 
   return (
     <div className="home-container">
@@ -70,6 +86,7 @@ function Home({ darkLight, setDarkLight }) {
               setDarkLight={setDarkLight}
               post={post}
               posts={posts}
+              setPosts={setPosts}
             />
 
           ))}
