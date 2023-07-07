@@ -39,7 +39,6 @@ function Home({ darkLight, setDarkLight }) {
           <h1 className="title">TokTok</h1>
         </div>
         <CustomizedSwitches darkLight={darkLight} setDarkLight={setDarkLight} />
-
         <button
           className="main-heart-button"
           onClick={() => setClickHeart(!clickHeart)}
@@ -62,7 +61,7 @@ function Home({ darkLight, setDarkLight }) {
               key={post._id}
               avatar={post?.user?.avatar}
               username={post?.user?.username}
-              activity={post.activity}
+              activity={post?.user?.activity}
               image={post.image}
               likeCount={post.likeCount}
               commentCount={post.commentCount}
@@ -72,6 +71,7 @@ function Home({ darkLight, setDarkLight }) {
               post={post}
               posts={posts}
             />
+
           ))}
         </section>
       </main>
