@@ -4,11 +4,11 @@
 
 /* ------------------------------------------------------ */
 
-/* body {
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} */
+}
 
 .ownprofile_page {
   font-family: var(--font-family-bold);
@@ -125,8 +125,7 @@
 
 /* Profile - Image ------------------------------------- */
 
-.image-container .profile_img {
-  /* width: 33%; */
+.image-container .profile_image {
   width: 140px;
   height: 140px;
   border-radius: 100px;
