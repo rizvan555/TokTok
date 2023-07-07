@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import "./css/likeButton.css";
 import "./css/commentButton.css";
@@ -18,13 +18,18 @@ import NewPost from "./pages/post";
 import SearchAll from "./pages/searchAll";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SettingsPage from "./pages/settingsPage";
 import EditProfile from "../src/pages/EditProfile";
 import LoadingPage from "../src/pages/loadingPage";
 
 function App() {
   const [darkLight, setDarkLight] = useState(true);
+  useEffect(() => {
+    document.title = "TokTok";
+    
+  }, []);
+
   return (
     <div
       className="App"
