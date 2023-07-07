@@ -110,6 +110,54 @@ const PostItem = ({
             </div>
         </div>
     );
+
+  return (
+    <div>
+      <div className="person-main-container">
+        <div className="post-container">
+          <div className="post-header">
+            <div className="person-left-side">
+              <img src={avatar} alt="photo1" className="person-photo" />
+              <div className="name-box">
+                <h3 className="name">{username}</h3>
+                <h5 className="position">{activity}</h5>
+              </div>
+            </div>
+            <Link to="/settingsPage" className="settings-container">
+              {darkLight ? (
+                <img src={commentButton1} alt="commentButton1" />
+              ) : (
+                <img src={commentButton2} alt="commentButton2" />
+              )}
+            </Link>
+          </div>
+          <div className="post-header">
+            <img src={image} alt="post-image" className="post-image" />
+          </div>
+          <section className="main-footer-section">
+            <div className="like-section" onClick={toggleLike}>
+              {liked ? (
+                <img src={redHeart} alt="redHeart" />
+              ) : (
+                <GoHeart size={27} />
+              )}
+              <p>{likes}</p>
+            </div>
+            <div>
+              <CommentButton
+                postId={post._id}
+                post={post}
+                darkLight={darkLight}
+                handleCommentClickDB={handleCommentClickDB}
+              />
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+    </div>
+  );
 };
 
 export default PostItem;

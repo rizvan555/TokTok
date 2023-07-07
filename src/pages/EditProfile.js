@@ -40,6 +40,10 @@ const EditProfile = ({ darkLight, setDarkLight }) => {
     }
   };
 
+  window.onload = function () {
+    window.scrollTo(0, 0)
+  }
+
   return (
     <div className="editprofile_page">
       <section className="editprofile_topbar">

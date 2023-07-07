@@ -42,8 +42,6 @@ const EditProfileImage = ({ user, setUser }) => {
             {res.secure_url ? (
                 <img src={res.secure_url}
                     className='profile-image'
-                    width='140' height='140'
-                    style={{ 'border-radius': '100px' }}
                     alt="profile image" />
             ) : (
                 <img src={newUserImage}
@@ -65,8 +63,8 @@ const EditProfileImage = ({ user, setUser }) => {
                     {loading ? "uploading..." : "upload to cloudinary"}
                 </button>
             )}
-            <button className="edit-icon">
-                <img src={editIcon} style={{ 'border-radius': '10px' }} alt="editIcon" />
+            <button className="edit-icon-btn">
+                <img className='edit-icon-image' src={editIcon} alt="editIcon" />
             </button>
             {/* <code>
                 {Object.keys(res).length > 0 &&

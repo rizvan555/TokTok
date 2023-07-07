@@ -18,6 +18,7 @@ const EditProfileTextInput = ({ user, setUser }) => {
                 className="name"
                 placeholder="name"
                 value={user.name}
+                required
                 onChange={(event) => { setUser({ ...user, name: event.currentTarget.value }) }}
             />
             <input
@@ -26,6 +27,7 @@ const EditProfileTextInput = ({ user, setUser }) => {
                 className="username"
                 placeholder="username"
                 value={user.username}
+                required
                 onChange={(event) => { setUser({ ...user, username: event.currentTarget.value }) }}
             />
             <input
@@ -51,7 +53,7 @@ const EditProfileTextInput = ({ user, setUser }) => {
                 src={calendarIcon}
                 alt="calendarIcon"
             />
-            <input
+            {/* <input
                 type="email"
                 name="email"
                 className="email"
@@ -59,13 +61,13 @@ const EditProfileTextInput = ({ user, setUser }) => {
                 value={user.email}
                 pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                 onChange={(event) => { setUser({ ...user, email: event.currentTarget.value }) }}
-            />
+            /> */}
             <input
                 type="tel"
                 name="tel"
                 className="tel"
                 placeholder="phone"
-                pattern="(\+[0-9]{2}\s?)?[0-9]{3}\s?[0-9]{3}\s?[0-9]{4}"
+            // pattern="(\+[0-9]{2}\s?)?[0-9]{3}\s?[0-9]{3}\s?[0-9]{4}"
             />
             <select
                 name="gender"

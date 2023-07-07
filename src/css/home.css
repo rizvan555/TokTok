@@ -1,6 +1,10 @@
 .home-container {
-  padding: 1vh 0vw 0vh 0vw;
+  padding-top: 1vh;
   font-family: "Urbanist", sans-serif;
+}
+
+.person-main-container {
+  padding: 1vh 1vw 0 1vw;
 }
 
 .header {
@@ -39,11 +43,10 @@
   padding: 0 2vw;
 }
 
-.header-section {
+.post-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 1vh 1vw;
+  align-items: center;
 }
 
 .person-left-side {
@@ -52,12 +55,9 @@
   gap: 2vw;
 }
 
-.person-left-side img {
-  border-radius: 50%;
-}
-
 .name-box {
-  line-height: 2px;
+  padding-top: 0.5rem;
+  line-height: 1px;
   text-align: start;
 }
 
@@ -76,33 +76,31 @@
 }
 
 .settings-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 25px;
   height: 25px;
   border-radius: 50%;
   padding-bottom: 1vh;
   border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: white;
 }
 
 .person-photo {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 
-.main-section {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1vh;
+.post-image {
+  border-radius: 10px;
+  margin-top: 1vh;
+  width: 100%;
 }
 
 .main-footer-section {
   display: flex;
-  align-items: center;
-  gap: 8vw;
-  margin-bottom: 2vh;
-  padding-left: 1vw;
+  gap: 2vw;
 }
 
 /* --- CommentPage ----- */
@@ -132,4 +130,13 @@
   border: none;
   background-color: transparent;
   padding: 0;
+}
+
+.like-section {
+  width: 50px;
+}
+
+.like-section img {
+  width: 27px;
+  height: 27px;
 }

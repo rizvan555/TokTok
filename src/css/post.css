@@ -18,9 +18,11 @@
 }
 
 .profile_pic {
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 
 #post_text {
@@ -31,12 +33,15 @@
   padding-top: 3vh;
   padding-left: 3vw;
   font-family: var(--font-family-bold);
+  font-size: 1rem;
 }
 
 .post_pic {
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .location {
@@ -52,9 +57,13 @@
   padding: 0;
 }
 
+.location p {
+  margin: 0;
+}
+
 hr {
   border-color: #eeeeee;
-  margin: 1.5vh 0;
+  margin: 2vh 0;
 }
 
 .post_to {
@@ -105,4 +114,8 @@ hr {
 
 input:checked+.slider:before {
   transform: translateX(25px);
+}
+
+.submit_button {
+  font-size: 1.2rem;
 }
