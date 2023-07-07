@@ -4,7 +4,14 @@ import "../css/commentButton.css";
 import commentButton3 from "../resource/images/commentButton3.svg";
 import commentButton4 from "../resource/images/commentButton4.svg";
 
-function CommentButton({ handleCommentClickDB, post, darkLight, postId }) {
+function CommentButton({
+  handleCommentClickDB,
+  post,
+  darkLight,
+  postId,
+  comments,
+}) {
+  console.log(comments);
   return (
     <div>
       <div className="comment-button-section">
@@ -20,7 +27,7 @@ function CommentButton({ handleCommentClickDB, post, darkLight, postId }) {
             <img src={commentButton4} alt="commentButton4" />
           )}
         </div>
-        <p>{post?.commentCount}</p>
+        <p>{comments.length}</p>
       </div>
     </div>
   );

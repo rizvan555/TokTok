@@ -40,6 +40,7 @@ function CommentsPage({ darkLight }) {
       try {
         const response = await axios.get("/api/comments");
         setComments(response.data);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -175,7 +176,11 @@ function CommentsPage({ darkLight }) {
                   )}
                   <p>{likes}</p>
                 </div>
-                <CommentButton person={posts} darkLight={darkLight} />
+                <CommentButton
+                  person={posts}
+                  darkLight={darkLight}
+                  comments={comments}
+                />
               </div>
             </div>
           </div>
