@@ -18,7 +18,8 @@ import PostItem from "../components/PostItem";
 function Home({ darkLight, setDarkLight }) {
   const [clickHeart, setClickHeart] = useState(true);
   const [posts, setPosts] = useState([]);
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const [refetch, setreFetch] = useState(false)
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -45,7 +46,7 @@ function Home({ darkLight, setDarkLight }) {
     };
 
     fetchPosts();
-  }, []);
+  }, [refetch]);
 
   return (
     <div className="home-container">
@@ -86,7 +87,7 @@ function Home({ darkLight, setDarkLight }) {
               setDarkLight={setDarkLight}
               post={post}
               posts={posts}
-              setPosts={setPosts}
+              setreFetch={setreFetch}
             />
           ))}
         </section>
