@@ -11,7 +11,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
 
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -36,12 +36,12 @@ const NewPost = ({ darkLight, setDarkLight }) => {
       try {
         const response = await axios.get('/api/user');
         setUser(response.data);
-        console.log(response);
+        // console.log(response);
       } catch (error) {
         console.error('Fehler beim Abrufen der Benutzerdaten', error);
       }
     };
-    console.log(user);
+    // console.log(user);
     getUserProfile();
   }, []);
 
