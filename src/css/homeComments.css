@@ -66,6 +66,8 @@
   height: 50px;
   border-radius: 50%;
   border: 1px solid #e1e1e1;
+  object-fit: cover;
+  object-position: center;
 }
 .user-title {
   display: flex;
@@ -88,7 +90,7 @@
 }
 
 .comment-list-container {
-  padding: 31vh 0 7vh 0;
+  padding: 34vh 0 7vh 0;
 }
 .comment {
   margin-bottom: 2vh;
@@ -113,6 +115,8 @@
   height: 45px;
   border-radius: 50%;
   border: 1px solid #fafafa;
+  object-fit: cover;
+  object-position: center;
 }
 .user-title-activity {
   font-size: 0.7rem;
@@ -227,4 +231,6 @@
   height: 40px;
   border-radius: 50%;
   border: 1px solid #fafafa;
+  object-fit: cover;
+  object-position: center;
 }

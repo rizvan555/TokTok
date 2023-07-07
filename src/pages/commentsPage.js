@@ -118,7 +118,7 @@ function CommentsPage({ darkLight }) {
           style={{ backgroundColor: darkLight ? "white" : "black" }}
         >
           <div className="commentsHeader-left">
-            <Link to="/">
+            <Link to="/home">
               <BsArrowLeft
                 size={25}
                 style={{ color: !darkLight ? "white" : "black" }}
