@@ -27,7 +27,6 @@ function App() {
   const [darkLight, setDarkLight] = useState(true);
   useEffect(() => {
     document.title = "TokTok";
-    
   }, []);
 
   return (

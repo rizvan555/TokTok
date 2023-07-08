@@ -1,3 +1,5 @@
+// PostItem.js
+
 import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { GoHeart } from "react-icons/go";
@@ -107,15 +109,15 @@ const PostItem = ({
               <p>{post.likes.length}</p>
             </div>
 
-            <div>
+            {post && (
               <CommentButton
-                comments={comments}
+                allComments={comments}
                 postId={post._id}
                 post={post}
                 darkLight={darkLight}
                 handleCommentClickDB={handleCommentClickDB}
               />
-            </div>
+            )}
           </section>
         </div>
       </div>
