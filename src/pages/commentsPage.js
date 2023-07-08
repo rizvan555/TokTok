@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../css/homeComments.css";
-import CommentButton from "../components/CommentButton";
 import { BsArrowLeft } from "react-icons/bs";
 import { BsSend } from "react-icons/bs";
 import commentButton1 from "../resource/images/commentButton1.svg";
 import commentButton2 from "../resource/images/commentButton2.svg";
+import commentButton3 from "../resource/images/commentButton3.svg";
+import commentButton4 from "../resource/images/commentButton4.svg";
 import redHeart from "../resource/images/redHeart.png";
 import axios from "axios";
 import { GoHeart } from "react-icons/go";
@@ -15,13 +16,13 @@ function CommentsPage({ darkLight }) {
   const [comments, setComments] = useState([]);
   const [posts, setPosts] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [commentList, setCommentList] = useState([]);
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
   const navigate = useNavigate();
   const { state } = useLocation();
   console.log("state", state);
   const post = state?.post || null;
+  const postContentCounts = {};
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -56,8 +57,8 @@ function CommentsPage({ darkLight }) {
     };
 
     fetchUserProfile();
-    fetchComments();
     fetchPosts();
+    fetchComments();
   }, []);
 
   const toggleLike = () => {
@@ -95,6 +96,16 @@ function CommentsPage({ darkLight }) {
     }
   };
 
+  const fetchComments = async () => {
+    try {
+      const response = await axios.get("/api/comments");
+      setComments(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const clickPostButton = () => {
     if (inputValue.trim() !== "") {
       const newComment = { content: inputValue, likeCount: 0 };
@@ -103,8 +114,22 @@ function CommentsPage({ darkLight }) {
       const postId = post?._id;
       const userId = users?.id;
       createComment(postId, userId, inputValue);
+      fetchComments();
     }
   };
+
+  const filteredComments = comments.filter(
+    (comment) => comment.post === post?._id
+  );
+
+  comments.forEach((comment) => {
+    const postNum = comment.post;
+    if (!postContentCounts[postNum]) {
+      postContentCounts[postNum] = 0;
+    }
+    postContentCounts[postNum]++;
+  });
+  const commentCount = postContentCounts[post._id] || 0;
 
   const footersButtonContainerClass =
     comments.length > 0
@@ -176,17 +201,20 @@ function CommentsPage({ darkLight }) {
                   )}
                   <p>{likes}</p>
                 </div>
-                <CommentButton
-                  person={posts}
-                  darkLight={darkLight}
-                  comments={comments}
-                />
+                <div className="comment-button-section">
+                  {darkLight ? (
+                    <img src={commentButton3} alt="commentButton3" />
+                  ) : (
+                    <img src={commentButton4} alt="commentButton4" />
+                  )}
+                  <p>{commentCount}</p>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="comment-list-container">
-            {comments.map((comment, index) => {
+            {filteredComments.map((comment, index) => {
               return (
                 <div key={index} className="comment">
                   <div className="comment-header-box">

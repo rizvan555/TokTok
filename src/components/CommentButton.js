@@ -1,4 +1,3 @@
-// CommentButton.js
 import React from "react";
 import "../css/commentButton.css";
 import commentButton3 from "../resource/images/commentButton3.svg";
@@ -10,8 +9,21 @@ function CommentButton({
   darkLight,
   postId,
   comments,
+  allComments,
 }) {
-  console.log(comments);
+  console.log(allComments);
+
+  const postContentCounts = {};
+  allComments.forEach((comment) => {
+    const postNum = comment.post;
+    if (!postContentCounts[postNum]) {
+      postContentCounts[postNum] = 0;
+    }
+    postContentCounts[postNum]++;
+  });
+
+  const commentCount = postContentCounts[postId] || 0;
+
   return (
     <div>
       <div className="comment-button-section">
@@ -27,7 +39,7 @@ function CommentButton({
             <img src={commentButton4} alt="commentButton4" />
           )}
         </div>
-        <p>{comments.length}</p>
+        <p>{commentCount}</p>
       </div>
     </div>
   );
