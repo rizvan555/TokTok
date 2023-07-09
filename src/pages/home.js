@@ -28,8 +28,6 @@ function Home({ darkLight, setDarkLight }) {
             sortedPosts = response.data.sort(
               (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
             );
-          } else {
-            console.error("Fehler beim Abrufen der Benutzerdaten", response);
           }
           setPosts(sortedPosts);
         } else {
