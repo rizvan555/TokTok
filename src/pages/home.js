@@ -16,22 +16,28 @@ function Home({ darkLight, setDarkLight }) {
   const [clickHeart, setClickHeart] = useState(true);
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
-  const [refetch, setreFetch] = useState(false);
+  const [refetch, setReFetch] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get("/api/posts");
         if (response.status === 200) {
-          const sortedPosts = response.data.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-          );
+          let sortedPosts = [];
+          if (Array.isArray(response.data)) {
+            sortedPosts = response.data.sort(
+              (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            );
+          } else {
+            console.error("Fehler beim Abrufen der Benutzerdaten", response);
+          }
           setPosts(sortedPosts);
         } else {
           console.error("Fehler beim Abrufen der Benutzerdaten", response);
         }
       } catch (error) {
         if (error.response && error.response.status === 401) {
+          // Handle unauthorized access
         } else {
           console.error("Fehler beim Abrufen der Benutzerdaten", error);
           navigate("/signin", {
@@ -49,7 +55,7 @@ function Home({ darkLight, setDarkLight }) {
       await axios.put("/api/posts/updateLike", {
         postId: postId,
       });
-      setreFetch((prev) => !prev);
+      setReFetch((prev) => !prev);
     } catch (error) {
       const responseError = error?.response?.data?.error?.message;
       if (responseError) {
@@ -101,7 +107,7 @@ function Home({ darkLight, setDarkLight }) {
               setDarkLight={setDarkLight}
               post={post}
               posts={posts}
-              setreFetch={setreFetch}
+              setReFetch={setReFetch}
               toggleLike={toggleLike}
             />
           ))}
