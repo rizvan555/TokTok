@@ -18,7 +18,6 @@ const EditProfileTextInput = ({ user, setUser }) => {
                 className="name"
                 placeholder="name"
                 value={user.name}
-                required
                 onChange={(event) => { setUser({ ...user, name: event.currentTarget.value }) }}
             />
             <input
@@ -27,7 +26,6 @@ const EditProfileTextInput = ({ user, setUser }) => {
                 className="username"
                 placeholder="username"
                 value={user.username}
-                required
                 onChange={(event) => { setUser({ ...user, username: event.currentTarget.value }) }}
             />
             <input
