@@ -18,9 +18,11 @@ function CommentsPage({ darkLight }) {
   const [inputValue, setInputValue] = useState("");
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
+  const [liked1, setLiked1] = useState(false);
+  const [likes1, setLikes1] = useState(0);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { state } = useLocation();
-  console.log("state", state);
   const post = state?.post || null;
   const postContentCounts = {};
 
@@ -29,7 +31,6 @@ function CommentsPage({ darkLight }) {
       try {
         const response = await axios.get("/api/user");
         setUsers(response.data);
-        console.log("Hallo", response.data);
       } catch (error) {
         console.error("Fehler beim Abrufen der Benutzerdaten", error);
       }
@@ -61,27 +62,45 @@ function CommentsPage({ darkLight }) {
     fetchComments();
   }, []);
 
-  const toggleLike = () => {
-    if (liked) {
-      setLikes(likes - 1);
-    } else {
-      setLikes(likes + 1);
-    }
-    setLiked(!liked);
+  const toggleLike = (commentId) => {
+    setComments((prevComments) => {
+      return prevComments.map((comment) => {
+        if (comment._id === commentId) {
+          const updatedComment = { ...comment };
+          updatedComment.isLiked = !updatedComment.isLiked;
+          updatedComment.likeCount = updatedComment.isLiked
+            ? updatedComment.likeCount + 1
+            : updatedComment.likeCount - 1;
+          return updatedComment;
+        }
+        return comment;
+      });
+    });
   };
 
-  const toggleCommentLike = (commentIndex) => {
-    setComments((comments) =>
-      comments.map((comment, index) =>
-        index === commentIndex
-          ? {
-              ...comment,
-              likeCount: comment.likeCount + (comment.isLiked ? -1 : 1),
-              isLiked: !comment.isLiked,
-            }
-          : comment
-      )
-    );
+  const toggleLike1 = async () => {
+    try {
+      const updatedLikes = liked ? likes - 1 : likes + 1;
+      const response = await axios.put("/api/posts/updateLike", {
+        postId: post._id,
+        liked: !liked,
+        likes: updatedLikes,
+      });
+      if (response.status === 200) {
+        setLiked(!liked);
+        setLikes(updatedLikes);
+      } else {
+        console.error("Something went wrong. Please try again later.");
+      }
+    } catch (error) {
+      const responseError = error?.response?.data?.error?.message;
+      if (responseError) {
+        setError(responseError);
+      } else {
+        setError("Something went wrong. Please try again later.");
+      }
+      console.error(error);
+    }
   };
 
   const createComment = async (postId, userId, content) => {
@@ -129,7 +148,7 @@ function CommentsPage({ darkLight }) {
     }
     postContentCounts[postNum]++;
   });
-  const commentCount = postContentCounts[post._id] || 0;
+  const commentCount = postContentCounts[post?._id] || 0;
 
   const footersButtonContainerClass =
     comments.length > 0
@@ -193,7 +212,7 @@ function CommentsPage({ darkLight }) {
             <p>{post?.content}</p>
             <div className={footersButtonContainerClass}>
               <div className="footersButtonContainerClass_1">
-                <div className="like-section" onClick={toggleLike}>
+                <div className="like-section" onClick={toggleLike1}>
                   {liked ? (
                     <img src={redHeart} alt="redHeart" />
                   ) : (
@@ -246,7 +265,7 @@ function CommentsPage({ darkLight }) {
                   <div className="comment-down-box">
                     <div
                       className="like-section"
-                      onClick={() => toggleCommentLike(index)}
+                      onClick={() => toggleLike(comment._id)}
                     >
                       {comment.isLiked ? (
                         <img src={redHeart} alt="redHeart" />

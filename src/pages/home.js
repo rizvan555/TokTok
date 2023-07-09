@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import "../css/home.css";
 import "../css/likeButton.css";
 import axios from "axios";
-import commentButton1 from "../resource/images/commentButton1.svg";
-import commentButton2 from "../resource/images/commentButton2.svg";
 import "../css/commentButton.css";
 import toktokLogo from "../resource/logos/toktokLogo.png";
 import Heart from "../resource/images/Heart.png";
@@ -18,8 +15,8 @@ import PostItem from "../components/PostItem";
 function Home({ darkLight, setDarkLight }) {
   const [clickHeart, setClickHeart] = useState(true);
   const [posts, setPosts] = useState([]);
-  const navigate = useNavigate()
-  const [refetch, setreFetch] = useState(false)
+  const navigate = useNavigate();
+  const [refetch, setreFetch] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -30,7 +27,6 @@ function Home({ darkLight, setDarkLight }) {
             (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
           );
           setPosts(sortedPosts);
-          console.log(response);
         } else {
           console.error("Fehler beim Abrufen der Benutzerdaten", response);
         }
@@ -48,11 +44,29 @@ function Home({ darkLight, setDarkLight }) {
     fetchPosts();
   }, [refetch]);
 
+  const toggleLike = async (postId) => {
+    try {
+      await axios.put("/api/posts/updateLike", {
+        postId: postId,
+      });
+      setreFetch((prev) => !prev);
+    } catch (error) {
+      const responseError = error?.response?.data?.error?.message;
+      if (responseError) {
+        console.error(responseError);
+      } else {
+        console.error("Something went wrong. Please try again later.");
+      }
+    }
+  };
+
   return (
     <div className="home-container">
       <header className="header">
         <div className="left-box">
-          <img src={toktokLogo} alt="logo" className="logo" />
+          <Link to="/home">
+            <img src={toktokLogo} alt="logo" className="logo" />
+          </Link>
           <h1 className="title">TokTok</h1>
         </div>
         <CustomizedSwitches darkLight={darkLight} setDarkLight={setDarkLight} />
@@ -88,6 +102,7 @@ function Home({ darkLight, setDarkLight }) {
               post={post}
               posts={posts}
               setreFetch={setreFetch}
+              toggleLike={toggleLike}
             />
           ))}
         </section>

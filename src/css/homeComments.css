@@ -4,7 +4,7 @@
 }
 .scrollable {
   overflow: scroll;
-  max-height: calc(100vh - 105px);
+  max-height: calc(100vh - 65px);
   padding-bottom: 7vh;
 }
 .commentPage-header {
@@ -90,7 +90,7 @@
 }
 
 .comment-list-container {
-  padding: 34vh 0 7vh 0;
+  padding: 41vh 0 7vh 0;
 }
 .comment {
   margin-bottom: 2vh;
