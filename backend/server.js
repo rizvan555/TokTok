@@ -32,8 +32,8 @@ const upload = Multer({
 const PORT = process.env.BE_PORT || 4000;
 const app = express();
 
-// const ReactAppDistPath = new URL("../dist/", import.meta.url);
-// const ReactAppIndex = new URL("../dist/index.html", import.meta.url);
+const ReactAppDistPath = new URL("../dist/", import.meta.url);
+const ReactAppIndex = new URL("../dist/index.html", import.meta.url);
 
 app.use(express.json());
 app.use(cookieParser());
@@ -44,7 +44,7 @@ app.use(
         credentials: true,
     })
 );
-// app.use(express.static(ReactAppDistPath.pathname));
+app.use(express.static(ReactAppDistPath.pathname));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -411,7 +411,7 @@ app.put("/api/comments/:postid", authenticateToken, async (req, res) => {
 // ==================================================
 
 app.get("/*", (req, res) => {
-    // res.sendFile(ReactAppIndex.pathname);
+    res.sendFile(ReactAppIndex.pathname);
 });
 
 app.listen(PORT, () => {
