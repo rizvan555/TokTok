@@ -43,19 +43,19 @@
 
 .edit-icon-btn {
     position: absolute;
-    top: 21%;
+    top: 23%;
     left: 59%;
     padding: 0;
     background-color: transparent;
     border: none;
     z-index: 1;
-    border-radius: 10px;
+    border-radius: 30px;
 }
 
 .edit-profile-file {
     color: transparent;
     position: absolute;
-    top: 21.2%;
+    top: 23.2%;
     right: 34%;
     width: 7%;
     z-index: 2;
