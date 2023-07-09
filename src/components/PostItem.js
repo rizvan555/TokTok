@@ -26,12 +26,15 @@ const PostItem = ({
   setDarkLight,
   toggleLike,
   setreFetch,
+  liked,
+  likes,
+  setLikes,
+  setLiked,
 }) => {
-  const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(0);
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [comments, setComments] = useState([]);
+  const [likedPosts, setLikedPosts] = useState({});
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -45,23 +48,6 @@ const PostItem = ({
     fetchComments();
   }, []);
 
-  // const toggleLike = async () => {
-  //   try {
-  //     await axios.put("/api/posts/updateLike", {
-  //       postId: post._id,
-  //     });
-  //     setreFetch((prev) => !prev);
-  //   } catch (error) {
-  //     const responseError = error?.response?.data?.error?.message;
-  //     if (responseError) {
-  //       setError(responseError);
-  //     } else {
-  //       setError("Something went wrong. Please try again later.");
-  //     }
-  //     console.error(error);
-  //   }
-  // };
-
   const handleCommentClickDB = (id) => {
     const filteredPost = posts.find((post) => post._id === id);
     if (filteredPost) {
@@ -71,20 +57,23 @@ const PostItem = ({
     }
   };
 
-  const handleLikeClick = async () => {
+  const handleLikeClick = async (postId) => {
     try {
-      const updatedLikes = liked ? likes - 1 : likes + 1;
-      const response = await axios.put("/api/posts/updateLike", {
-        postId: post._id,
-        liked: !liked,
-        likes: updatedLikes,
+      const updatedLikedPosts = {
+        ...likedPosts,
+        [postId]: {
+          liked: !likedPosts[postId]?.liked,
+          likes: likedPosts[postId]?.liked ? 0 : 1,
+        },
+      };
+      await axios.put("/api/posts/updateLike", {
+        postId,
       });
-      if (response.status === 200) {
-        setLiked(!liked);
-        setLikes(updatedLikes);
-      } else {
-        console.error("Something went wrong. Please try again later.");
-      }
+      setLikedPosts(updatedLikedPosts);
+      window.localStorage.setItem(
+        "MY_APP_STATE",
+        JSON.stringify(updatedLikedPosts)
+      );
     } catch (error) {
       const responseError = error?.response?.data?.error?.message;
       if (responseError) {
@@ -95,6 +84,14 @@ const PostItem = ({
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("MY_APP_STATE");
+    if (data !== null) {
+      const parsedData = JSON.parse(data);
+      setLikedPosts(parsedData);
+    }
+  }, []);
 
   return (
     <div>
@@ -120,13 +117,16 @@ const PostItem = ({
             <img src={image} alt="post-image" className="post-image" />
           </div>
           <section className="main-footer-section">
-            <div className="like-section" onClick={handleLikeClick}>
-              {liked ? (
+            <div
+              className="like-section"
+              onClick={() => handleLikeClick(post._id)}
+            >
+              {likedPosts[post._id]?.liked ? (
                 <img src={redHeart} alt="redHeart" />
               ) : (
                 <GoHeart size={27} />
               )}
-              <p>{likes}</p>
+              <p>{likedPosts[post._id]?.likes || 0}</p>
             </div>
 
             {post && (
