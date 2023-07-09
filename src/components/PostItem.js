@@ -1,10 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { GoHeart } from "react-icons/go";
 import redHeart from "../resource/images/redHeart.png";
+import CommentButton from "../components/CommentButton";
 import commentButton1 from "../resource/images/commentButton1.svg";
 import commentButton2 from "../resource/images/commentButton2.svg";
-import CommentButton from "../components/CommentButton";
 import axios from "axios";
 import "../css/home.css";
 import "../css/likeButton.css";
@@ -16,20 +16,8 @@ const PostItem = ({
   image,
   post,
   posts,
-  postKey,
-  heartImg,
-  redHeartImg,
-  likeCount,
-  commentCount,
-  isLiked,
   darkLight,
-  setDarkLight,
   toggleLike,
-  setreFetch,
-  liked,
-  likes,
-  setLikes,
-  setLiked,
 }) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -94,52 +82,48 @@ const PostItem = ({
   }, []);
 
   return (
-    <div>
-      <div className="person-main-container">
-        <div className="post-container">
-          <div className="post-header">
-            <div className="person-left-side">
-              <img src={avatar} alt="photo1" className="person-photo" />
-              <div className="name-box">
-                <h3 className="name">{username}</h3>
-                <h5 className="position">{activity}</h5>
-              </div>
+    <div className="person-main-container">
+      <div className="post-container">
+        <div className="post-header">
+          <div className="person-left-side">
+            <img src={avatar} alt="photo1" className="person-photo" />
+            <div className="name-box">
+              <h3 className="name">{username}</h3>
+              <h5 className="position">{activity}</h5>
             </div>
-            <Link to="/settingsPage" className="settings-container">
-              {darkLight ? (
-                <img src={commentButton1} alt="commentButton1" />
-              ) : (
-                <img src={commentButton2} alt="commentButton2" />
-              )}
-            </Link>
           </div>
-          <div className="post-header">
-            <img src={image} alt="post-image" className="post-image" />
-          </div>
-          <section className="main-footer-section">
-            <div
-              className="like-section"
-              onClick={() => handleLikeClick(post._id)}
-            >
-              {likedPosts[post._id]?.liked ? (
-                <img src={redHeart} alt="redHeart" />
-              ) : (
-                <GoHeart size={27} />
-              )}
-              <p>{likedPosts[post._id]?.likes || 0}</p>
-            </div>
-
-            {post && (
-              <CommentButton
-                allComments={comments}
-                postId={post._id}
-                post={post}
-                darkLight={darkLight}
-                handleCommentClickDB={handleCommentClickDB}
-              />
-            )}
-          </section>
+          <Link to="/settingsPage" className="settings-container">
+            <img
+              src={darkLight ? commentButton1 : commentButton2}
+              alt="commentButton"
+            />
+          </Link>
         </div>
+        <div className="post-header">
+          <img src={image} alt="post-image" className="post-image" />
+        </div>
+        <section className="main-footer-section">
+          <div
+            className="like-section"
+            onClick={() => handleLikeClick(post._id)}
+          >
+            {likedPosts[post._id]?.liked ? (
+              <img src={redHeart} alt="redHeart" />
+            ) : (
+              <GoHeart size={27} />
+            )}
+            <p>{likedPosts[post._id]?.likes || 0}</p>
+          </div>
+          {post && (
+            <CommentButton
+              allComments={comments}
+              postId={post._id}
+              post={post}
+              darkLight={darkLight}
+              handleCommentClickDB={handleCommentClickDB}
+            />
+          )}
+        </section>
       </div>
     </div>
   );
