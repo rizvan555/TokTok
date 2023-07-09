@@ -30,11 +30,13 @@ const Upload = ({ darkLight, setDarkLight }) => {
       setLoading(true);
       const data = new FormData();
       data.append("image", file);
-      const res = await axios.post("/api/upload/image", data, { withCredentials: true });
+      const res = await axios.post("/api/upload/image", data, {
+        withCredentials: true,
+      });
       setRes(res.data);
 
       const imageURL = res.data.secure_url;
-      navigate("/post", { state: { imageURL } })
+      navigate("/post", { state: { imageURL } });
 
       // setUploadedURL(imageURL);
     } catch (error) {
@@ -48,7 +50,7 @@ const Upload = ({ darkLight, setDarkLight }) => {
     <div className="master">
       <header>
         <section className="new_post_title">
-          <Link to="/">
+          <Link to="/home">
             <CgCloseR
               size={30}
               style={{ color: !darkLight ? "white" : "black" }}
@@ -76,9 +78,19 @@ const Upload = ({ darkLight, setDarkLight }) => {
         <div className="whole_gallery">
           <div className="gallery">
             <div className="gallery_left">
-              <button className="gallery_button" onClick={handleUploadClick}>
+              <button
+                className="gallery_button"
+                style={{
+                  color: !darkLight ? "white" : "black",
+                  backgroundColor: !darkLight ? "black" : "white",
+                }}
+                onClick={handleUploadClick}
+              >
                 <p
-                  style={{ color: !darkLight ? "white" : "black" }}
+                  style={{
+                    color: !darkLight ? "white" : "black",
+                    backgroundColor: !darkLight ? "black" : "white",
+                  }}
                 >
                   Gallery
                 </p>
@@ -92,7 +104,9 @@ const Upload = ({ darkLight, setDarkLight }) => {
               {!darkLight ? (
                 <BiCategory
                   size={35}
-                  style={{ color: !darkLight ? "white" : "black" }}
+                  style={{
+                    color: !darkLight ? "white" : "black",
+                  }}
                 />
               ) : (
                 <BiSolidCategory size={35} />
@@ -112,7 +126,10 @@ const Upload = ({ darkLight, setDarkLight }) => {
       <main>
         {showGallery && (
           <div className="dropdown-options">
-            <FileUpload handleUpload={handleUpload} handleSelectFile={handleSelectFile} />
+            <FileUpload
+              handleUpload={handleUpload}
+              handleSelectFile={handleSelectFile}
+            />
           </div>
         )}
       </main>

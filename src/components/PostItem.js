@@ -1,5 +1,3 @@
-// PostItem.js
-
 import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { GoHeart } from "react-icons/go";
@@ -26,34 +24,56 @@ const PostItem = ({
   isLiked,
   darkLight,
   setDarkLight,
+  toggleLike,
   setreFetch,
+  liked,
+  likes,
+  setLikes,
+  setLiked,
 }) => {
-  const [liked, setLiked] = useState(isLiked);
-  const [likes, setLikes] = useState(likeCount);
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [comments, setComments] = useState([]);
+  const [likedPosts, setLikedPosts] = useState({});
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
         const response = await axios.get("/api/comments");
         setComments(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
     };
-
     fetchComments();
   }, []);
 
-  const toggleLike = async () => {
+  const handleCommentClickDB = (id) => {
+    const filteredPost = posts.find((post) => post._id === id);
+    if (filteredPost) {
+      navigate("/commentsPage", { state: { post: filteredPost } });
+    } else {
+      console.log("Post not found");
+    }
+  };
+
+  const handleLikeClick = async (postId) => {
     try {
+      const updatedLikedPosts = {
+        ...likedPosts,
+        [postId]: {
+          liked: !likedPosts[postId]?.liked,
+          likes: likedPosts[postId]?.liked ? 0 : 1,
+        },
+      };
       await axios.put("/api/posts/updateLike", {
-        postId: post._id,
+        postId,
       });
-      setreFetch((prev) => !prev);
+      setLikedPosts(updatedLikedPosts);
+      window.localStorage.setItem(
+        "MY_APP_STATE",
+        JSON.stringify(updatedLikedPosts)
+      );
     } catch (error) {
       const responseError = error?.response?.data?.error?.message;
       if (responseError) {
@@ -65,16 +85,13 @@ const PostItem = ({
     }
   };
 
-  const handleCommentClickDB = (id) => {
-    const filteredPost = posts.find((post) => post._id === id);
-    console.log("Posts:", posts);
-    console.log("Filtered Post:", filteredPost);
-    if (filteredPost) {
-      navigate("/commentsPage", { state: { post: filteredPost } });
-    } else {
-      console.log("Post not found");
+  useEffect(() => {
+    const data = window.localStorage.getItem("MY_APP_STATE");
+    if (data !== null) {
+      const parsedData = JSON.parse(data);
+      setLikedPosts(parsedData);
     }
-  };
+  }, []);
 
   return (
     <div>
@@ -100,13 +117,16 @@ const PostItem = ({
             <img src={image} alt="post-image" className="post-image" />
           </div>
           <section className="main-footer-section">
-            <div className="like-section" onClick={toggleLike}>
-              {post?.likes?.includes(post.currentUser) ? (
+            <div
+              className="like-section"
+              onClick={() => handleLikeClick(post._id)}
+            >
+              {likedPosts[post._id]?.liked ? (
                 <img src={redHeart} alt="redHeart" />
               ) : (
                 <GoHeart size={27} />
               )}
-              <p>{post.likes.length}</p>
+              <p>{likedPosts[post._id]?.likes || 0}</p>
             </div>
 
             {post && (

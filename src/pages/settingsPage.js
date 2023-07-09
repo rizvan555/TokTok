@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 function SettingsPage({ darkLight, setDarkLight }) {
   return (
     <div className="settingsPage-container">
-      <Link to="/" className="left-button">
+      <Link to="/home" className="left-button">
         <BsArrowLeft
           size={30}
           style={{ color: !darkLight ? "white" : "black" }}

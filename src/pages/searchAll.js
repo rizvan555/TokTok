@@ -78,7 +78,7 @@ function SearchAll({ darkLight }) {
   ]);
 
   const navbar = [
-    { id: 1, color1: home, color2: redHome, path: "/" },
+    { id: 1, color1: home, color2: redHome, path: "/home" },
     { id: 2, color1: Search, color2: redSearch, path: "/search" },
     { id: 3, color1: Frame, color2: redFrame, path: "/upload" },
     { id: 4, color1: Profile, color2: redProfile, path: "/profile" },
@@ -97,9 +97,9 @@ function SearchAll({ darkLight }) {
       persons.map((person, personIndex) =>
         personIndex === index
           ? {
-            ...person,
-            isFollowing: !person.isFollowing,
-          }
+              ...person,
+              isFollowing: !person.isFollowing,
+            }
           : person
       )
     );
@@ -158,8 +158,8 @@ function SearchAll({ darkLight }) {
   };
 
   window.onload = function () {
-    window.scrollTo(0, 0)
-  }
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="search-container">

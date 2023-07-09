@@ -5,40 +5,34 @@ import axios from "axios";
 import { FiSettings } from "react-icons/fi";
 import { BsArrowLeft } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
-import newUserImage from '../resource/images/EllipseunknownUser.png';
+import newUserImage from "../resource/images/EllipseunknownUser.png";
 
 const NewPost = ({ darkLight, setDarkLight }) => {
-
-
   const location = useLocation();
   // console.log(location);
 
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  const [post, setPost] = useState(
-    {
-      content: "",
-      image: location.state?.imageURL,
-      location: "Düsseldorf",
-      facebook: false,
-      twitter: false,
-      tumblr: false,
-    },
-  );
+  const [post, setPost] = useState({
+    content: "",
+    image: location.state?.imageURL,
+    location: "Düsseldorf",
+    facebook: false,
+    twitter: false,
+    tumblr: false,
+  });
 
-
-
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const getUserProfile = async () => {
       try {
-        const response = await axios.get('/api/user');
+        const response = await axios.get("/api/user");
         setUser(response.data);
         // console.log(response);
       } catch (error) {
-        console.error('Fehler beim Abrufen der Benutzerdaten', error);
+        console.error("Fehler beim Abrufen der Benutzerdaten", error);
       }
     };
     // console.log(user);
@@ -46,7 +40,7 @@ const NewPost = ({ darkLight, setDarkLight }) => {
   }, []);
 
   const handleClickFacebook = () => {
-    setPost(prev => ({ ...prev, facebook: !prev.facebook }))
+    setPost((prev) => ({ ...prev, facebook: !prev.facebook }));
   };
 
   const handleClickTwitter = () => {
@@ -54,36 +48,33 @@ const NewPost = ({ darkLight, setDarkLight }) => {
     //   ...post,
     //   twitter: !post.twitter,
     // });
-    setPost(prev => ({ ...prev, twitter: !prev.twitter }))
+    setPost((prev) => ({ ...prev, twitter: !prev.twitter }));
   };
 
   const handleClickTumblr = () => {
-    setPost(prev => ({ ...prev, tumblr: !prev.tumblr }))
+    setPost((prev) => ({ ...prev, tumblr: !prev.tumblr }));
   };
-
 
   const textareaRef = useRef(null);
 
-
   const handleInputChange = (e) => {
     const content = e.target.value;
-    setPost(prevPost => ({ ...prevPost, content }));
+    setPost((prevPost) => ({ ...prevPost, content }));
     adjustTextareaHeight();
   };
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
-    navigate("/")
+    navigate("/home");
 
     try {
-      post.user = user?._id
-      const res = await axios.post("/api/newpost", post, { withCredentials: true });
+      post.user = user?._id;
+      const res = await axios.post("/api/newpost", post, {
+        withCredentials: true,
+      });
       // navigate("/")
       console.log(res);
-
     } catch (error) {
       const responseError = error?.response?.data?.error?.message;
       if (responseError) {
@@ -93,7 +84,6 @@ const NewPost = ({ darkLight, setDarkLight }) => {
       }
     }
   };
-
 
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
@@ -115,9 +105,9 @@ const NewPost = ({ darkLight, setDarkLight }) => {
         </section>
         <section className="new_post">
           {user.avatar ? (
-            <img src={user.avatar} className='profile_pic' alt="" />
+            <img src={user.avatar} className="profile_pic" alt="" />
           ) : (
-            <img src={newUserImage} className='profile_pic' alt="" />
+            <img src={newUserImage} className="profile_pic" alt="" />
           )}
           <textarea
             ref={textareaRef}
@@ -193,7 +183,13 @@ const NewPost = ({ darkLight, setDarkLight }) => {
             <p>Advanced Settings</p>
           </div>
           <hr />
-          <button type="submit" className="submit_button" onClick={handleSubmit}>Post</button>
+          <button
+            type="submit"
+            className="submit_button"
+            onClick={handleSubmit}
+          >
+            Post
+          </button>
         </section>
       </main>
     </div>
