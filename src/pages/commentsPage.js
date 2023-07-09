@@ -18,8 +18,6 @@ function CommentsPage({ darkLight }) {
   const [inputValue, setInputValue] = useState("");
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
-  const [liked1, setLiked1] = useState(false);
-  const [likes1, setLikes1] = useState(0);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { state } = useLocation();
