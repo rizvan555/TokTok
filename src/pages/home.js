@@ -5,7 +5,6 @@ import "../css/likeButton.css";
 import axios from "axios";
 import "../css/commentButton.css";
 import toktokLogo from "../resource/logos/toktokLogo.png";
-import Heart from "../resource/images/Heart.png";
 import redHeart from "../resource/images/redHeart.png";
 import FooterNavbar from "../components/FooterNavbar";
 import { GoHeart } from "react-icons/go";
@@ -35,7 +34,7 @@ function Home({ darkLight, setDarkLight }) {
         }
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          // Handle unauthorized access
+          // Yetkisiz erişimi ele al
         } else {
           console.error("Fehler beim Abrufen der Benutzerdaten", error);
           navigate("/signin", {
