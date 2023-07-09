@@ -34,7 +34,6 @@ function Home({ darkLight, setDarkLight }) {
         }
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          // Yetkisiz erişimi ele al
         } else {
           console.error("Fehler beim Abrufen der Benutzerdaten", error);
           navigate("/signin", {
